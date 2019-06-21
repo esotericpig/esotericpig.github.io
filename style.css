@@ -1,9 +1,18 @@
-body {
-  margin: 0;
-  padding: 0;
+a:link {
+  color: #004953;
 }
 
-div#content-container {
+a:visited {
+  color: #722f37;
+}
+
+a:active,a:hover {
+  color: #e0115f;
+}
+
+body {
+  background-color: #fff5ee;
+  color: #343434;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -12,19 +21,45 @@ div#content-container {
 div#content {
   display: inline-block;
   margin: 0 auto;
+  padding: 0;
   text-align: left;
-  width: 90%;
+}
+
+div#content-container {
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 table {
   border-collapse: collapse;
-  width: 100%;
 }
 
 td,th {
   border: 5px solid #753119;
-  padding: 5px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   text-align: left;
+}
+
+td a,td span,th span {
+  display: inline-block;
+  height: 100%;
+  padding: 5px 5px 5px 11px;
+  width: 100%;
+}
+
+th.docs {
+  width: 11em;
+}
+
+th.lang {
+  width: 5em;
+}
+
+th.repo {
+  width: 11em;
 }
 
 tr:nth-child(odd) {

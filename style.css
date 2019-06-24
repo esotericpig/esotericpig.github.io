@@ -31,6 +31,14 @@ div#content-container {
   text-align: center;
 }
 
+span.java-lang {
+  color: #ab7038;
+}
+
+span.ruby-lang {
+  color: #e0115f;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -50,15 +58,16 @@ td a,td span,th span {
   width: 100%;
 }
 
-th.docs {
+td.docs,th.docs {
   width: 11em;
 }
 
-th.lang {
+td.lang,th.lang {
+  font-weight: bold;
   width: 5em;
 }
 
-th.repo {
+td.repo,th.repo {
   width: 11em;
 }
 
@@ -68,10 +77,10 @@ tr:nth-child(odd) {
 
 @media screen and (max-width: 800px) {
   div#content {
-    width: 100%;
+    width: 95%;
   }
   
   div#content-container {
-    width: 86%;
+    width: 100%;
   }
 }

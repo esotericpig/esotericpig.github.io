@@ -65,3 +65,13 @@ th.repo {
 tr:nth-child(odd) {
   background-color: #ffc99f;
 }
+
+@media screen and (max-width: 800px) {
+  div#content {
+    width: 100%;
+  }
+  
+  div#content-container {
+    width: 86%;
+  }
+}

@@ -71,6 +71,11 @@ td.repo,th.repo {
   width: 11em;
 }
 
+td.vers,th.vers {
+  font-weight: bold;
+  width: 5em;
+}
+
 tr:nth-child(odd) {
   background-color: #ffc99f;
 }

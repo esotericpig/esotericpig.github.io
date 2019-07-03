@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Psychgus::Blueberry
+  
+    &mdash; Psychgus v1.0.0 Doc
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Psychgus::Blueberry";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (B)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span>
+     &raquo; 
+    <span class="title">Blueberry</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Psychgus::Blueberry
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/psychgus/blueberry.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>This is the OOP way to style your classes/modules/etc.</p>
+
+<p>Even though it&#39;s unnecessary to mix in (include) this module, it&#39;s recommended because new methods may be added in the future, so this pseudo-guarantees your class won&#39;t break in a new version.</p>
+
+<p>A complete example:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>psychgus</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='kw'>class</span> <span class='const'>MyClass</span>
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'>Blueberry</span>
+
+  <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:my_hash</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='ivar'>@my_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:key1</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>val1</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='symbol'>:key2</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>val2</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_psychgus_stylers'>psychgus_stylers</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='const'>MyClassStyler</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+
+<span class='kw'>class</span> <span class='const'>MyClassStyler</span>
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span></span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='rparen'>)</span>
+    <span class='ivar'>@level</span> <span class='op'>=</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_style_mapping'>style_mapping</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_style'>style</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Psychgus.html#MAPPING_FLOW-constant" title="Psychgus::MAPPING_FLOW (constant)">MAPPING_FLOW</a></span></span>
+
+    <span class='id identifier rubyid_relative_level'>relative_level</span> <span class='op'>=</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='op'>-</span> <span class='ivar'>@level</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+
+<span class='id identifier rubyid_my_class'>my_class</span> <span class='op'>=</span> <span class='const'>MyClass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_my_class'>my_class</span><span class='period'>.</span><span class='id identifier rubyid_to_yaml'>to_yaml</span><span class='lparen'>(</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>Alternatively, MyClass could have been the <span class='object_link'><a href="" title="Psychgus::Blueberry (module)">Blueberry</a></span> and the <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span>, without the need for MyClassStyler:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>MyClass</span>
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'>Blueberry</span>
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span></span>
+
+  <span class='comment'># ...
+</span>
+  <span class='kw'>def</span> <span class='id identifier rubyid_psychgus_stylers'>psychgus_stylers</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='rparen'>)</span>
+    <span class='ivar'>@level</span> <span class='op'>=</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='comment'># This will be included in the output of to_yaml()
+</span>
+    <span class='kw'>return</span> <span class='kw'>self</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_style_mapping'>style_mapping</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+    <span class='comment'># ...
+</span>  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p>However, it&#39;s best to put the styling logic inside of a separate class (or inner class) away from the main logic. This also prevents extra helper vars, like @level, from showing up in the output.</p>
+
+<p>After your class and its children have been processed, the styler(s) will be removed from the logic for the next sibling object(s). Therefore, you can safely do class-specific checks on level, etc. without it affecting the sibling object(s). See <span class='object_link'><a href="Ext/YAMLTreeExt.html" title="Psychgus::Ext::YAMLTreeExt (module)">Ext::YAMLTreeExt</a></span> and <span class='object_link'><a href="Ext/YAMLTreeExt.html#accept-instance_method" title="Psychgus::Ext::YAMLTreeExt#accept (method)">Ext::YAMLTreeExt#accept</a></span> for details.</p>
+
+<p>“The Blueberry” is the name of Gus&#39;s car from the TV show Psych.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Ext/YAMLTreeExt.html" title="Psychgus::Ext::YAMLTreeExt (module)">Ext::YAMLTreeExt</a></span></li>
+    
+      <li><span class='object_link'><a href="Ext/YAMLTreeExt.html#accept-instance_method" title="Psychgus::Ext::YAMLTreeExt#accept (method)">Ext::YAMLTreeExt#accept</a></span></li>
+    
+  </ul>
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Jonathan Bradley Whited (@esotericpig)</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#psychgus_stylers-instance_method" title="#psychgus_stylers (instance method)">#<strong>psychgus_stylers</strong>(sniffer)  &#x21d2; Styler, ... </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Duck Type this method to return the <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span>(s) for your class/module/etc.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="psychgus_stylers-instance_method">
+  
+    #<strong>psychgus_stylers</strong>(sniffer)  &#x21d2; <tt><span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span></tt>, ... 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Duck Type this method to return the <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span>(s) for your class/module/etc.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>sniffer</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="SuperSniffer.html" title="Psychgus::SuperSniffer (class)">SuperSniffer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>passed in from <span class='object_link'><a href="StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span>; use this for storing the level, position, etc. for styling your instance variables later relative to your class/module/etc.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span></tt>, <tt>Array&lt;<span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span>&gt;</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p><span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span>(s) for this class/module/etc.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/blueberry.rb', line 106</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_psychgus_stylers'>psychgus_stylers</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      
+<div id="footer">
+  Generated by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

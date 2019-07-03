@@ -1,0 +1,2967 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Psychgus
+  
+    &mdash; Psychgus v1.0.0 Doc
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Psychgus";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo;
+    
+    
+    <span class="title">Psychgus</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Psychgus
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  <dl>
+      <dt>Extended by:</dt>
+      <dd><span class='object_link'><a href="Psychgus/PsychDropIn.html" title="Psychgus::PsychDropIn (module)">PsychDropIn</a></span></dd>
+  </dl>
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/psychgus.rb<span class="defines">,<br />
+  lib/psychgus/ext.rb,<br /> lib/psychgus/styler.rb,<br /> lib/psychgus/version.rb,<br /> lib/psychgus/blueberry.rb,<br /> lib/psychgus/ext/core_ext.rb,<br /> lib/psychgus/ext/node_ext.rb,<br /> lib/psychgus/super_sniffer.rb,<br /> lib/psychgus/ext/yaml_tree_ext.rb,<br /> lib/psychgus/styled_tree_builder.rb,<br /> lib/psychgus/super_sniffer/parent.rb,<br /> lib/psychgus/styled_document_stream.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Psychgus uses the core standard library <a href="https://github.com/ruby/psych" target="_parent" title="Psych">Psych</a> for working with YAML and extends it so that developers can easily style the YAML according to their needs. Thank you to the people that worked and continue to work hard on that project.</p>
+
+<p>The name comes from the well-styled character Gus from the TV show Psych.</p>
+
+<h2 id="label-Create+a+Styler">Create a Styler</h2>
+
+<p>First, we will create a <span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span>.</p>
+
+<p>All you need to do is add <tt>include Psychgus::Styler</tt> to a class.</p>
+
+<p>Here is a complex <span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span> for the examples below:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>psychgus</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='kw'>class</span> <span class='const'>BurgerStyler</span>
+  <span class='comment'># Mix in methods needed for styling
+</span>  <span class='id identifier rubyid_include'>include</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span></span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+      <span class='ivar'>@class_level</span> <span class='op'>=</span> <span class='int'>0</span>
+      <span class='ivar'>@class_position</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='kw'>else</span>
+      <span class='comment'># For the Class Example
+</span>      <span class='ivar'>@class_level</span> <span class='op'>=</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span>
+      <span class='ivar'>@class_position</span> <span class='op'>=</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_position'>position</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Style all nodes (Psych::Nodes::Node)
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_style'>style</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+    <span class='comment'># Remove &quot;!ruby/object:...&quot; for classes
+</span>    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_node_of?'>node_of?</span><span class='lparen'>(</span><span class='symbol'>:mapping</span><span class='comma'>,</span><span class='symbol'>:scalar</span><span class='comma'>,</span><span class='symbol'>:sequence</span><span class='rparen'>)</span>
+
+    <span class='comment'># This is another way to do the above
+</span>    <span class='comment'>#node.tag = nil if node.respond_to?(:tag=)
+</span>  <span class='kw'>end</span>
+
+  <span class='comment'># Style aliases (Psych::Nodes::Alias)
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_style_alias'>style_alias</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Style maps (Psych::Nodes::Mapping)
+</span>  <span class='comment'># - Hashes (key/value pairs)
+</span>  <span class='comment'># - Example: &quot;Burgers: Classic {}&quot;
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_style_mapping'>style_mapping</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_parent'>parent</span> <span class='op'>=</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span>
+
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+      <span class='comment'># BBQ
+</span>      <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_style'>style</span> <span class='op'>=</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#MAPPING_FLOW-constant" title="Psychgus::MAPPING_FLOW (constant)">MAPPING_FLOW</a></span></span> <span class='kw'>if</span> <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_node_of?'>node_of?</span><span class='lparen'>(</span><span class='symbol'>:scalar</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
+                                             <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_casecmp'>casecmp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BBQ</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>0</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Style scalars (Psych::Nodes::Scalar)
+</span>  <span class='comment'># - Any text (non-alias)
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_style_scalar'>style_scalar</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_parent'>parent</span> <span class='op'>=</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span>
+
+    <span class='comment'># Single quote scalars that are not keys to a map
+</span>    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_style'>style</span> <span class='op'>=</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#SCALAR_SINGLE_QUOTED-constant" title="Psychgus::SCALAR_SINGLE_QUOTED (constant)">SCALAR_SINGLE_QUOTED</a></span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> 
+                                                   <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_child_type'>child_type</span> <span class='op'>!=</span> <span class='symbol'>:key</span>
+
+    <span class='comment'># Remove colon (change symbols into strings)
+</span>    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+
+    <span class='comment'># Change lettuce to spinach
+</span>    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Spinach</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_casecmp'>casecmp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Lettuce</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>0</span>
+
+    <span class='comment'># Capitalize each word
+</span>    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_casecmp'>casecmp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BBQ</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>0</span>
+        <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span><span class='lparen'>(</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_capitalize'>capitalize</span><span class='lparen'>(</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Style sequences (Psych::Nodes::Sequence)
+</span>  <span class='comment'># - Arrays
+</span>  <span class='comment'># - Example: &quot;[Lettuce, Onions, Pickles, Tomatoes]&quot;
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_style_sequence'>style_sequence</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_relative_level'>relative_level</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='op'>-</span> <span class='ivar'>@class_level</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='int'>1</span>
+
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_style'>style</span> <span class='op'>=</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#SEQUENCE_FLOW-constant" title="Psychgus::SEQUENCE_FLOW (constant)">SEQUENCE_FLOW</a></span></span> <span class='kw'>if</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='op'>&gt;=</span> <span class='int'>4</span>
+
+    <span class='comment'># Make &quot;[Ketchup, Mustard]&quot; a block for the Class Example
+</span>    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_style'>style</span> <span class='op'>=</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#SEQUENCE_BLOCK-constant" title="Psychgus::SEQUENCE_BLOCK (constant)">SEQUENCE_BLOCK</a></span></span> <span class='kw'>if</span> <span class='id identifier rubyid_relative_level'>relative_level</span> <span class='op'>==</span> <span class='int'>7</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Hash example</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>psychgus</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='id identifier rubyid_burgers'>burgers</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+  <span class='symbol'>:Burgers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
+    <span class='symbol'>:Classic</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
+      <span class='symbol'>:Sauce</span>  <span class='op'>=&gt;</span> <span class='qwords_beg'>%w(</span><span class='tstring_content'>Ketchup</span><span class='words_sep'> </span><span class='tstring_content'>Mustard</span><span class='tstring_end'>)</span></span><span class='comma'>,</span>
+      <span class='symbol'>:Cheese</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>American</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+      <span class='symbol'>:Bun</span>    <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sesame Seed</span><span class='tstring_end'>&#39;</span></span>
+    <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='symbol'>:BBQ</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
+      <span class='symbol'>:Sauce</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Honey BBQ</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+      <span class='symbol'>:Cheese</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cheddar</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+      <span class='symbol'>:Bun</span>    <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Kaiser</span><span class='tstring_end'>&#39;</span></span>
+    <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='symbol'>:Fancy</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
+      <span class='symbol'>:Sauce</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Spicy Wasabi</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+      <span class='symbol'>:Cheese</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Smoked Gouda</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+      <span class='symbol'>:Bun</span>    <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hawaiian</span><span class='tstring_end'>&#39;</span></span>
+    <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:Toppings</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
+    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mushrooms</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='qwords_beg'>%w(</span><span class='tstring_content'>Lettuce</span><span class='words_sep'> </span><span class='tstring_content'>Onions</span><span class='words_sep'> </span><span class='tstring_content'>Pickles</span><span class='words_sep'> </span><span class='tstring_content'>Tomatoes</span><span class='tstring_end'>)</span></span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='qwords_beg'>%w(</span><span class='tstring_content'>Ketchup</span><span class='words_sep'> </span><span class='tstring_content'>Mustard</span><span class='tstring_end'>)</span></span><span class='comma'>,</span> <span class='qwords_beg'>%w(</span><span class='tstring_content'>Salt</span><span class='words_sep'> </span><span class='tstring_content'>Pepper</span><span class='tstring_end'>)</span></span><span class='rbracket'>]</span>
+  <span class='rbracket'>]</span>
+<span class='rbrace'>}</span>
+<span class='id identifier rubyid_burgers'>burgers</span><span class='lbracket'>[</span><span class='symbol'>:Favorite</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_burgers'>burgers</span><span class='lbracket'>[</span><span class='symbol'>:Burgers</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:BBQ</span><span class='rbracket'>]</span> <span class='comment'># Alias
+</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_burgers'>burgers</span><span class='period'>.</span><span class='id identifier rubyid_to_yaml'>to_yaml</span><span class='lparen'>(</span><span class='label'>indent:</span> <span class='int'>3</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='const'>BurgerStyler</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+
+<span class='comment'># Output:
+</span><span class='comment'># ---
+</span><span class='comment'># Burgers:
+</span><span class='comment'>#    Classic:
+</span><span class='comment'>#       Sauce: [&#39;Ketchup&#39;, &#39;Mustard&#39;]
+</span><span class='comment'>#       Cheese: &#39;American&#39;
+</span><span class='comment'>#       Bun: &#39;Sesame Seed&#39;
+</span><span class='comment'>#    BBQ: {Sauce: &#39;Honey BBQ&#39;, Cheese: &#39;Cheddar&#39;, Bun: &#39;Kaiser&#39;}
+</span><span class='comment'>#    Fancy:
+</span><span class='comment'>#       Sauce: &#39;Spicy Wasabi&#39;
+</span><span class='comment'>#       Cheese: &#39;Smoked Gouda&#39;
+</span><span class='comment'>#       Bun: &#39;Hawaiian&#39;
+</span><span class='comment'># Toppings:
+</span><span class='comment'># - &#39;Mushrooms&#39;
+</span><span class='comment'># - [&#39;Spinach&#39;, &#39;Onions&#39;, &#39;Pickles&#39;, &#39;Tomatoes&#39;]
+</span><span class='comment'># - [[&#39;Ketchup&#39;, &#39;Mustard&#39;], [&#39;Salt&#39;, &#39;Pepper&#39;]]
+</span><span class='comment'># Favorite:
+</span><span class='comment'>#    Sauce: &#39;Honey BBQ&#39;
+</span><span class='comment'>#    Cheese: &#39;Cheddar&#39;
+</span><span class='comment'>#    Bun: &#39;Kaiser&#39;</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Class example</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>psychgus</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='kw'>class</span> <span class='const'>Burger</span>
+  <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:bun</span>
+  <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:cheese</span>
+  <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:sauce</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_sauce'>sauce</span><span class='comma'>,</span><span class='id identifier rubyid_cheese'>cheese</span><span class='comma'>,</span><span class='id identifier rubyid_bun'>bun</span><span class='rparen'>)</span>
+    <span class='ivar'>@bun</span> <span class='op'>=</span> <span class='id identifier rubyid_bun'>bun</span>
+    <span class='ivar'>@cheese</span> <span class='op'>=</span> <span class='id identifier rubyid_cheese'>cheese</span>
+    <span class='ivar'>@sauce</span> <span class='op'>=</span> <span class='id identifier rubyid_sauce'>sauce</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># You can still use Psych&#39;s encode_with(), no problem
+</span>  <span class='comment'>#def encode_with(coder)
+</span>  <span class='comment'>#  coder[&#39;Bun&#39;] = @bun
+</span>  <span class='comment'>#  coder[&#39;Cheese&#39;] = @cheese
+</span>  <span class='comment'>#  coder[&#39;Sauce&#39;] = @sauce
+</span>  <span class='comment'>#end
+</span><span class='kw'>end</span>
+
+<span class='kw'>class</span> <span class='const'>Burgers</span>
+  <span class='id identifier rubyid_include'>include</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Psychgus/Blueberry.html" title="Psychgus::Blueberry (module)">Blueberry</a></span></span>
+
+  <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:burgers</span>
+  <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:toppings</span>
+  <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:favorite</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='ivar'>@burgers</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+      <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Classic</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='const'>Burger</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ketchup</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mustard</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>American</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sesame Seed</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BBQ</span><span class='tstring_end'>&#39;</span></span>     <span class='op'>=&gt;</span> <span class='const'>Burger</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Honey BBQ</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cheddar</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Kaiser</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fancy</span><span class='tstring_end'>&#39;</span></span>   <span class='op'>=&gt;</span> <span class='const'>Burger</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Spicy Wasabi</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Smoked Gouda</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hawaiian</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='rbrace'>}</span>
+
+    <span class='ivar'>@toppings</span> <span class='op'>=</span> <span class='lbracket'>[</span>
+      <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mushrooms</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+      <span class='qwords_beg'>%w(</span><span class='tstring_content'>Lettuce</span><span class='words_sep'> </span><span class='tstring_content'>Onions</span><span class='words_sep'> </span><span class='tstring_content'>Pickles</span><span class='words_sep'> </span><span class='tstring_content'>Tomatoes</span><span class='tstring_end'>)</span></span><span class='comma'>,</span>
+      <span class='lbracket'>[</span><span class='qwords_beg'>%w(</span><span class='tstring_content'>Ketchup</span><span class='words_sep'> </span><span class='tstring_content'>Mustard</span><span class='tstring_end'>)</span></span><span class='comma'>,</span><span class='qwords_beg'>%w(</span><span class='tstring_content'>Salt</span><span class='words_sep'> </span><span class='tstring_content'>Pepper</span><span class='tstring_end'>)</span></span><span class='rbracket'>]</span>
+    <span class='rbracket'>]</span>
+
+    <span class='ivar'>@favorite</span> <span class='op'>=</span> <span class='ivar'>@burgers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BBQ</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='comment'># Alias
+</span>  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_psychgus_stylers'>psychgus_stylers</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='const'>BurgerStyler</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># You can still use Psych&#39;s encode_with(), no problem
+</span>  <span class='comment'>#def encode_with(coder)
+</span>  <span class='comment'>#  coder[&#39;Burgers&#39;] = @burgers
+</span>  <span class='comment'>#  coder[&#39;Toppings&#39;] = @toppings
+</span>  <span class='comment'>#  coder[&#39;Favorite&#39;] = @favorite
+</span>  <span class='comment'>#end
+</span><span class='kw'>end</span>
+
+<span class='id identifier rubyid_burgers'>burgers</span> <span class='op'>=</span> <span class='const'>Burgers</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_burgers'>burgers</span><span class='period'>.</span><span class='id identifier rubyid_to_yaml'>to_yaml</span><span class='lparen'>(</span><span class='label'>indent:</span> <span class='int'>3</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+
+<span class='comment'># Output:
+</span><span class='comment'># ---
+</span><span class='comment'># Burgers:
+</span><span class='comment'>#    Classic:
+</span><span class='comment'>#       Bun: &#39;Sesame Seed&#39;
+</span><span class='comment'>#       Cheese: &#39;American&#39;
+</span><span class='comment'>#       Sauce:
+</span><span class='comment'>#       - &#39;Ketchup&#39;
+</span><span class='comment'>#       - &#39;Mustard&#39;
+</span><span class='comment'>#    BBQ: {Bun: &#39;Kaiser&#39;, Cheese: &#39;Cheddar&#39;, Sauce: &#39;Honey BBQ&#39;}
+</span><span class='comment'>#    Fancy:
+</span><span class='comment'>#       Bun: &#39;Hawaiian&#39;
+</span><span class='comment'>#       Cheese: &#39;Smoked Gouda&#39;
+</span><span class='comment'>#       Sauce: &#39;Spicy Wasabi&#39;
+</span><span class='comment'># Toppings:
+</span><span class='comment'># - &#39;Mushrooms&#39;
+</span><span class='comment'># - [&#39;Spinach&#39;, &#39;Onions&#39;, &#39;Pickles&#39;, &#39;Tomatoes&#39;]
+</span><span class='comment'># - [[&#39;Ketchup&#39;, &#39;Mustard&#39;], [&#39;Salt&#39;, &#39;Pepper&#39;]]
+</span><span class='comment'># Favorite:
+</span><span class='comment'>#    Bun: &#39;Kaiser&#39;
+</span><span class='comment'>#    Cheese: &#39;Cheddar&#39;
+</span><span class='comment'>#    Sauce: &#39;Honey BBQ&#39;</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Emitting / Parsing examples</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_styler'>styler</span> <span class='op'>=</span> <span class='const'>BurgerStyler</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:indentation</span><span class='op'>=&gt;</span><span class='int'>3</span><span class='comma'>,</span><span class='symbol'>:stylers</span><span class='op'>=&gt;</span><span class='id identifier rubyid_styler'>styler</span><span class='comma'>,</span><span class='symbol'>:deref_aliases</span><span class='op'>=&gt;</span><span class='kw'>true</span><span class='rbrace'>}</span>
+<span class='id identifier rubyid_yaml'>yaml</span> <span class='op'>=</span> <span class='id identifier rubyid_burgers'>burgers</span><span class='period'>.</span><span class='id identifier rubyid_to_yaml'>to_yaml</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+
+<span class='comment'># High-level emitting
+</span><span class='const'>Psychgus</span><span class='period'>.</span><span class='id identifier rubyid_dump'><span class='object_link'><a href="#dump-class_method" title="Psychgus.dump (method)">dump</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_burgers'>burgers</span><span class='comma'>,</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='const'>Psychgus</span><span class='period'>.</span><span class='id identifier rubyid_dump_file'><span class='object_link'><a href="#dump_file-class_method" title="Psychgus.dump_file (method)">dump_file</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>burgers.yaml</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_burgers'>burgers</span><span class='comma'>,</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_burgers'>burgers</span><span class='period'>.</span><span class='id identifier rubyid_to_yaml'>to_yaml</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+
+<span class='comment'># High-level parsing
+</span><span class='comment'># - Because to_ruby() will be called, just use Psych:
+</span><span class='comment'>#   - load(), load_file(), load_stream(), safe_load()
+</span>
+<span class='comment'># Mid-level emitting
+</span><span class='id identifier rubyid_stream'>stream</span> <span class='op'>=</span> <span class='const'>Psychgus</span><span class='period'>.</span><span class='id identifier rubyid_parse_stream'><span class='object_link'><a href="#parse_stream-class_method" title="Psychgus.parse_stream (method)">parse_stream</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='id identifier rubyid_styler'>styler</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_stream'>stream</span><span class='period'>.</span><span class='id identifier rubyid_to_yaml'>to_yaml</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+<span class='comment'># Mid-level parsing
+</span><span class='const'>Psychgus</span><span class='period'>.</span><span class='id identifier rubyid_parse'><span class='object_link'><a href="#parse-class_method" title="Psychgus.parse (method)">parse</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='id identifier rubyid_styler'>styler</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='const'>Psychgus</span><span class='period'>.</span><span class='id identifier rubyid_parse_file'><span class='object_link'><a href="#parse_file-class_method" title="Psychgus.parse_file (method)">parse_file</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>burgers.yaml</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='id identifier rubyid_styler'>styler</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='const'>Psychgus</span><span class='period'>.</span><span class='id identifier rubyid_parse_stream'><span class='object_link'><a href="#parse_stream-class_method" title="Psychgus.parse_stream (method)">parse_stream</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='id identifier rubyid_styler'>styler</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+
+<span class='comment'># Low-level emitting
+</span><span class='id identifier rubyid_tree_builder'>tree_builder</span> <span class='op'>=</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html#initialize-instance_method" title="Psychgus::StyledTreeBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_styler'>styler</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>=</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Visitors</span><span class='op'>::</span><span class='const'>YAMLTree</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='id identifier rubyid_tree_builder'>tree_builder</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_burgers'>burgers</span>
+<span class='id identifier rubyid_visitor'>visitor</span><span class='period'>.</span><span class='id identifier rubyid_tree'>tree</span><span class='period'>.</span><span class='id identifier rubyid_to_yaml'>to_yaml</span>
+
+<span class='comment'># Low-level parsing
+</span><span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='const'>Psychgus</span><span class='period'>.</span><span class='id identifier rubyid_parser'><span class='object_link'><a href="#parser-class_method" title="Psychgus.parser (method)">parser</a></span></span><span class='lparen'>(</span><span class='label'>stylers:</span> <span class='id identifier rubyid_styler'>styler</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_handler'>handler</span>
+<span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_handler'>handler</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Jonathan Bradley Whited (@esotericpig)</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Psychgus/Blueberry.html" title="Psychgus::Blueberry (module)">Blueberry</a></span>, <span class='object_link'><a href="Psychgus/Ext.html" title="Psychgus::Ext (module)">Ext</a></span>, <span class='object_link'><a href="Psychgus/PsychDropIn.html" title="Psychgus::PsychDropIn (module)">PsychDropIn</a></span>, <span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Psychgus/StyledDocumentStream.html" title="Psychgus::StyledDocumentStream (class)">StyledDocumentStream</a></span>, <span class='object_link'><a href="Psychgus/StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span>, <span class='object_link'><a href="Psychgus/SuperSniffer.html" title="Psychgus::SuperSniffer (class)">SuperSniffer</a></span>
+    
+  
+</p>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="NODE_CLASS_ALIASES-constant" class="">NODE_CLASS_ALIASES =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span><span class='symbol'>:Doc</span> <span class='op'>=&gt;</span> <span class='symbol'>:Document</span><span class='comma'>,</span><span class='symbol'>:Map</span> <span class='op'>=&gt;</span> <span class='symbol'>:Mapping</span><span class='comma'>,</span><span class='symbol'>:Seq</span> <span class='op'>=&gt;</span> <span class='symbol'>:Sequence</span><span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="OPTIONS_ALIASES-constant" class="">OPTIONS_ALIASES =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span><span class='symbol'>:canon</span> <span class='op'>=&gt;</span> <span class='symbol'>:canonical</span><span class='comma'>,</span><span class='symbol'>:indent</span> <span class='op'>=&gt;</span> <span class='symbol'>:indentation</span><span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="MAPPING_ANY-constant" class="">MAPPING_ANY =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:mapping</span><span class='comma'>,</span><span class='symbol'>:any</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MAPPING_BLOCK-constant" class="">MAPPING_BLOCK =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:mapping</span><span class='comma'>,</span><span class='symbol'>:block</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MAPPING_FLOW-constant" class="">MAPPING_FLOW =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:mapping</span><span class='comma'>,</span><span class='symbol'>:flow</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MAP_ANY-constant" class="">MAP_ANY =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="#MAPPING_ANY-constant" title="Psychgus::MAPPING_ANY (constant)">MAPPING_ANY</a></span></span></pre></dd>
+      
+        <dt id="MAP_BLOCK-constant" class="">MAP_BLOCK =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="#MAPPING_BLOCK-constant" title="Psychgus::MAPPING_BLOCK (constant)">MAPPING_BLOCK</a></span></span></pre></dd>
+      
+        <dt id="MAP_FLOW-constant" class="">MAP_FLOW =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="#MAPPING_FLOW-constant" title="Psychgus::MAPPING_FLOW (constant)">MAPPING_FLOW</a></span></span></pre></dd>
+      
+        <dt id="SCALAR_ANY-constant" class="">SCALAR_ANY =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:scalar</span><span class='comma'>,</span><span class='symbol'>:any</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SCALAR_PLAIN-constant" class="">SCALAR_PLAIN =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:scalar</span><span class='comma'>,</span><span class='symbol'>:plain</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SCALAR_SINGLE_QUOTED-constant" class="">SCALAR_SINGLE_QUOTED =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:scalar</span><span class='comma'>,</span><span class='symbol'>:single_quoted</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SCALAR_DOUBLE_QUOTED-constant" class="">SCALAR_DOUBLE_QUOTED =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:scalar</span><span class='comma'>,</span><span class='symbol'>:double_quoted</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SCALAR_LITERAL-constant" class="">SCALAR_LITERAL =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:scalar</span><span class='comma'>,</span><span class='symbol'>:literal</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SCALAR_FOLDED-constant" class="">SCALAR_FOLDED =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:scalar</span><span class='comma'>,</span><span class='symbol'>:folded</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SEQUENCE_ANY-constant" class="">SEQUENCE_ANY =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:sequence</span><span class='comma'>,</span><span class='symbol'>:any</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SEQUENCE_BLOCK-constant" class="">SEQUENCE_BLOCK =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:sequence</span><span class='comma'>,</span><span class='symbol'>:block</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SEQUENCE_FLOW-constant" class="">SEQUENCE_FLOW =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:sequence</span><span class='comma'>,</span><span class='symbol'>:flow</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SEQ_ANY-constant" class="">SEQ_ANY =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="#SEQUENCE_ANY-constant" title="Psychgus::SEQUENCE_ANY (constant)">SEQUENCE_ANY</a></span></span></pre></dd>
+      
+        <dt id="SEQ_BLOCK-constant" class="">SEQ_BLOCK =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="#SEQUENCE_BLOCK-constant" title="Psychgus::SEQUENCE_BLOCK (constant)">SEQUENCE_BLOCK</a></span></span></pre></dd>
+      
+        <dt id="SEQ_FLOW-constant" class="">SEQ_FLOW =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="#SEQUENCE_FLOW-constant" title="Psychgus::SEQUENCE_FLOW (constant)">SEQUENCE_FLOW</a></span></span></pre></dd>
+      
+        <dt id="STREAM_ANY-constant" class="">STREAM_ANY =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:stream</span><span class='comma'>,</span><span class='symbol'>:any</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="STREAM_UTF8-constant" class="">STREAM_UTF8 =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:stream</span><span class='comma'>,</span><span class='symbol'>:utf8</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="STREAM_UTF16LE-constant" class="">STREAM_UTF16LE =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:stream</span><span class='comma'>,</span><span class='symbol'>:utf16le</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="STREAM_UTF16BE-constant" class="">STREAM_UTF16BE =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='symbol'>:stream</span><span class='comma'>,</span><span class='symbol'>:utf16be</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="VERSION-constant" class="">VERSION =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Version of this gem in “#.#.#” format</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1.0.0</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dump-class_method" title="dump (class method)">.<strong>dump</strong>(object, io = nil, **options)  &#x21d2; String, Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Convert <code>object</code> to YAML and dump to <code>io</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dump_file-class_method" title="dump_file (class method)">.<strong>dump_file</strong>(filename, *objects, mode: &#39;w&#39;, perm: nil, opt: nil, **options)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Convert <code>objects</code> to YAML and dump to a file.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dump_stream-class_method" title="dump_stream (class method)">.<strong>dump_stream</strong>(*objects, io: nil, stylers: nil, deref_aliases: false, **options)  &#x21d2; String, Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Convert <code>objects</code> to YAML and dump to <code>io</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#node_class-class_method" title="node_class (class method)">.<strong>node_class</strong>(name)  &#x21d2; Class </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get a Class (constant) from Psych::Nodes.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#node_const-class_method" title="node_const (class method)">.<strong>node_const</strong>(class_name, const_name, lenient = true)  &#x21d2; Integer, Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get a constant from a Psych::Nodes class (using <span class='object_link'><a href="#node_class-class_method" title="Psychgus.node_class (method)">Psychgus.node_class</a></span>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse-class_method" title="parse (class method)">.<strong>parse</strong>(yaml, **kargs)  &#x21d2; Psych::Nodes::Document </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parse <code>yaml</code> into a Psych::Nodes::Document.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_file-class_method" title="parse_file (class method)">.<strong>parse_file</strong>(filename, fallback: false, mode: &#39;r:BOM|UTF-8&#39;, **kargs)  &#x21d2; Psych::Nodes::Document </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parse a YAML file into a Psych::Nodes::Document.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_stream-class_method" title="parse_stream (class method)">.<strong>parse_stream</strong>(yaml, filename: nil, stylers: nil, deref_aliases: false, **options, &amp;block)  &#x21d2; Psych::Nodes::Stream </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parse <code>yaml</code> into a Psych::Nodes::Stream for one document or for multiple documents in one YAML.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parser-class_method" title="parser (class method)">.<strong>parser</strong>(stylers: nil, deref_aliases: false, **options)  &#x21d2; Psych::Parser </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Create a new styled Psych::Parser for parsing YAML.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Psychgus/PsychDropIn.html" title="Psychgus::PsychDropIn (module)">PsychDropIn</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Psychgus/PsychDropIn.html#add_builtin_type-instance_method" title="Psychgus::PsychDropIn#add_builtin_type (method)">add_builtin_type</a></span>, <span class='object_link'><a href="Psychgus/PsychDropIn.html#add_domain_type-instance_method" title="Psychgus::PsychDropIn#add_domain_type (method)">add_domain_type</a></span>, <span class='object_link'><a href="Psychgus/PsychDropIn.html#add_tag-instance_method" title="Psychgus::PsychDropIn#add_tag (method)">add_tag</a></span>, <span class='object_link'><a href="Psychgus/PsychDropIn.html#load-instance_method" title="Psychgus::PsychDropIn#load (method)">load</a></span>, <span class='object_link'><a href="Psychgus/PsychDropIn.html#load_file-instance_method" title="Psychgus::PsychDropIn#load_file (method)">load_file</a></span>, <span class='object_link'><a href="Psychgus/PsychDropIn.html#load_stream-instance_method" title="Psychgus::PsychDropIn#load_stream (method)">load_stream</a></span>, <span class='object_link'><a href="Psychgus/PsychDropIn.html#remove_type-instance_method" title="Psychgus::PsychDropIn#remove_type (method)">remove_type</a></span>, <span class='object_link'><a href="Psychgus/PsychDropIn.html#safe_load-instance_method" title="Psychgus::PsychDropIn#safe_load (method)">safe_load</a></span>, <span class='object_link'><a href="Psychgus/PsychDropIn.html#to_json-instance_method" title="Psychgus::PsychDropIn#to_json (method)">to_json</a></span></p>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="dump-class_method">
+  
+    .<strong>dump</strong>(object, io = nil, **options)  &#x21d2; <tt>String</tt>, <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Convert <code>object</code> to YAML and dump to <code>io</code>.</p>
+
+<p><code>object</code>, <code>io</code>, and <code>options</code> are used like in Psych.dump so can be a drop-in replacement for Psych.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Object to convert to YAML and dump</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>io</span>
+      
+      
+        <span class='type'>(<tt>nil</tt>, <tt>IO</tt>, <tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the IO to dump the YAML to or the <code>options</code> Hash; if nil, will use StringIO</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the options (or keyword args) to use; see <span class='object_link'><a href="#dump_stream-class_method" title="Psychgus.dump_stream (method)">dump_stream</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the result of converting <code>object</code> to YAML using the params</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#dump_stream-class_method" title="Psychgus.dump_stream (method)">dump_stream</a></span></li>
+    
+      <li>Psych.dump_stream</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+391
+392
+393</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 391</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span><span class='id identifier rubyid_io'>io</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_dump_stream'>dump_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span><span class='label'>io:</span> <span class='id identifier rubyid_io'>io</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dump_file-class_method">
+  
+    .<strong>dump_file</strong>(filename, *objects, mode: &#39;w&#39;, perm: nil, opt: nil, **options)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Convert <code>objects</code> to YAML and dump to a file.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Psychgus (module)">Psychgus</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dump_file'>dump_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my_dir/my_file.yaml</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_my_object1'>my_object1</span><span class='comma'>,</span><span class='id identifier rubyid_my_object2'>my_object2</span><span class='comma'>,</span><span class='label'>mode:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w:UTF-16</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                   <span class='label'>stylers:</span> <span class='const'>MyStyler</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='const'><span class='object_link'><a href="" title="Psychgus (module)">Psychgus</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dump_file'>dump_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my_file.yaml</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_my_object'>my_object</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='lbracket'>[</span><span class='const'>MyStyler1</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='comma'>,</span><span class='const'>MyStyler2</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of the file (and path) to dump to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>objects</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>, <tt>Array&lt;Object&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Object(s) to convert to YAML and dump</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the IO open mode to use; examples:</p>
+<dl class="rdoc-list label-list"><dt><tt>&#39;w:UTF-8&#39;</tt>
+<dd>
+<p>create a new file or truncate an existing file and use UTF-8 encoding;</p>
+</dd><dt><tt>&#39;a:UTF-16&#39;</tt>
+<dd>
+<p>create a new file or append to an existing file and use UTF-16 encoding</p>
+</dd></dl>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>perm</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the permission bits to use (platform dependent)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>opt</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the option(s) to use, more readable alternative to <code>mode</code>; examples: <code>:textmode</code>, <code>:autoclose</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the options (or keyword args) to use; see <span class='object_link'><a href="#dump_stream-class_method" title="Psychgus.dump_stream (method)">dump_stream</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#dump_stream-class_method" title="Psychgus.dump_stream (method)">dump_stream</a></span></li>
+    
+      <li>File.open</li>
+    
+      <li>IO.new</li>
+    
+      <li><a href="https://ruby-doc.org/core/IO.html#method-c-new" target="_parent" title="https://ruby-doc.org/core/IO.html#method-c-new">https://ruby-doc.org/core/IO.html#method-c-new</a></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+418
+419
+420
+421
+422</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 418</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dump_file'>dump_file</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='op'>*</span><span class='id identifier rubyid_objects'>objects</span><span class='comma'>,</span><span class='label'>mode:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='label'>perm:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>opt:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='id identifier rubyid_mode'>mode</span><span class='comma'>,</span><span class='id identifier rubyid_perm'>perm</span><span class='comma'>,</span><span class='id identifier rubyid_opt'>opt</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+    <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_dump_stream'>dump_stream</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_objects'>objects</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dump_stream-class_method">
+  
+    .<strong>dump_stream</strong>(*objects, io: nil, stylers: nil, deref_aliases: false, **options)  &#x21d2; <tt>String</tt>, <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Convert <code>objects</code> to YAML and dump to <code>io</code>.</p>
+
+<p><code>io</code> and <code>options</code> are used like in Psych.dump so can be a drop-in replacement for Psych.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>objects</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>, <tt>Array&lt;Object&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Object(s) to convert to YAML and dump</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>io</span>
+      
+      
+        <span class='type'>(<tt>nil</tt>, <tt>IO</tt>, <tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the IO to dump the YAML to or the <code>options</code> Hash; if nil, will use StringIO</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>stylers</span>
+      
+      
+        <span class='type'>(<tt>nil</tt>, <tt><span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span></tt>, <tt>Array&lt;<span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Styler(s) to use when converting to YAML</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>deref_aliases</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to dereference aliases; output the actual value instead of the alias</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the options (or keyword args) to use when converting to YAML:</p>
+<dl class="rdoc-list label-list"><dt><code>:indent</code>
+<dd>
+<p>Alias for <code>:indentation</code>. <code>:indentation</code> will override this.</p>
+</dd><dt><code>:indentation</code>
+<dd>
+<p>Default: <code>2</code>. Number of space characters used to indent. Acceptable value should be in <code>0..9</code> range, else ignored.</p>
+</dd><dt><code>:line_width</code>
+<dd>
+<p>Default: <code>0</code> (meaning “wrap at 81”). Max character to wrap line at.</p>
+</dd><dt><code>:canon</code>
+<dd>
+<p>Alias for <code>:canonical</code>. <code>:canonical</code> will override this.</p>
+</dd><dt><code>:canonical</code>
+<dd>
+<p>Default: <code>false</code>. Write “canonical” YAML form (very verbose, yet strictly formal).</p>
+</dd><dt><code>:header</code>
+<dd>
+<p>Default: <code>false</code>. Write <tt>%YAML [version]</tt> at the beginning of document.</p>
+</dd></dl>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the result of converting <code>object</code> to YAML using the params</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Psych.dump_stream</li>
+    
+      <li><span class='object_link'><a href="#OPTIONS_ALIASES-constant" title="Psychgus::OPTIONS_ALIASES (constant)">OPTIONS_ALIASES</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 450</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dump_stream'>dump_stream</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_objects'>objects</span><span class='comma'>,</span><span class='label'>io:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'>Hash</span> <span class='op'>===</span> <span class='id identifier rubyid_io'>io</span>
+    <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span>
+    <span class='id identifier rubyid_io'>io</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="#OPTIONS_ALIASES-constant" title="Psychgus::OPTIONS_ALIASES (constant)">OPTIONS_ALIASES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_option_alias'>option_alias</span><span class='comma'>,</span><span class='id identifier rubyid_option'>option</span><span class='op'>|</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_option_alias'>option_alias</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='id identifier rubyid_option'>option</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='id identifier rubyid_option_alias'>option_alias</span><span class='rbracket'>]</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>=</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Visitors</span><span class='op'>::</span><span class='const'>YAMLTree</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html#initialize-instance_method" title="Psychgus::StyledTreeBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span>
+    <span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_objects'>objects</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_object'>object</span><span class='op'>|</span>
+    <span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_object'>object</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='id identifier rubyid_visitor'>visitor</span><span class='period'>.</span><span class='id identifier rubyid_tree'>tree</span><span class='period'>.</span><span class='id identifier rubyid_yaml'>yaml</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="node_class-class_method">
+  
+    .<strong>node_class</strong>(name)  &#x21d2; <tt>Class</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get a Class (constant) from Psych::Nodes.</p>
+
+<p>Some <tt>name</tt>s have aliases:</p>
+
+<pre class="code ruby"><code class="ruby">:doc =&gt; :document
+:map =&gt; :mapping
+:seq =&gt; :sequence
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of the class from Psych::Nodes</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Class</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a class from Psych::Nodes</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Psych::Nodes</li>
+    
+      <li><span class='object_link'><a href="#NODE_CLASS_ALIASES-constant" title="Psychgus::NODE_CLASS_ALIASES (constant)">NODE_CLASS_ALIASES</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+327
+328
+329
+330
+331
+332
+333
+334</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 327</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_node_class'>node_class</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_capitalize'>capitalize</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_name_alias'>name_alias</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#NODE_CLASS_ALIASES-constant" title="Psychgus::NODE_CLASS_ALIASES (constant)">NODE_CLASS_ALIASES</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name_alias'>name_alias</span> <span class='kw'>unless</span> <span class='id identifier rubyid_name_alias'>name_alias</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  
+  <span class='kw'>return</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Nodes</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="node_const-class_method">
+  
+    .<strong>node_const</strong>(class_name, const_name, lenient = true)  &#x21d2; <tt>Integer</tt>, <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get a constant from a Psych::Nodes class (using <span class='object_link'><a href="#node_class-class_method" title="Psychgus.node_class (method)">node_class</a></span>).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>class_name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of the class to get using <span class='object_link'><a href="#node_class-class_method" title="Psychgus.node_class (method)">node_class</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>const_name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the constant to get from the class</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lenient</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if true, will return 0 if not const_defined?(), else raise an error</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the constant value from the class (usually an int)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#node_class-class_method" title="Psychgus.node_class (method)">node_class</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+345
+346
+347
+348
+349
+350
+351</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 345</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='id identifier rubyid_class_name'>class_name</span><span class='comma'>,</span><span class='id identifier rubyid_const_name'>const_name</span><span class='comma'>,</span><span class='id identifier rubyid_lenient'>lenient</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_node_class'>node_class</span> <span class='op'>=</span> <span class='id identifier rubyid_node_class'>node_class</span><span class='lparen'>(</span><span class='id identifier rubyid_class_name'>class_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_const_name'>const_name</span> <span class='op'>=</span> <span class='id identifier rubyid_const_name'>const_name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  
+  <span class='kw'>return</span> <span class='int'>0</span> <span class='kw'>if</span> <span class='id identifier rubyid_lenient'>lenient</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_node_class'>node_class</span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_const_name'>const_name</span><span class='comma'>,</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_node_class'>node_class</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_const_name'>const_name</span><span class='comma'>,</span><span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse-class_method">
+  
+    .<strong>parse</strong>(yaml, **kargs)  &#x21d2; <tt>Psych::Nodes::Document</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parse <code>yaml</code> into a Psych::Nodes::Document.</p>
+
+<p>If you&#39;re just going to call to_ruby(), then using this method is unnecessary, and the styler(s) will do nothing for you.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>yaml</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the YAML to parse</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kargs</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the keyword args to use; see <span class='object_link'><a href="#parse_stream-class_method" title="Psychgus.parse_stream (method)">parse_stream</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Document</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the parsed Document node</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#parse_stream-class_method" title="Psychgus.parse_stream (method)">parse_stream</a></span></li>
+    
+      <li>Psych.parse</li>
+    
+      <li>Psych::Nodes::Document</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+487
+488
+489
+490
+491
+492
+493</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 487</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parse_stream'>parse_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_node'>node</span><span class='op'>|</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_node'>node</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_file-class_method">
+  
+    .<strong>parse_file</strong>(filename, fallback: false, mode: &#39;r:BOM|UTF-8&#39;, **kargs)  &#x21d2; <tt>Psych::Nodes::Document</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parse a YAML file into a Psych::Nodes::Document.</p>
+
+<p>If you&#39;re just going to call to_ruby(), then using this method is unnecessary, and the styler(s) will do nothing for you.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of the YAML file (and path) to parse</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fallback</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the return value when nothing is parsed</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the IO open mode to use; example: <tt>&#39;r:BOM|UTF-8&#39;</tt></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kargs</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the keyword args to use; see <span class='object_link'><a href="#parse_stream-class_method" title="Psychgus.parse_stream (method)">parse_stream</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Document</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the parsed Document node</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#parse_stream-class_method" title="Psychgus.parse_stream (method)">parse_stream</a></span></li>
+    
+      <li>Psych.parse_file</li>
+    
+      <li>Psych::Nodes::Document</li>
+    
+      <li>File.open</li>
+    
+      <li>IO.new</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+512
+513
+514
+515
+516
+517
+518</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 512</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse_file'>parse_file</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='label'>fallback:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='label'>mode:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r:BOM|UTF-8</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='id identifier rubyid_mode'>mode</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+    <span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='label'>filename:</span> <span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>||</span> <span class='id identifier rubyid_fallback'>fallback</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_stream-class_method">
+  
+    .<strong>parse_stream</strong>(yaml, filename: nil, stylers: nil, deref_aliases: false, **options, &amp;block)  &#x21d2; <tt>Psych::Nodes::Stream</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parse <code>yaml</code> into a Psych::Nodes::Stream for one document or for multiple documents in one YAML.</p>
+
+<p>If you&#39;re just going to call to_ruby(), then using this method is unnecessary, and the styler(s) will do nothing for you.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_burgers'>burgers</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;EOY</span>
+<span class='tstring_content'>---
+Burgers:
+  Classic:
+    BBQ: {Sauce: Honey BBQ, Cheese: Cheddar, Bun: Kaiser}
+---
+Toppings:
+- [Mushrooms, Mustard]
+- [Salt, Pepper, Pickles]
+---
+`Invalid`
+</span><span class='heredoc_end'>EOY
+</span>
+<span class='id identifier rubyid_i'>i</span> <span class='op'>=</span> <span class='int'>0</span>
+
+<span class='kw'>begin</span>
+  <span class='const'><span class='object_link'><a href="" title="Psychgus (module)">Psychgus</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse_stream'>parse_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_burgers'>burgers</span><span class='comma'>,</span><span class='label'>filename:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>burgers.yaml</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_document'>document</span><span class='op'>|</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Document #</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_i'>i</span> <span class='op'>+=</span> <span class='int'>1</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_document'>document</span><span class='period'>.</span><span class='id identifier rubyid_to_ruby'>to_ruby</span>
+  <span class='kw'>end</span>
+<span class='kw'>rescue</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>SyntaxError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_err'>err</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>File: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_err'>err</span><span class='period'>.</span><span class='id identifier rubyid_file'>file</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># Output:
+</span><span class='comment'>#   Document #1
+</span><span class='comment'>#   {&quot;Burgers&quot;=&gt;{&quot;Classic&quot;=&gt;{&quot;BBQ&quot;=&gt;{&quot;Sauce&quot;=&gt;&quot;Honey BBQ&quot;, &quot;Cheese&quot;=&gt;&quot;Cheddar&quot;, &quot;Bun&quot;=&gt;&quot;Kaiser&quot;}}}}
+</span><span class='comment'>#   Document #2
+</span><span class='comment'>#   {&quot;Toppings&quot;=&gt;[[&quot;Mushrooms&quot;, &quot;Mustard&quot;], [&quot;Salt&quot;, &quot;Pepper&quot;, &quot;Pickles&quot;]]}
+</span><span class='comment'>#   File: burgers.yaml</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>yaml</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the YAML to parse</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the filename to pass as <code>file</code> to the Error potentially raised</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>stylers</span>
+      
+      
+        <span class='type'>(<tt>nil</tt>, <tt><span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span></tt>, <tt>Array&lt;<span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Styler(s) to use when parsing the YAML</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>deref_aliases</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to dereference aliases; output the actual value instead of the alias</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>block</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>an optional block for parsing multiple documents</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Stream</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the parsed Stream node</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Psychgus/StyledDocumentStream.html" title="Psychgus::StyledDocumentStream (class)">StyledDocumentStream</a></span></li>
+    
+      <li>Psych.parse_stream</li>
+    
+      <li>Psych::Nodes::Stream</li>
+    
+      <li>Psych::SyntaxError</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 570</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse_stream'>parse_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='label'>filename:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Parser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Psychgus/StyledDocumentStream.html" title="Psychgus::StyledDocumentStream (class)">StyledDocumentStream</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledDocumentStream.html#initialize-instance_method" title="Psychgus::StyledDocumentStream#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span>
+      <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    
+    <span class='kw'>return</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parser'>parser</span><span class='lparen'>(</span><span class='label'>stylers:</span> <span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+    
+    <span class='kw'>return</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_handler'>handler</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parser-class_method">
+  
+    .<strong>parser</strong>(stylers: nil, deref_aliases: false, **options)  &#x21d2; <tt>Psych::Parser</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create a new styled Psych::Parser for parsing YAML.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='kw'>class</span> <span class='const'>CoffeeStyler</span>
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span></span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_style_sequence'>style_sequence</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_style'>style</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#SEQUENCE_FLOW-constant" title="Psychgus::SEQUENCE_FLOW (constant)">SEQUENCE_FLOW</a></span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+
+<span class='id identifier rubyid_coffee'>coffee</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;EOY</span>
+<span class='tstring_content'>Coffee:
+  Roast:
+    - Light
+    - Medium
+    - Dark
+  Style:
+    - Cappuccino
+    - Latte
+    - Mocha
+</span><span class='heredoc_end'>EOY
+</span>
+<span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Psychgus (module)">Psychgus</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parser'>parser</span><span class='lparen'>(</span><span class='label'>stylers:</span> <span class='const'>CoffeeStyler</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_coffee'>coffee</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_handler'>handler</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='period'>.</span><span class='id identifier rubyid_to_yaml'>to_yaml</span>
+
+<span class='comment'># Output:
+</span><span class='comment'>#   Coffee:
+</span><span class='comment'>#     Roast: [Light, Medium, Dark]
+</span><span class='comment'>#     Style: [Cappuccino, Latte, Mocha]</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>stylers</span>
+      
+      
+        <span class='type'>(<tt>nil</tt>, <tt><span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span></tt>, <tt>Array&lt;<span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Styler(s) to use when parsing the YAML</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>deref_aliases</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to dereference aliases; output the actual value instead of the alias</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Psych::Parser</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the new styled Parser</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></li>
+    
+      <li>Psych.parser</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+624
+625
+626</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 624</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parser'>parser</span><span class='lparen'>(</span><span class='label'>stylers:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Parser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html#initialize-instance_method" title="Psychgus::StyledTreeBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      
+<div id="footer">
+  Generated by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

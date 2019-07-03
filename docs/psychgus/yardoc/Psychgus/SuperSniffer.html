@@ -1,0 +1,3103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Psychgus::SuperSniffer
+  
+    &mdash; Psychgus v1.0.0 Doc
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Psychgus::SuperSniffer";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span>
+     &raquo; 
+    <span class="title">SuperSniffer</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Psychgus::SuperSniffer
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Psychgus::SuperSniffer</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/psychgus/super_sniffer.rb<span class="defines">,<br />
+  lib/psychgus/super_sniffer.rb,<br /> lib/psychgus/super_sniffer/parent.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>You should never call the methods that are not readers, like <span class='object_link'><a href="#add_alias-instance_method" title="Psychgus::SuperSniffer#add_alias (method)">#add_alias</a></span>, <span class='object_link'><a href="#start_mapping-instance_method" title="Psychgus::SuperSniffer#start_mapping (method)">#start_mapping</a></span>, etc. unless you are extending this class (creating a subclass).</p>
+</div>
+  </div>
+
+
+<p>This is used in <span class='object_link'><a href="StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span> to “sniff” information about the YAML.</p>
+
+<p>Then this information can be used in a <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span> and/or a <span class='object_link'><a href="Blueberry.html" title="Psychgus::Blueberry (module)">Blueberry</a></span>.</p>
+
+<p>Most information is straightforward:</p>
+<ul><li>
+<p><span class='object_link'><a href="#aliases-instance_method" title="Psychgus::SuperSniffer#aliases (method)">#aliases</a></span>   # Array of Psych::Nodes::Alias processed so far</p>
+</li><li>
+<p><span class='object_link'><a href="#mappings-instance_method" title="Psychgus::SuperSniffer#mappings (method)">#mappings</a></span>  # Array of Psych::Nodes::Mapping processed so far</p>
+</li><li>
+<p><span class='object_link'><a href="#nodes-instance_method" title="Psychgus::SuperSniffer#nodes (method)">#nodes</a></span>     # Array of all Psych::Nodes::Node processed so far</p>
+</li><li>
+<p><span class='object_link'><a href="#scalars-instance_method" title="Psychgus::SuperSniffer#scalars (method)">#scalars</a></span>   # Array of Psych::Nodes::Scalar processed so far</p>
+</li><li>
+<p><span class='object_link'><a href="#sequences-instance_method" title="Psychgus::SuperSniffer#sequences (method)">#sequences</a></span> # Array of Psych::Nodes::Sequence processed so far</p>
+</li></ul>
+
+<p><span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> is the current <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span> of the node being processed, which is nil for the first node.</p>
+
+<p><span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span> are all of the (grand)<span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>(s) for the current node, which is empty for the first node.</p>
+
+<p>A parent is a Mapping or Sequence, or a Key (Scalar) in a Mapping.</p>
+
+<p><span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> can be best understood by an example.</p>
+
+<p>If you have this YAML:</p>
+
+<pre class="code ruby"><code class="ruby">Burgers:
+   Classic:
+     Sauce:  [Ketchup,Mustard]
+     Cheese: American
+     Bun:    Sesame Seed
+   BBQ:
+     Sauce:  Honey BBQ
+     Cheese: Cheddar
+     Bun:    Kaiser
+   Fancy:
+     Sauce:  Spicy Wasabi
+     Cheese: Smoked Gouda
+     Bun:    Hawaiian
+ Toppings:
+   - Mushrooms
+   - [Lettuce, Onions, Pickles, Tomatoes]
+   - [[Ketchup,Mustard], [Salt,Pepper]]
+</code></pre>
+
+<p>Then the levels and positions will be as follows:</p>
+
+<pre class="code ruby"><code class="ruby"># (level:position):current_node - &lt;parent:(parent_level:parent_position)&gt;
+
+(1:1):Psych::Nodes::Stream - &lt;nil&gt;
+(1:1):Psych::Nodes::Document - &lt;stream:(1:1)&gt;
+(1:1):Psych::Nodes::Mapping - &lt;doc:(1:1)&gt;
+ (2:1):Burgers - &lt;map:(1:1)&gt;
+  (3:1):Psych::Nodes::Mapping - &lt;Burgers:(2:1)&gt;
+   (4:1):Classic - &lt;map:(3:1)&gt;
+    (5:1):Psych::Nodes::Mapping - &lt;Classic:(4:1)&gt;
+     (6:1):Sauce - &lt;map:(5:1)&gt;
+      (7:1):Psych::Nodes::Sequence - &lt;Sauce:(6:1)&gt;
+       (8:1):Ketchup - &lt;seq:(7:1)&gt;
+       (8:2):Mustard - &lt;seq:(7:1)&gt;
+     (6:2):Cheese - &lt;map:(5:1)&gt;
+      (7:1):American - &lt;Cheese:(6:2)&gt;
+     (6:3):Bun - &lt;map:(5:1)&gt;
+      (7:1):Sesame Seed - &lt;Bun:(6:3)&gt;
+   (4:2):BBQ - &lt;map:(3:1)&gt;
+    (5:1):Psych::Nodes::Mapping - &lt;BBQ:(4:2)&gt;
+     (6:1):Sauce - &lt;map:(5:1)&gt;
+      (7:1):Honey BBQ - &lt;Sauce:(6:1)&gt;
+     (6:2):Cheese - &lt;map:(5:1)&gt;
+      (7:1):Cheddar - &lt;Cheese:(6:2)&gt;
+     (6:3):Bun - &lt;map:(5:1)&gt;
+      (7:1):Kaiser - &lt;Bun:(6:3)&gt;
+   (4:3):Fancy - &lt;map:(3:1)&gt;
+    (5:1):Psych::Nodes::Mapping - &lt;Fancy:(4:3)&gt;
+     (6:1):Sauce - &lt;map:(5:1)&gt;
+      (7:1):Spicy Wasabi - &lt;Sauce:(6:1)&gt;
+     (6:2):Cheese - &lt;map:(5:1)&gt;
+      (7:1):Smoked Gouda - &lt;Cheese:(6:2)&gt;
+     (6:3):Bun - &lt;map:(5:1)&gt;
+      (7:1):Hawaiian - &lt;Bun:(6:3)&gt;
+ (2:2):Toppings - &lt;map:(1:1)&gt;
+  (3:1):Psych::Nodes::Sequence - &lt;Toppings:(2:2)&gt;
+   (4:1):Mushrooms - &lt;seq:(3:1)&gt;
+   (4:2):Psych::Nodes::Sequence - &lt;seq:(3:1)&gt;
+    (5:1):Lettuce - &lt;seq:(4:2)&gt;
+    (5:2):Onions - &lt;seq:(4:2)&gt;
+    (5:3):Pickles - &lt;seq:(4:2)&gt;
+    (5:4):Tomatoes - &lt;seq:(4:2)&gt;
+   (4:3):Psych::Nodes::Sequence - &lt;seq:(3:1)&gt;
+    (5:1):Psych::Nodes::Sequence - &lt;seq:(4:3)&gt;
+     (6:1):Ketchup - &lt;seq:(5:1)&gt;
+     (6:2):Mustard - &lt;seq:(5:1)&gt;
+    (5:2):Psych::Nodes::Sequence - &lt;seq:(4:3)&gt;
+     (6:1):Salt - &lt;seq:(5:2)&gt;
+     (6:2):Pepper - &lt;seq:(5:2)&gt;
+</code></pre>
+
+<p>The “Super Sniffer” is the nickname for Gus&#39;s nose from the TV show Psych because he has a very refined sense of smell.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></li>
+    
+      <li><span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Styler</a></span></li>
+    
+      <li><span class='object_link'><a href="Blueberry.html#psychgus_stylers-instance_method" title="Psychgus::Blueberry#psychgus_stylers (method)">Blueberry#psychgus_stylers</a></span></li>
+    
+  </ul>
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Jonathan Bradley Whited (@esotericpig)</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="SuperSniffer/Empty.html" title="Psychgus::SuperSniffer::Empty (class)">Empty</a></span></p>
+</div>
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="SuperSniffer/Empty.html" title="Psychgus::SuperSniffer::Empty (class)">Empty</a></span>, <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>
+    
+  
+</p>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="EMPTY-constant" class="">EMPTY =
+          <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="SuperSniffer/Empty.html" title="Psychgus::SuperSniffer::Empty (class)">Empty</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SuperSniffer/Empty.html#initialize-instance_method" title="Psychgus::SuperSniffer::Empty#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span><span class='lparen'>(</span><span class='rparen'>)</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#aliases-instance_method" title="#aliases (instance method)">#<strong>aliases</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#documents-instance_method" title="#documents (instance method)">#<strong>documents</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#level-instance_method" title="#level (instance method)">#<strong>level</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mappings-instance_method" title="#mappings (instance method)">#<strong>mappings</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#nodes-instance_method" title="#nodes (instance method)">#<strong>nodes</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parent-instance_method" title="#parent (instance method)">#<strong>parent</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parents-instance_method" title="#parents (instance method)">#<strong>parents</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#position-instance_method" title="#position (instance method)">#<strong>position</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#scalars-instance_method" title="#scalars (instance method)">#<strong>scalars</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sequences-instance_method" title="#sequences (instance method)">#<strong>sequences</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#streams-instance_method" title="#streams (instance method)">#<strong>streams</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_alias-instance_method" title="#add_alias (instance method)">#<strong>add_alias</strong>(node)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Add a Psych::Nodes::Alias to this class only (not to the YAML).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#add_child-instance_method" title="#add_child (instance method)">#<strong>add_child</strong>(node)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Add a non-parent node.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_scalar-instance_method" title="#add_scalar (instance method)">#<strong>add_scalar</strong>(node)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Add a Psych::Nodes::Scalar to this class only (not to the YAML).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#end_document-instance_method" title="#end_document (instance method)">#<strong>end_document</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>End a Psych::Nodes::Document started with <span class='object_link'><a href="#start_document-instance_method" title="Psychgus::SuperSniffer#start_document (method)">#start_document</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#end_mapping-instance_method" title="#end_mapping (instance method)">#<strong>end_mapping</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>End a Psych::Nodes::Mapping started with <span class='object_link'><a href="#start_mapping-instance_method" title="Psychgus::SuperSniffer#start_mapping (method)">#start_mapping</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#end_mapping_value-instance_method" title="#end_mapping_value (instance method)">#<strong>end_mapping_value</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>End a fake “<span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>” that is a Key/Value to a Mapping.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#end_parent-instance_method" title="#end_parent (instance method)">#<strong>end_parent</strong>(mapping_value: false, top_level: false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>End a <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#end_sequence-instance_method" title="#end_sequence (instance method)">#<strong>end_sequence</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>End a Psych::Nodes::Sequence started with <span class='object_link'><a href="#start_sequence-instance_method" title="Psychgus::SuperSniffer#start_sequence (method)">#start_sequence</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#end_stream-instance_method" title="#end_stream (instance method)">#<strong>end_stream</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>End a Psych::Nodes::Stream started with <span class='object_link'><a href="#start_stream-instance_method" title="Psychgus::SuperSniffer#start_stream (method)">#start_stream</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>  &#x21d2; SuperSniffer </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Initialize this class for sniffing.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_document-instance_method" title="#start_document (instance method)">#<strong>start_document</strong>(node)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Start a Psych::Nodes::Document.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_mapping-instance_method" title="#start_mapping (instance method)">#<strong>start_mapping</strong>(node)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Start a Psych::Nodes::Mapping.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#start_mapping_key-instance_method" title="#start_mapping_key (instance method)">#<strong>start_mapping_key</strong>(node)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Start a fake “<span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>” that is a Key/Value to a Mapping.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#start_parent-instance_method" title="#start_parent (instance method)">#<strong>start_parent</strong>(node, top_level: false, **extra)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Start a <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_sequence-instance_method" title="#start_sequence (instance method)">#<strong>start_sequence</strong>(node)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Start a Psych::Nodes::Sequence.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_stream-instance_method" title="#start_stream (instance method)">#<strong>start_stream</strong>(node)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Start a Psych::Nodes::Stream.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="Psychgus::SuperSniffer (class)">SuperSniffer</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Initialize this class for sniffing.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 168</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@aliases</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@documents</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@level</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='ivar'>@mappings</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@nodes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@parents</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@position</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='ivar'>@scalars</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@sequences</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@streams</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="aliases-instance_method">
+  
+    #<strong>aliases</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 155</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_aliases'>aliases</span>
+  <span class='ivar'>@aliases</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="documents-instance_method">
+  
+    #<strong>documents</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 156</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_documents'>documents</span>
+  <span class='ivar'>@documents</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="level-instance_method">
+  
+    #<strong>level</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 157</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_level'>level</span>
+  <span class='ivar'>@level</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="mappings-instance_method">
+  
+    #<strong>mappings</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+158
+159
+160</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 158</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_mappings'>mappings</span>
+  <span class='ivar'>@mappings</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="nodes-instance_method">
+  
+    #<strong>nodes</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+159
+160
+161</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 159</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_nodes'>nodes</span>
+  <span class='ivar'>@nodes</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="parent-instance_method">
+  
+    #<strong>parent</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parent'>parent</span>
+  <span class='ivar'>@parent</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="parents-instance_method">
+  
+    #<strong>parents</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 161</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parents'>parents</span>
+  <span class='ivar'>@parents</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="position-instance_method">
+  
+    #<strong>position</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+162
+163
+164</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 162</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_position'>position</span>
+  <span class='ivar'>@position</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="scalars-instance_method">
+  
+    #<strong>scalars</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+163
+164
+165</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 163</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_scalars'>scalars</span>
+  <span class='ivar'>@scalars</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="sequences-instance_method">
+  
+    #<strong>sequences</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165
+166</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 164</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_sequences'>sequences</span>
+  <span class='ivar'>@sequences</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="streams-instance_method">
+  
+    #<strong>streams</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+165
+166
+167</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 165</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_streams'>streams</span>
+  <span class='ivar'>@streams</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_alias-instance_method">
+  
+    #<strong>add_alias</strong>(node)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Add a Psych::Nodes::Alias to this class only (not to the YAML).</p>
+
+<p>A <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span> should probably never call this.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Alias</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the alias to add</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#add_child-instance_method" title="Psychgus::SuperSniffer#add_child (method)">#add_child</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+189
+190
+191
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 189</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_alias'>add_alias</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='ivar'>@aliases</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_child-instance_method">
+  
+    #<strong>add_child</strong>(node)  &#x21d2; <tt>Object</tt>  <span class="extras">(protected)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Add a non-parent node.</p>
+
+<p>This will increment <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> accordingly, and if the child is a Key to a Mapping, create a fake “<span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>”.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Node</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the non-parent Node to add</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#end_mapping_value-instance_method" title="Psychgus::SuperSniffer#end_mapping_value (method)">#end_mapping_value</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 320</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='comment'># Fake a &quot;parent&quot; if necessary
+</span>    <span class='kw'>case</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_child_type'>child_type</span>
+    <span class='kw'>when</span> <span class='symbol'>:key</span>
+      <span class='id identifier rubyid_start_mapping_key'>start_mapping_key</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+      <span class='kw'>return</span>
+    <span class='kw'>when</span> <span class='symbol'>:value</span>
+      <span class='id identifier rubyid_end_mapping_value'>end_mapping_value</span><span class='lparen'>(</span><span class='rparen'>)</span>
+      <span class='kw'>return</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_child_position'>child_position</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='ivar'>@position</span> <span class='op'>+=</span> <span class='int'>1</span>
+  
+  <span class='ivar'>@nodes</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_scalar-instance_method">
+  
+    #<strong>add_scalar</strong>(node)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Add a Psych::Nodes::Scalar to this class only (not to the YAML).</p>
+
+<p>A <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span> should probably never call this.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Scalar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scalar to add</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#add_child-instance_method" title="Psychgus::SuperSniffer#add_child (method)">#add_child</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+201
+202
+203
+204</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 201</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_scalar'>add_scalar</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='ivar'>@scalars</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="end_document-instance_method">
+  
+    #<strong>end_document</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>End a Psych::Nodes::Document started with <span class='object_link'><a href="#start_document-instance_method" title="Psychgus::SuperSniffer#start_document (method)">#start_document</a></span>.</p>
+
+<p>Pops off a parent from <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span> and sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to the last one. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are reset according to the last parent.</p>
+
+<p>A <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span> should probably never call this.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+212
+213
+214</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 212</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_end_document'>end_document</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="end_mapping-instance_method">
+  
+    #<strong>end_mapping</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>End a Psych::Nodes::Mapping started with <span class='object_link'><a href="#start_mapping-instance_method" title="Psychgus::SuperSniffer#start_mapping (method)">#start_mapping</a></span>.</p>
+
+<p>Pops off a parent from <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span> and sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to the last one. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are reset according to the last parent.</p>
+
+<p>A <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span> should probably never call this.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#end_parent-instance_method" title="Psychgus::SuperSniffer#end_parent (method)">#end_parent</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+224
+225
+226</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 224</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_end_mapping'>end_mapping</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>mapping_value:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="end_mapping_value-instance_method">
+  
+    #<strong>end_mapping_value</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(protected)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>End a fake “<span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>” that is a Key/Value to a Mapping.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#add_child-instance_method" title="Psychgus::SuperSniffer#add_child (method)">#add_child</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+343
+344
+345
+346
+347</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 343</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_end_mapping_value'>end_mapping_value</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'># Do not pass in &quot;mapping_value: true&quot; and/or &quot;top_level: true&quot;
+</span>  
+  <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_child_type'>child_type</span> <span class='op'>=</span> <span class='symbol'>:key</span> <span class='kw'>unless</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="end_parent-instance_method">
+  
+    #<strong>end_parent</strong>(mapping_value: false, top_level: false)  &#x21d2; <tt>Object</tt>  <span class="extras">(protected)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>End a <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>.</p>
+
+<p>Pops off a parent from <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span> and sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to the last one. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are reset according to the last parent.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>mapping_value</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true if parent can be the value of a Mapping&#39;s key</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>top_level</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true if a top-level parent (i.e., encapsulating the main data)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 356</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>mapping_value:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='ivar'>@parents</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='ivar'>@parents</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+  
+  <span class='ivar'>@level</span> <span class='op'>=</span> <span class='id identifier rubyid_top_level'>top_level</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='ivar'>@level</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span>
+  
+  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_child_position'>child_position</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='ivar'>@position</span> <span class='op'>=</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_child_position'>child_position</span>
+    
+    <span class='comment'># add_child() will not be called again, so end a fake &quot;parent&quot; manually with a fake &quot;value&quot;
+</span>    <span class='comment'># - This is necessary for any parents that can be the value of a map&#39;s key (e.g., Sequence)
+</span>    <span class='id identifier rubyid_end_mapping_value'>end_mapping_value</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_mapping_value'>mapping_value</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_child_type'>child_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="end_sequence-instance_method">
+  
+    #<strong>end_sequence</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>End a Psych::Nodes::Sequence started with <span class='object_link'><a href="#start_sequence-instance_method" title="Psychgus::SuperSniffer#start_sequence (method)">#start_sequence</a></span>.</p>
+
+<p>Pops off a parent from <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span> and sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to the last one. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are reset according to the last parent.</p>
+
+<p>A <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span> should probably never call this.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#end_parent-instance_method" title="Psychgus::SuperSniffer#end_parent (method)">#end_parent</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+236
+237
+238</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 236</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_end_sequence'>end_sequence</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>mapping_value:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="end_stream-instance_method">
+  
+    #<strong>end_stream</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>End a Psych::Nodes::Stream started with <span class='object_link'><a href="#start_stream-instance_method" title="Psychgus::SuperSniffer#start_stream (method)">#start_stream</a></span>.</p>
+
+<p>Pops off a parent from <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span> and sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to the last one. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are reset according to the last parent.</p>
+
+<p>A <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span> should probably never call this.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+246
+247
+248</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 246</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_end_stream'>end_stream</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_document-instance_method">
+  
+    #<strong>start_document</strong>(node)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Start a Psych::Nodes::Document.</p>
+
+<p>Creates a <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>, sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to it, and adds it to <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span>. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are incremented/set accordingly.</p>
+
+<p>A <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span> should probably never call this.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Document</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Document to start</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#start_parent-instance_method" title="Psychgus::SuperSniffer#start_parent (method)">#start_parent</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+260
+261
+262
+263</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 260</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_document'>start_document</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:doc</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='ivar'>@documents</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_mapping-instance_method">
+  
+    #<strong>start_mapping</strong>(node)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Start a Psych::Nodes::Mapping.</p>
+
+<p>Creates a <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>, sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to it, and adds it to <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span>. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are incremented/set accordingly.</p>
+
+<p>A <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span> should probably never call this.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Mapping</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Mapping to start</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#start_parent-instance_method" title="Psychgus::SuperSniffer#start_parent (method)">#start_parent</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+275
+276
+277
+278</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 275</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_mapping'>start_mapping</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:map</span><span class='comma'>,</span><span class='label'>child_type:</span> <span class='symbol'>:key</span><span class='rparen'>)</span>
+  <span class='ivar'>@mappings</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_mapping_key-instance_method">
+  
+    #<strong>start_mapping_key</strong>(node)  &#x21d2; <tt>Object</tt>  <span class="extras">(protected)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Start a fake “<span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>” that is a Key/Value to a Mapping.</p>
+
+<p>Creates a <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>, sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to it, and adds it to <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span>. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are incremented/set accordingly.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Node</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Node to start</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#start_parent-instance_method" title="Psychgus::SuperSniffer#start_parent (method)">#start_parent</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 380</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_mapping_key'>start_mapping_key</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_debug_tag'>debug_tag</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  
+  <span class='comment'># Value must be first because Scalar also has an anchor
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:value</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_debug_tag'>debug_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:anchor</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_debug_tag'>debug_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_anchor'>anchor</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_debug_tag'>debug_tag</span> <span class='op'>=</span> <span class='symbol'>:noface</span> <span class='kw'>if</span> <span class='id identifier rubyid_debug_tag'>debug_tag</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='id identifier rubyid_debug_tag'>debug_tag</span><span class='comma'>,</span><span class='label'>child_type:</span> <span class='symbol'>:value</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_parent-instance_method">
+  
+    #<strong>start_parent</strong>(node, top_level: false, **extra)  &#x21d2; <tt>Object</tt>  <span class="extras">(protected)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Start a <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>.</p>
+
+<p>Creates a <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>, sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to it, and adds it to <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span>. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are incremented/set accordingly.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Node</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the parent Node to start</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>top_level</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true if a top-level parent (i.e., encapsulating the main data)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>extra</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the extra keyword args to pass to <span class='object_link'><a href="SuperSniffer/Parent.html#initialize-instance_method" title="Psychgus::SuperSniffer::Parent#initialize (method)">Psychgus::SuperSniffer::Parent#initialize</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="SuperSniffer/Parent.html#initialize-instance_method" title="Psychgus::SuperSniffer::Parent#initialize (method)">Psychgus::SuperSniffer::Parent#initialize</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 405</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_extra'>extra</span><span class='rparen'>)</span>
+  <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SuperSniffer/Parent.html#initialize-instance_method" title="Psychgus::SuperSniffer::Parent#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_extra'>extra</span><span class='rparen'>)</span>
+  
+  <span class='ivar'>@parents</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='ivar'>@parent</span><span class='rparen'>)</span>
+  <span class='ivar'>@nodes</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_top_level'>top_level</span>
+    <span class='ivar'>@level</span> <span class='op'>=</span> <span class='int'>1</span>
+    <span class='ivar'>@position</span> <span class='op'>=</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_position'>position</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@level</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='ivar'>@position</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_sequence-instance_method">
+  
+    #<strong>start_sequence</strong>(node)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Start a Psych::Nodes::Sequence.</p>
+
+<p>Creates a <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>, sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to it, and adds it to <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span>. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are incremented/set accordingly.</p>
+
+<p>A <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span> should probably never call this.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Sequence</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Sequence to start</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#start_parent-instance_method" title="Psychgus::SuperSniffer#start_parent (method)">#start_parent</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+290
+291
+292
+293</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 290</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_sequence'>start_sequence</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:seq</span><span class='rparen'>)</span>
+  <span class='ivar'>@sequences</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_stream-instance_method">
+  
+    #<strong>start_stream</strong>(node)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Start a Psych::Nodes::Stream.</p>
+
+<p>Creates a <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>, sets <span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> to it, and adds it to <span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span>. <span class='object_link'><a href="#level-instance_method" title="Psychgus::SuperSniffer#level (method)">#level</a></span> and <span class='object_link'><a href="#position-instance_method" title="Psychgus::SuperSniffer#position (method)">#position</a></span> are incremented/set accordingly.</p>
+
+<p>A <span class='object_link'><a href="Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span> should probably never call this.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt>Psych::Nodes::Stream</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Stream to start</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#start_parent-instance_method" title="Psychgus::SuperSniffer#start_parent (method)">#start_parent</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+305
+306
+307
+308</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 305</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_stream'>start_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:stream</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='ivar'>@streams</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      
+<div id="footer">
+  Generated by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

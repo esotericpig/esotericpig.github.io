@@ -59,9 +59,36 @@
 
       <div id="content"><div id='filecontents'><h1>Psychgus</h1>
 
-<p><a href="https://badge.fury.io/rb/psychgus"><img src="https://badge.fury.io/rb/psychgus.svg" alt="Gem Version"></a></p>
+<p><a href="https://badge.fury.io/rb/psychgus"><img src="https://badge.fury.io/rb/psychgus.svg" alt="Gem Version"></a> <a href="file.CHANGELOG.html"><img src="https://img.shields.io/badge/changelog-yes-%23A0522D.svg" alt="Changelog"></a></p>
 
 <p>Psychgus uses the core standard library <a href="https://github.com/ruby/psych">Psych</a> for working with <a href="https://yaml.org">YAML</a> and extends it so that developers can easily style the YAML according to their needs.</p>
+
+<p>Turn this YAML...</p>
+
+<pre class="code YAML"><code class="language-yaml">---
+Psych Gus:
+  Aliases:
+  - Longbranch Pennywhistle
+  - Squirts Macintosh
+  - Clementine Woolysocks
+  - Lavender Gooms
+  - Big Baby Burton
+  - Chocolate Einstein
+  - MC Clap Yo Handz
+  Skills:
+  - The Blueberry
+  - The Super Sniffer
+  - Positive Work Attitude
+</code></pre>
+
+<p>Into this:</p>
+
+<pre class="code YAML"><code class="language-yaml">---
+Psych Gus:
+  Aliases: [Longbranch Pennywhistle, Squirts Macintosh, Clementine Woolysocks, Lavender
+      Gooms, Big Baby Burton, Chocolate Einstein, MC Clap Yo Handz]
+  Skills: [The Blueberry, The Super Sniffer, Positive Work Attitude]
+</code></pre>
 
 <p>Thank you to the people that worked and continue to work hard on the Psych project.</p>
 
@@ -78,6 +105,7 @@
 <li><a href="#Hash_Example">Hash Example</a></li>
 <li><a href="#Class_Example">Class Example</a></li>
 <li><a href="#Advanced_Usage">Advanced Usage</a></li>
+<li><a href="#Common_Stylers">Common Stylers</a></li>
 </ul></li>
 <li><a href="#Hacking">Hacking</a>
 
@@ -92,41 +120,32 @@
 
 <p>Pick your poison...</p>
 
-<ul>
-<li>With the RubyGems CLI package manager:
+<p>With the RubyGems CLI package manager:</p>
 
-<ul>
-<li><code>$ gem install psychgus</code></li>
-</ul></li>
-<li>In your <em>Gemspec</em> (<em>&lt;project&gt;.gemspec</em>):
+<p><code>$ gem install psychgus</code></p>
 
-<ul>
-<li><code>spec.add_runtime_dependency &#39;psychgus&#39;,&#39;~&gt; x.x.x&#39;</code></li>
-<li>Or, if you only need Psychgus in development (e.g., tests, rake, documentation):
+<p>In your <em>Gemspec</em> (<em>&lt;project&gt;.gemspec</em>):</p>
 
-<ul>
-<li><code>spec.add_development_dependency &#39;psychgus&#39;,&#39;~&gt; x.x.x&#39;</code></li>
-</ul></li>
-</ul></li>
-<li>In your <em>Gemfile</em>:
+<pre class="code Ruby"><code class="language-ruby"># Pick one...
+spec.add_runtime_dependency &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;
+spec.add_development_dependency &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;
+</code></pre>
 
-<ul>
-<li><code>gem &#39;psychgus&#39;,&#39;~&gt; x.x.x&#39;</code></li>
-<li>Or, with GitHub:
+<p>In your <em>Gemfile</em>:</p>
 
-<ul>
-<li><code>gem &#39;psychgus&#39;,:git=&gt;&#39;https://github.com/esotericpig/psychgus.git&#39;</code></li>
-</ul></li>
-</ul></li>
-<li>Manually:
+<pre class="code Ruby"><code class="language-ruby"># Pick one...
+gem &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;
+gem &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;, :group =&gt; :development
+gem &#39;psychgus&#39;, :git =&gt; &#39;https://github.com/esotericpig/psychgus.git&#39;, :tag =&gt; &#39;vX.X.X&#39;
+</code></pre>
 
-<ul>
-<li><code>$ git clone &#39;https://github.com/esotericpig/psychgus.git&#39;</code></li>
-<li><code>$ cd psychgus</code></li>
-<li><code>$ bundle install</code></li>
-<li><code>$ bundle exec rake install:local</code></li>
-</ul></li>
-</ul>
+<p>Manually:</p>
+
+<pre class="code ruby"><code class="ruby">$ git clone &#39;https://github.com/esotericpig/psychgus.git&#39;
+$ cd psychgus
+$ bundle install
+$ bundle exec rake install:local
+</code></pre>
 
 <h2><a href="#Contents">Using</a></h2>
 
@@ -533,6 +552,85 @@ parser.parse(coffee_yaml)
 
 puts parser.handler.root.to_ruby
 puts
+</code></pre>
+
+<h3><a href="#Contents">Common Stylers</a></h3>
+
+<p>A collection of commonly-used <a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers.html">Stylers</a> and <a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylables.html">Stylables</a> are included with Psychgus.</p>
+
+<table><thead>
+<tr>
+<th>Styler</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/CapStyler.html">CapStyler</a></td>
+<td>Capitalizer for Scalars</td>
+</tr>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/FlowStyler.html">FlowStyler</a></td>
+<td>FLOW style changer for Mappings &amp; Sequences</td>
+</tr>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/MapFlowStyler.html">MapFlowStyler</a></td>
+<td>FLOW style changer for Mappings only</td>
+</tr>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/NoSymStyler.html">NoSymStyler</a></td>
+<td>Symbol remover for Scalars</td>
+</tr>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/NoTagStyler.html">NoTagStyler</a></td>
+<td>Tag remover for classes</td>
+</tr>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/SeqFlowStyler.html">SeqFlowStyler</a></td>
+<td>FLOW style changer for Sequences only</td>
+</tr>
+</tbody></table>
+
+<h4>Example</h4>
+
+<pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
+
+class EggCarton
+  def initialize
+    @eggs = {
+      :styles =&gt; [&#39;fried&#39;, &#39;scrambled&#39;, [&#39;BBQ&#39;, &#39;ketchup &amp; mustard&#39;]],
+      :colors =&gt; [&#39;brown&#39;, &#39;white&#39;, [&#39;blue&#39;, &#39;green&#39;]]
+    }
+  end
+end
+
+puts EggCarton.new.to_yaml(stylers: [
+  Psychgus::NoSymStyler.new,
+  Psychgus::NoTagStyler.new,
+  Psychgus::CapStyler.new,
+  Psychgus::FlowStyler.new(4)
+])
+
+# Output:
+# ---
+# Eggs:
+#   Styles: [Fried, Scrambled, [BBQ, Ketchup &amp; Mustard]]
+#   Colors: [Brown, White, [Blue, Green]]
+
+puts EggCarton.new.to_yaml
+
+# Output (without Stylers):
+# --- !ruby/object:EggCarton
+# eggs:
+#   :styles:
+#   - fried
+#   - scrambled
+#   - - BBQ
+#     - ketchup &amp; mustard
+#   :colors:
+#   - brown
+#   - white
+#   - - blue
+#     - green
 </code></pre>
 
 <h2><a href="#Contents">Hacking</a></h2>

@@ -188,17 +188,19 @@
     
 <p>Accepts a new Object to convert to YAML.</p>
 
-<p>This is roughly the same place where Psych checks if <code>target</code> responds to :encode_with.</p>
-
-<p>This will check if @emitter is a <span class='object_link'><a href="../StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span> and if <code>target</code> is a <span class='object_link'><a href="../Blueberry.html" title="Psychgus::Blueberry (module)">Blueberry</a></span>.</p>
+<p>This is roughly the same place where Psych checks if <code>target</code> responds to <code>:encode_with</code>.</p>
 <ol><li>
-<p>If the above is true, get the <span class='object_link'><a href="../Styler.html" title="Psychgus::Styler (module)">Styler</a></span>(s) and add them to @emitter.</p>
+<p>Check if <tt>@emitter</tt> is a <span class='object_link'><a href="../StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span>.</p>
 </li><li>
-<p>Call super.</p>
+<p>If #1 and <code>target</code> is a <span class='object_link'><a href="../Blueberry.html" title="Psychgus::Blueberry (module)">Blueberry</a></span>, get the <span class='object_link'><a href="../Styler.html" title="Psychgus::Styler (module)">Styler</a></span>(s) from <code>target</code> and add them to <tt>@emitter</tt>.</p>
 </li><li>
-<p>If the above is true, remove the <span class='object_link'><a href="../Styler.html" title="Psychgus::Styler (module)">Styler</a></span>(s) from @emitter.</p>
+<p>If #1 and <tt>@emitter.deref_aliases?</tt>, prevent <code>target</code> from becoming an alias.</p>
 </li><li>
-<p>Return the result of super.</p>
+<p>Call <code>super</code> and store the result.</p>
+</li><li>
+<p>If #2, remove the <span class='object_link'><a href="../Styler.html" title="Psychgus::Styler (module)">Styler</a></span>(s) from <tt>@emitter</tt>.</p>
+</li><li>
+<p>Return the result of <code>super</code>.</p>
 </li></ol>
 
 
@@ -252,6 +254,8 @@
     
       <li><span class='object_link'><a href="../Blueberry.html" title="Psychgus::Blueberry (module)">Blueberry</a></span></li>
     
+      <li><span class='object_link'><a href="../Blueberry.html#psychgus_stylers-instance_method" title="Psychgus::Blueberry#psychgus_stylers (method)">Blueberry#psychgus_stylers</a></span></li>
+    
       <li><span class='object_link'><a href="../Styler.html" title="Psychgus::Styler (module)">Styler</a></span></li>
     
       <li><span class='object_link'><a href="../StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></li>
@@ -280,8 +284,6 @@
       <pre class="lines">
 
 
-69
-70
 71
 72
 73
@@ -306,10 +308,12 @@
 92
 93
 94
-95</pre>
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/ext/yaml_tree_ext.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/ext/yaml_tree_ext.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_styler_count'>styler_count</span> <span class='op'>=</span> <span class='int'>0</span>

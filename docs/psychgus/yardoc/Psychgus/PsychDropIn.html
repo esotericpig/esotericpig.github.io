@@ -91,6 +91,14 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>For devs/hacking: because extend is used, do not prefix methods with “self.”</p>
+</div>
+  </div>
+
+
 <p>Unnecessary Methods</p>
 
 <p>All of the below methods are not needed, but are defined so that Psychgus can be a drop-in replacement for Psych.</p>
@@ -98,8 +106,6 @@
 <p>Instead, you should probably use Psych. This is also the recommended practice in case your version of Psych defines the method differently.</p>
 
 <p>Private methods of Psych are not defined.</p>
-
-<p>Because extend is used, do not prefix methods with “self.”</p>
 
 
   </div>
@@ -408,12 +414,12 @@
       <pre class="lines">
 
 
-647
-648
-649</pre>
+774
+775
+776</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 647</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 774</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_builtin_type'>add_builtin_type</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='const'>Psych</span><span class='period'>.</span><span class='id identifier rubyid_add_builtin_type'>add_builtin_type</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -470,12 +476,12 @@
       <pre class="lines">
 
 
-652
-653
-654</pre>
+779
+780
+781</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 652</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 779</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_domain_type'>add_domain_type</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='const'>Psych</span><span class='period'>.</span><span class='id identifier rubyid_add_domain_type'>add_domain_type</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -532,12 +538,12 @@
       <pre class="lines">
 
 
-657
-658
-659</pre>
+784
+785
+786</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 657</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 784</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_tag'>add_tag</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='const'>Psych</span><span class='period'>.</span><span class='id identifier rubyid_add_tag'>add_tag</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -594,12 +600,12 @@
       <pre class="lines">
 
 
-662
-663
-664</pre>
+789
+790
+791</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 662</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 789</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='const'>Psych</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
@@ -656,12 +662,12 @@
       <pre class="lines">
 
 
-667
-668
-669</pre>
+794
+795
+796</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 667</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 794</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='const'>Psych</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
@@ -718,12 +724,12 @@
       <pre class="lines">
 
 
-672
-673
-674</pre>
+799
+800
+801</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 672</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 799</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_stream'>load_stream</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='const'>Psych</span><span class='period'>.</span><span class='id identifier rubyid_load_stream'>load_stream</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
@@ -780,12 +786,12 @@
       <pre class="lines">
 
 
-677
-678
-679</pre>
+804
+805
+806</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 677</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 804</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_type'>remove_type</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='const'>Psych</span><span class='period'>.</span><span class='id identifier rubyid_remove_type'>remove_type</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -842,12 +848,12 @@
       <pre class="lines">
 
 
-682
-683
-684</pre>
+809
+810
+811</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 682</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 809</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_safe_load'>safe_load</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='const'>Psych</span><span class='period'>.</span><span class='id identifier rubyid_safe_load'>safe_load</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
@@ -904,12 +910,12 @@
       <pre class="lines">
 
 
-687
-688
-689</pre>
+814
+815
+816</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 687</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 814</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='const'>Psych</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>

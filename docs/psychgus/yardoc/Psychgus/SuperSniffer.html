@@ -162,7 +162,7 @@
 
 <pre class="code ruby"><code class="ruby"># (level:position):current_node - &lt;parent:(parent_level:parent_position)&gt;
 
-(1:1):Psych::Nodes::Stream - &lt;nil&gt;
+(1:1):Psych::Nodes::Stream - &lt;root:(0:0)&gt;
 (1:1):Psych::Nodes::Document - &lt;stream:(1:1)&gt;
 (1:1):Psych::Nodes::Mapping - &lt;doc:(1:1)&gt;
  (2:1):Burgers - &lt;map:(1:1)&gt;
@@ -1079,7 +1079,10 @@
 177
 178
 179
-180</pre>
+180
+181
+182
+183</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 168</span>
@@ -1087,15 +1090,18 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='ivar'>@aliases</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='ivar'>@documents</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-  <span class='ivar'>@level</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='ivar'>@level</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='ivar'>@mappings</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='ivar'>@nodes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@parents</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-  <span class='ivar'>@position</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='ivar'>@position</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='ivar'>@scalars</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='ivar'>@sequences</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='ivar'>@streams</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  
+  <span class='comment'># Do not pass in &quot;top_level: true&quot;
+</span>  <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:root</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1812,13 +1818,13 @@
       <pre class="lines">
 
 
-189
-190
-191
-192</pre>
+192
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 192</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_alias'>add_alias</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
@@ -1900,9 +1906,6 @@
       <pre class="lines">
 
 
-320
-321
-322
 323
 324
 325
@@ -1918,10 +1921,13 @@
 335
 336
 337
-338</pre>
+338
+339
+340
+341</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 320</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 323</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -2018,13 +2024,13 @@
       <pre class="lines">
 
 
-201
-202
-203
-204</pre>
+204
+205
+206
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 201</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 204</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_scalar'>add_scalar</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
@@ -2081,12 +2087,12 @@
       <pre class="lines">
 
 
-212
-213
-214</pre>
+215
+216
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 212</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_document'>end_document</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2149,12 +2155,12 @@
       <pre class="lines">
 
 
-224
-225
-226</pre>
+227
+228
+229</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 224</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 227</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_mapping'>end_mapping</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>mapping_value:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2213,14 +2219,14 @@
       <pre class="lines">
 
 
-343
-344
-345
 346
-347</pre>
+347
+348
+349
+350</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 343</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 346</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_mapping_value'>end_mapping_value</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'># Do not pass in &quot;mapping_value: true&quot; and/or &quot;top_level: true&quot;
@@ -2312,9 +2318,6 @@
       <pre class="lines">
 
 
-356
-357
-358
 359
 360
 361
@@ -2326,10 +2329,13 @@
 367
 368
 369
-370</pre>
+370
+371
+372
+373</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 356</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 359</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>mapping_value:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@parents</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -2404,12 +2410,12 @@
       <pre class="lines">
 
 
-236
-237
-238</pre>
+239
+240
+241</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 236</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 239</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_sequence'>end_sequence</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>mapping_value:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2465,12 +2471,12 @@
       <pre class="lines">
 
 
-246
-247
-248</pre>
+249
+250
+251</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 246</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 249</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_stream'>end_stream</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2553,13 +2559,13 @@
       <pre class="lines">
 
 
-260
-261
-262
-263</pre>
+263
+264
+265
+266</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 260</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 263</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_document'>start_document</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:doc</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2643,13 +2649,13 @@
       <pre class="lines">
 
 
-275
-276
-277
-278</pre>
+278
+279
+280
+281</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 275</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 278</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_mapping'>start_mapping</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:map</span><span class='comma'>,</span><span class='label'>child_type:</span> <span class='symbol'>:key</span><span class='rparen'>)</span>
@@ -2731,9 +2737,6 @@
       <pre class="lines">
 
 
-380
-381
-382
 383
 384
 385
@@ -2744,10 +2747,13 @@
 390
 391
 392
-393</pre>
+393
+394
+395
+396</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 380</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 383</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_mapping_key'>start_mapping_key</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_debug_tag'>debug_tag</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -2871,9 +2877,6 @@
       <pre class="lines">
 
 
-405
-406
-407
 408
 409
 410
@@ -2884,16 +2887,19 @@
 415
 416
 417
-418</pre>
+418
+419
+420
+421</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 405</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 408</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_extra'>extra</span><span class='rparen'>)</span>
   <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SuperSniffer/Parent.html#initialize-instance_method" title="Psychgus::SuperSniffer::Parent#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_extra'>extra</span><span class='rparen'>)</span>
   
   <span class='ivar'>@parents</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='ivar'>@parent</span><span class='rparen'>)</span>
-  <span class='ivar'>@nodes</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='ivar'>@nodes</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
   
   <span class='kw'>if</span> <span class='id identifier rubyid_top_level'>top_level</span>
     <span class='ivar'>@level</span> <span class='op'>=</span> <span class='int'>1</span>
@@ -2981,13 +2987,13 @@
       <pre class="lines">
 
 
-290
-291
-292
-293</pre>
+293
+294
+295
+296</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 290</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 293</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_sequence'>start_sequence</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:seq</span><span class='rparen'>)</span>
@@ -3071,13 +3077,13 @@
       <pre class="lines">
 
 
-305
-306
-307
-308</pre>
+308
+309
+310
+311</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 308</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_stream'>start_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:stream</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>

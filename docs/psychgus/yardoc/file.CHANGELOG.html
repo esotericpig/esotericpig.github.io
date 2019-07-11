@@ -6,7 +6,7 @@
 <title>
   File: CHANGELOG
   
-    &mdash; Psychgus v1.0.1 Doc
+    &mdash; Psychgus v1.2.0 Doc
   
 </title>
 
@@ -64,6 +64,29 @@
 <h2><a href="https://github.com/esotericpig/psychgus/compare/v1.0.1...master">[Unreleased]</a></h2>
 
 <h2>[v1.2.0] - 2019-XX-XX</h2>
+
+<h3>Added</h3>
+
+<ul>
+<li>Commonly-used Stylers and Stylables</li>
+<li>Changelog</li>
+<li>Psychgus.hierarchy()</li>
+<li>SuperSniffer::Parent#child_key?() &amp; #child_value?()</li>
+</ul>
+
+<h3>Changed</h3>
+
+<ul>
+<li>SuperSniffer&#39;s parent will never be nil, so don&#39;t have to check for nil in Stylers</li>
+<li>Some doc comments &amp; README</li>
+<li>Gemspec&#39;s included files to be more specific (to prevent accidentally adding non-gem-related files)</li>
+</ul>
+
+<h3>Fixed</h3>
+
+<ul>
+<li>Psychgus.dump_stream() if you only pass in a Hash w/ symbols as keys (options would be set to it, instead of objects)</li>
+</ul>
 
 <h2>[v1.0.0] - 2019-07-03</h2>
 

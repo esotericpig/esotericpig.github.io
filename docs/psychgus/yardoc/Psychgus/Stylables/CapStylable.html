@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus::Stylables::CapStylable
   
-    &mdash; Psychgus v1.0.1 Doc
+    &mdash; Psychgus v1.2.0 Doc
   
 </title>
 
@@ -439,12 +439,12 @@
       <pre class="lines">
 
 
-75
-76
-77</pre>
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delim'>delim</span>
   <span class='ivar'>@delim</span>
@@ -516,12 +516,12 @@
       <pre class="lines">
 
 
-76
-77
-78</pre>
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each_word'>each_word</span>
   <span class='ivar'>@each_word</span>
@@ -593,12 +593,12 @@
       <pre class="lines">
 
 
-77
-78
-79</pre>
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new_delim'>new_delim</span>
   <span class='ivar'>@new_delim</span>
@@ -697,17 +697,17 @@
       <pre class="lines">
 
 
-98
-99
 100
 101
 102
 103
 104
-105</pre>
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cap_word'>cap_word</span><span class='lparen'>(</span><span class='id identifier rubyid_word'>word</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_word'>word</span> <span class='kw'>if</span> <span class='id identifier rubyid_word'>word</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_word'>word</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -830,16 +830,16 @@
       <pre class="lines">
 
 
-83
-84
 85
 86
 87
 88
-89</pre>
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>each_word:</span> <span class='kw'>true</span><span class='comma'>,</span><span class='label'>new_delim:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>delim:</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[\s_\-]</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_delim'>delim</span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='id identifier rubyid_delim'>delim</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_delim'>delim</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Regexp</span><span class='rparen'>)</span>
@@ -904,8 +904,6 @@
       <pre class="lines">
 
 
-111
-112
 113
 114
 115
@@ -922,10 +920,12 @@
 126
 127
 128
-129</pre>
+129
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_style_scalar'>style_scalar</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@each_word</span> <span class='op'>||</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='lparen'>(</span><span class='rparen'>)</span>

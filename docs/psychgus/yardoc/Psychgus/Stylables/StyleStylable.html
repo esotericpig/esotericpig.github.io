@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus::Stylables::StyleStylable
   
-    &mdash; Psychgus v1.0.1 Doc
+    &mdash; Psychgus v1.2.0 Doc
   
 </title>
 
@@ -473,12 +473,16 @@
 
 62
 63
-64</pre>
+64
+65
+66</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_change_style'>change_style</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:style=</span><span class='rparen'>)</span>
+  
   <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_style'>style</span> <span class='op'>=</span> <span class='ivar'>@new_style</span> <span class='kw'>if</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='op'>&gt;=</span> <span class='ivar'>@min_level</span>
 <span class='kw'>end</span></pre>
     </td>

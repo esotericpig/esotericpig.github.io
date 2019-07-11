@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Psychgus v1.0.1 Doc
+    &mdash; Psychgus v1.2.0 Doc
   
 </title>
 
@@ -59,7 +59,11 @@
 
       <div id="content"><div id='filecontents'><h1>Psychgus</h1>
 
-<p><a href="https://badge.fury.io/rb/psychgus"><img src="https://badge.fury.io/rb/psychgus.svg" alt="Gem Version"></a> <a href="file.CHANGELOG.html"><img src="https://img.shields.io/badge/changelog-yes-%23A0522D.svg" alt="Changelog"></a></p>
+<p><a href="https://badge.fury.io/rb/psychgus"><img src="https://badge.fury.io/rb/psychgus.svg" alt="Gem Version"></a></p>
+
+<p><a href="https://esotericpig.github.io/docs/psychgus/yardoc/index.html"><img src="https://img.shields.io/badge/doc-yard-%23A0522D.svg?style=for-the-badge" alt="Documentation"></a>
+<a href="file.CHANGELOG.html"><img src="https://img.shields.io/badge/changelog-md-%23A0522D.svg?style=for-the-badge" alt="Changelog"></a>
+<a href="file.LICENSE.html"><img src="https://img.shields.io/github/license/esotericpig/psychgus.svg?color=%23A0522D&style=for-the-badge" alt="License"></a></p>
 
 <p>Psychgus uses the core standard library <a href="https://github.com/ruby/psych">Psych</a> for working with <a href="https://yaml.org">YAML</a> and extends it so that developers can easily style the YAML according to their needs.</p>
 
@@ -105,7 +109,11 @@ Psych Gus:
 <li><a href="#Hash_Example">Hash Example</a></li>
 <li><a href="#Class_Example">Class Example</a></li>
 <li><a href="#Advanced_Usage">Advanced Usage</a></li>
-<li><a href="#Common_Stylers">Common Stylers</a></li>
+<li><a href="#Common_Stylers">Common Stylers</a>
+
+<ul>
+<li><a href="#Stylers_Example">Stylers Example</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#Hacking">Hacking</a>
 
@@ -155,7 +163,17 @@ $ bundle exec rake install:local
 
 <p>For classes, you can optionally include <code>Psychgus::Blueberry</code> and return the styler(s) for the class by defining the <code>psychgus_stylers(sniffer)</code> method.</p>
 
-<h3><a href="#Contents">Simple Example</a></h3>
+<p>Instead of making your own styler, you can also use one of the <a href="#Common_Stylers">pre-defined stylers</a>.</p>
+
+<h3>Contents | Using</h3>
+
+<p><a href="#Simple_Example">Simple Example</a>
+| <a href="#Hash_Example">Hash Example</a>
+| <a href="#Class_Example">Class Example</a>
+| <a href="#Advanced_Usage">Advanced Usage</a>
+| <a href="#Common_Stylers">Common Stylers</a></p>
+
+<h3><a href="#Using">Simple Example</a></h3>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
@@ -200,7 +218,7 @@ puts Coffee.new.to_yaml
 # style: [Cappuccino, Espresso, Latte, Mocha]
 </code></pre>
 
-<h3><a href="#Contents">Hash Example</a></h3>
+<h3><a href="#Using">Hash Example</a></h3>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
@@ -294,7 +312,7 @@ puts burgers.to_yaml({:indent =&gt; 3,:stylers =&gt; BurgerStyler.new,:deref_ali
 #    Bun: Kaiser
 </code></pre>
 
-<h3><a href="#Contents">Class Example</a></h3>
+<h3><a href="#Using">Class Example</a></h3>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
@@ -334,8 +352,8 @@ class BurgerStyler
     parent = sniffer.parent
 
     # Single quote scalars that are not keys to a map
-    node.style = Psychgus::SCALAR_SINGLE_QUOTED if !parent.nil?() &amp;&amp;
-                                                   parent.child_type != :key
+    # - &quot;child_key?&quot; is the same as &quot;child_type == :key&quot;
+    node.style = Psychgus::SCALAR_SINGLE_QUOTED unless parent.child_key?()
   end
 
   # Style sequences (Psych::Nodes::Sequence)
@@ -464,7 +482,7 @@ puts burgers.to_yaml({:indent =&gt; 3,:deref_aliases =&gt; true})
 #    Sauce: &#39;Honey BBQ&#39;
 </code></pre>
 
-<h3><a href="#Contents">Advanced Usage</a></h3>
+<h3><a href="#Using">Advanced Usage</a></h3>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
@@ -554,7 +572,7 @@ puts parser.handler.root.to_ruby
 puts
 </code></pre>
 
-<h3><a href="#Contents">Common Stylers</a></h3>
+<h3><a href="#Using">Common Stylers</a></h3>
 
 <p>A collection of commonly-used <a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers.html">Stylers</a> and <a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylables.html">Stylables</a> are included with Psychgus.</p>
 
@@ -590,7 +608,7 @@ puts
 </tr>
 </tbody></table>
 
-<h4>Example</h4>
+<h4><a href="#Common_Stylers">Stylers Example</a></h4>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
@@ -640,7 +658,7 @@ $ bundle install
 $ bundle exec rake -T
 </code></pre>
 
-<h3><a href="#Contents">Testing</a></h3>
+<h3><a href="#Hacking">Testing</a></h3>
 
 <p>Run tests, excluding tests that create temp files:</p>
 
@@ -650,7 +668,7 @@ $ bundle exec rake -T
 
 <p><code>$ bundle exec rake test_all</code></p>
 
-<h3><a href="#Contents">Generating Doc</a></h3>
+<h3><a href="#Hacking">Generating Doc</a></h3>
 
 <p>Generate basic doc:</p>
 

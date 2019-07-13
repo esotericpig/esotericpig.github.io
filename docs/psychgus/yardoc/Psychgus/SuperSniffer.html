@@ -120,18 +120,22 @@
 <ul><li>
 <p><span class='object_link'><a href="#aliases-instance_method" title="Psychgus::SuperSniffer#aliases (method)">#aliases</a></span>   # Array of Psych::Nodes::Alias processed so far</p>
 </li><li>
+<p><span class='object_link'><a href="#documents-instance_method" title="Psychgus::SuperSniffer#documents (method)">#documents</a></span> # Array of Psych::Nodes::Document processed so far</p>
+</li><li>
 <p><span class='object_link'><a href="#mappings-instance_method" title="Psychgus::SuperSniffer#mappings (method)">#mappings</a></span>  # Array of Psych::Nodes::Mapping processed so far</p>
 </li><li>
-<p><span class='object_link'><a href="#nodes-instance_method" title="Psychgus::SuperSniffer#nodes (method)">#nodes</a></span>     # Array of all Psych::Nodes::Node processed so far</p>
+<p><span class='object_link'><a href="#nodes-instance_method" title="Psychgus::SuperSniffer#nodes (method)">#nodes</a></span>     # Array of Psych::Nodes::Node processed so far</p>
 </li><li>
 <p><span class='object_link'><a href="#scalars-instance_method" title="Psychgus::SuperSniffer#scalars (method)">#scalars</a></span>   # Array of Psych::Nodes::Scalar processed so far</p>
 </li><li>
 <p><span class='object_link'><a href="#sequences-instance_method" title="Psychgus::SuperSniffer#sequences (method)">#sequences</a></span> # Array of Psych::Nodes::Sequence processed so far</p>
+</li><li>
+<p><span class='object_link'><a href="#streams-instance_method" title="Psychgus::SuperSniffer#streams (method)">#streams</a></span>   # Array of Psych::Nodes::Stream processed so far</p>
 </li></ul>
 
-<p><span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> is the current <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span> of the node being processed, which is nil for the first node.</p>
+<p><span class='object_link'><a href="#parent-instance_method" title="Psychgus::SuperSniffer#parent (method)">#parent</a></span> is the current <span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span> of the node being processed, which is an empty Parent for the first node (not nil).</p>
 
-<p><span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span> are all of the (grand)<span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>(s) for the current node, which is empty for the first node.</p>
+<p><span class='object_link'><a href="#parents-instance_method" title="Psychgus::SuperSniffer#parents (method)">#parents</a></span> are all of the (grand)<span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>(s) for the current node, which is an Array that just contains an empty Parent for the first node.</p>
 
 <p>A parent is a Mapping or Sequence, or a Key (Scalar) in a Mapping.</p>
 
@@ -210,7 +214,7 @@
      (6:2):Pepper - &lt;seq:(5:2)&gt;
 </code></pre>
 
-<p>The “Super Sniffer” is the nickname for Gus&#39;s nose from the TV show Psych because he has a very refined sense of smell.</p>
+<p>“The Super Sniffer” is the nickname for Gus&#39;s nose from the TV show Psych because he has a very refined sense of smell.</p>
 
 
   </div>
@@ -326,7 +330,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#aliases-instance_method" title="#aliases (instance method)">#<strong>aliases</strong>  &#x21d2; Object </a>
+      <a href="#aliases-instance_method" title="#aliases (instance method)">#<strong>aliases</strong>  &#x21d2; Array&lt;Psych::Nodes::Alias&gt; </a>
     
 
     
@@ -345,7 +349,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The aliases processed so far.</p>
+</div></span>
   
 </li>
 
@@ -353,7 +359,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#documents-instance_method" title="#documents (instance method)">#<strong>documents</strong>  &#x21d2; Object </a>
+      <a href="#documents-instance_method" title="#documents (instance method)">#<strong>documents</strong>  &#x21d2; Array&lt;Psych::Nodes::Document&gt; </a>
     
 
     
@@ -372,7 +378,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The documents processed so far.</p>
+</div></span>
   
 </li>
 
@@ -380,7 +388,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#level-instance_method" title="#level (instance method)">#<strong>level</strong>  &#x21d2; Object </a>
+      <a href="#level-instance_method" title="#level (instance method)">#<strong>level</strong>  &#x21d2; Integer </a>
     
 
     
@@ -399,7 +407,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The current level.</p>
+</div></span>
   
 </li>
 
@@ -407,7 +417,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#mappings-instance_method" title="#mappings (instance method)">#<strong>mappings</strong>  &#x21d2; Object </a>
+      <a href="#mappings-instance_method" title="#mappings (instance method)">#<strong>mappings</strong>  &#x21d2; Array&lt;Psych::Nodes::Mapping&gt; </a>
     
 
     
@@ -426,7 +436,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The mappings processed so far.</p>
+</div></span>
   
 </li>
 
@@ -434,7 +446,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#nodes-instance_method" title="#nodes (instance method)">#<strong>nodes</strong>  &#x21d2; Object </a>
+      <a href="#nodes-instance_method" title="#nodes (instance method)">#<strong>nodes</strong>  &#x21d2; Array&lt;Psych::Nodes::Node&gt; </a>
     
 
     
@@ -453,7 +465,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The nodes processed so far.</p>
+</div></span>
   
 </li>
 
@@ -461,7 +475,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parent-instance_method" title="#parent (instance method)">#<strong>parent</strong>  &#x21d2; Object </a>
+      <a href="#parent-instance_method" title="#parent (instance method)">#<strong>parent</strong>  &#x21d2; Parent </a>
     
 
     
@@ -480,7 +494,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The current parent.</p>
+</div></span>
   
 </li>
 
@@ -488,7 +504,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parents-instance_method" title="#parents (instance method)">#<strong>parents</strong>  &#x21d2; Object </a>
+      <a href="#parents-instance_method" title="#parents (instance method)">#<strong>parents</strong>  &#x21d2; Array&lt;Parent&gt; </a>
     
 
     
@@ -507,7 +523,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The current (grand)parents.</p>
+</div></span>
   
 </li>
 
@@ -515,7 +533,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#position-instance_method" title="#position (instance method)">#<strong>position</strong>  &#x21d2; Object </a>
+      <a href="#position-instance_method" title="#position (instance method)">#<strong>position</strong>  &#x21d2; Integer </a>
     
 
     
@@ -534,7 +552,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The current position.</p>
+</div></span>
   
 </li>
 
@@ -542,7 +562,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#scalars-instance_method" title="#scalars (instance method)">#<strong>scalars</strong>  &#x21d2; Object </a>
+      <a href="#scalars-instance_method" title="#scalars (instance method)">#<strong>scalars</strong>  &#x21d2; Array&lt;Psych::Nodes::Scalar&gt; </a>
     
 
     
@@ -561,7 +581,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The scalars processed so far.</p>
+</div></span>
   
 </li>
 
@@ -569,7 +591,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#sequences-instance_method" title="#sequences (instance method)">#<strong>sequences</strong>  &#x21d2; Object </a>
+      <a href="#sequences-instance_method" title="#sequences (instance method)">#<strong>sequences</strong>  &#x21d2; Array&lt;Psych::Nodes::Sequence&gt; </a>
     
 
     
@@ -588,7 +610,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The sequences processed so far.</p>
+</div></span>
   
 </li>
 
@@ -596,7 +620,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#streams-instance_method" title="#streams (instance method)">#<strong>streams</strong>  &#x21d2; Object </a>
+      <a href="#streams-instance_method" title="#streams (instance method)">#<strong>streams</strong>  &#x21d2; Array&lt;Psych::Nodes::Stream&gt; </a>
     
 
     
@@ -615,7 +639,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The streams processed so far.</p>
+</div></span>
   
 </li>
 
@@ -1067,8 +1093,6 @@
       <pre class="lines">
 
 
-168
-169
 170
 171
 172
@@ -1082,10 +1106,12 @@
 180
 181
 182
-183</pre>
+183
+184
+185</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 170</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='ivar'>@aliases</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1118,7 +1144,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="aliases-instance_method">
   
-    #<strong>aliases</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>aliases</strong>  &#x21d2; <tt>Array&lt;Psych::Nodes::Alias&gt;</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -1127,125 +1153,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Returns the aliases processed so far</p>
+
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Since:</p>
-<ul class="since">
+<p class="tag_title">Returns:</p>
+<ul class="return">
   
     <li>
       
       
+        <span class='type'>(<tt>Array&lt;Psych::Nodes::Alias&gt;</tt>)</span>
       
       
-        
+      
+        &mdash;
         <div class='inline'>
-<p>1.0.0</p>
+<p>the aliases processed so far</p>
 </div>
       
     </li>
   
 </ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-155
-156
-157</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 155</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_aliases'>aliases</span>
-  <span class='ivar'>@aliases</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      
-      <span id=""></span>
-      <div class="method_details ">
-  <h3 class="signature " id="documents-instance_method">
-  
-    #<strong>documents</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-156
-157
-158</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 156</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_documents'>documents</span>
-  <span class='ivar'>@documents</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      
-      <span id=""></span>
-      <div class="method_details ">
-  <h3 class="signature " id="level-instance_method">
-  
-    #<strong>level</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-
-  </div>
-</div>
-<div class="tags">
-  
 <p class="tag_title">Since:</p>
 <ul class="since">
   
@@ -1276,8 +1208,8 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 157</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_level'>level</span>
-  <span class='ivar'>@level</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_aliases'>aliases</span>
+  <span class='ivar'>@aliases</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1287,9 +1219,9 @@
       
       <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="mappings-instance_method">
+  <h3 class="signature " id="documents-instance_method">
   
-    #<strong>mappings</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>documents</strong>  &#x21d2; <tt>Array&lt;Psych::Nodes::Document&gt;</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -1298,11 +1230,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Returns the documents processed so far</p>
+
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Psych::Nodes::Document&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the documents processed so far</p>
+</div>
+      
+    </li>
+  
+</ul>
 <p class="tag_title">Since:</p>
 <ul class="since">
   
@@ -1333,8 +1285,8 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 158</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_mappings'>mappings</span>
-  <span class='ivar'>@mappings</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_documents'>documents</span>
+  <span class='ivar'>@documents</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1344,9 +1296,9 @@
       
       <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="nodes-instance_method">
+  <h3 class="signature " id="level-instance_method">
   
-    #<strong>nodes</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>level</strong>  &#x21d2; <tt>Integer</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -1355,11 +1307,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Returns the current level</p>
+
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current level</p>
+</div>
+      
+    </li>
+  
+</ul>
 <p class="tag_title">Since:</p>
 <ul class="since">
   
@@ -1390,8 +1362,8 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 159</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_nodes'>nodes</span>
-  <span class='ivar'>@nodes</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_level'>level</span>
+  <span class='ivar'>@level</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1401,9 +1373,9 @@
       
       <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="parent-instance_method">
+  <h3 class="signature " id="mappings-instance_method">
   
-    #<strong>parent</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>mappings</strong>  &#x21d2; <tt>Array&lt;Psych::Nodes::Mapping&gt;</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -1412,11 +1384,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Returns the mappings processed so far</p>
+
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Psych::Nodes::Mapping&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the mappings processed so far</p>
+</div>
+      
+    </li>
+  
+</ul>
 <p class="tag_title">Since:</p>
 <ul class="since">
   
@@ -1447,8 +1439,8 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 160</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_parent'>parent</span>
-  <span class='ivar'>@parent</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_mappings'>mappings</span>
+  <span class='ivar'>@mappings</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1458,9 +1450,9 @@
       
       <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="parents-instance_method">
+  <h3 class="signature " id="nodes-instance_method">
   
-    #<strong>parents</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>nodes</strong>  &#x21d2; <tt>Array&lt;Psych::Nodes::Node&gt;</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -1469,11 +1461,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Returns the nodes processed so far</p>
+
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Psych::Nodes::Node&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the nodes processed so far</p>
+</div>
+      
+    </li>
+  
+</ul>
 <p class="tag_title">Since:</p>
 <ul class="since">
   
@@ -1504,8 +1516,8 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 161</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_parents'>parents</span>
-  <span class='ivar'>@parents</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_nodes'>nodes</span>
+  <span class='ivar'>@nodes</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1515,9 +1527,9 @@
       
       <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="position-instance_method">
+  <h3 class="signature " id="parent-instance_method">
   
-    #<strong>position</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>parent</strong>  &#x21d2; <tt><span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span></tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -1526,11 +1538,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Returns the current parent</p>
+
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current parent</p>
+</div>
+      
+    </li>
+  
+</ul>
 <p class="tag_title">Since:</p>
 <ul class="since">
   
@@ -1561,8 +1593,8 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 162</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_position'>position</span>
-  <span class='ivar'>@position</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_parent'>parent</span>
+  <span class='ivar'>@parent</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1572,9 +1604,9 @@
       
       <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="scalars-instance_method">
+  <h3 class="signature " id="parents-instance_method">
   
-    #<strong>scalars</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>parents</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>&gt;</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -1583,11 +1615,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Returns the current (grand)parents</p>
+
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current (grand)parents</p>
+</div>
+      
+    </li>
+  
+</ul>
 <p class="tag_title">Since:</p>
 <ul class="since">
   
@@ -1618,8 +1670,8 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 163</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_scalars'>scalars</span>
-  <span class='ivar'>@scalars</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_parents'>parents</span>
+  <span class='ivar'>@parents</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1629,9 +1681,9 @@
       
       <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="sequences-instance_method">
+  <h3 class="signature " id="position-instance_method">
   
-    #<strong>sequences</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>position</strong>  &#x21d2; <tt>Integer</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -1640,11 +1692,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Returns the current position</p>
+
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current position</p>
+</div>
+      
+    </li>
+  
+</ul>
 <p class="tag_title">Since:</p>
 <ul class="since">
   
@@ -1675,8 +1747,8 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 164</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_sequences'>sequences</span>
-  <span class='ivar'>@sequences</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_position'>position</span>
+  <span class='ivar'>@position</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1686,9 +1758,9 @@
       
       <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="streams-instance_method">
+  <h3 class="signature " id="scalars-instance_method">
   
-    #<strong>streams</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>scalars</strong>  &#x21d2; <tt>Array&lt;Psych::Nodes::Scalar&gt;</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -1697,11 +1769,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Returns the scalars processed so far</p>
+
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Psych::Nodes::Scalar&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scalars processed so far</p>
+</div>
+      
+    </li>
+  
+</ul>
 <p class="tag_title">Since:</p>
 <ul class="since">
   
@@ -1731,6 +1823,160 @@
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 165</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_scalars'>scalars</span>
+  <span class='ivar'>@scalars</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="sequences-instance_method">
+  
+    #<strong>sequences</strong>  &#x21d2; <tt>Array&lt;Psych::Nodes::Sequence&gt;</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the sequences processed so far</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Psych::Nodes::Sequence&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the sequences processed so far</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+166
+167
+168</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 166</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_sequences'>sequences</span>
+  <span class='ivar'>@sequences</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="streams-instance_method">
+  
+    #<strong>streams</strong>  &#x21d2; <tt>Array&lt;Psych::Nodes::Stream&gt;</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the streams processed so far</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Psych::Nodes::Stream&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the streams processed so far</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+167
+168
+169</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_streams'>streams</span>
   <span class='ivar'>@streams</span>
@@ -1818,13 +2064,13 @@
       <pre class="lines">
 
 
-192
-193
 194
-195</pre>
+195
+196
+197</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 192</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 194</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_alias'>add_alias</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
@@ -1906,8 +2152,6 @@
       <pre class="lines">
 
 
-323
-324
 325
 326
 327
@@ -1924,10 +2168,12 @@
 338
 339
 340
-341</pre>
+341
+342
+343</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 323</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 325</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -2024,13 +2270,13 @@
       <pre class="lines">
 
 
-204
-205
 206
-207</pre>
+207
+208
+209</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 204</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 206</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_scalar'>add_scalar</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
@@ -2087,12 +2333,12 @@
       <pre class="lines">
 
 
-215
-216
-217</pre>
+217
+218
+219</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 215</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 217</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_document'>end_document</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2155,12 +2401,12 @@
       <pre class="lines">
 
 
-227
-228
-229</pre>
+229
+230
+231</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 227</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 229</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_mapping'>end_mapping</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>mapping_value:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2219,14 +2465,14 @@
       <pre class="lines">
 
 
-346
-347
 348
 349
-350</pre>
+350
+351
+352</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 346</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 348</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_mapping_value'>end_mapping_value</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'># Do not pass in &quot;mapping_value: true&quot; and/or &quot;top_level: true&quot;
@@ -2318,8 +2564,6 @@
       <pre class="lines">
 
 
-359
-360
 361
 362
 363
@@ -2332,10 +2576,12 @@
 370
 371
 372
-373</pre>
+373
+374
+375</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 359</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 361</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>mapping_value:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@parents</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -2410,12 +2656,12 @@
       <pre class="lines">
 
 
-239
-240
-241</pre>
+241
+242
+243</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 239</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 241</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_sequence'>end_sequence</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>mapping_value:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2471,12 +2717,12 @@
       <pre class="lines">
 
 
-249
-250
-251</pre>
+251
+252
+253</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 249</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 251</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_stream'>end_stream</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_end_parent'>end_parent</span><span class='lparen'>(</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2559,13 +2805,13 @@
       <pre class="lines">
 
 
-263
-264
 265
-266</pre>
+266
+267
+268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 263</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 265</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_document'>start_document</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:doc</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2649,13 +2895,13 @@
       <pre class="lines">
 
 
-278
-279
 280
-281</pre>
+281
+282
+283</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 278</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 280</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_mapping'>start_mapping</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:map</span><span class='comma'>,</span><span class='label'>child_type:</span> <span class='symbol'>:key</span><span class='rparen'>)</span>
@@ -2737,8 +2983,6 @@
       <pre class="lines">
 
 
-383
-384
 385
 386
 387
@@ -2750,10 +2994,12 @@
 393
 394
 395
-396</pre>
+396
+397
+398</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 383</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 385</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_mapping_key'>start_mapping_key</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_debug_tag'>debug_tag</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -2877,8 +3123,6 @@
       <pre class="lines">
 
 
-408
-409
 410
 411
 412
@@ -2890,10 +3134,12 @@
 418
 419
 420
-421</pre>
+421
+422
+423</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 408</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 410</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_extra'>extra</span><span class='rparen'>)</span>
   <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SuperSniffer/Parent.html" title="Psychgus::SuperSniffer::Parent (class)">Parent</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SuperSniffer/Parent.html#initialize-instance_method" title="Psychgus::SuperSniffer::Parent#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_extra'>extra</span><span class='rparen'>)</span>
@@ -2987,13 +3233,13 @@
       <pre class="lines">
 
 
-293
-294
 295
-296</pre>
+296
+297
+298</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 293</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 295</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_sequence'>start_sequence</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:seq</span><span class='rparen'>)</span>
@@ -3077,13 +3323,13 @@
       <pre class="lines">
 
 
-308
-309
 310
-311</pre>
+311
+312
+313</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 308</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 310</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_stream'>start_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_start_parent'>start_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='symbol'>:stream</span><span class='comma'>,</span><span class='label'>top_level:</span> <span class='kw'>true</span><span class='rparen'>)</span>

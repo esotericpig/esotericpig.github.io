@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: YardGhurt::GHPSyncerTask
+  
+    &mdash; YardGhurt v1.0.0 Doc
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "YardGhurt::GHPSyncerTask";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (G)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span>
+     &raquo; 
+    <span class="title">GHPSyncerTask</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: YardGhurt::GHPSyncerTask
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Rake::TaskLib</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Rake::TaskLib</li>
+          
+            <li class="next">YardGhurt::GHPSyncerTask</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/yard_ghurt/ghp_syncer_task.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Sync YARDoc to a local GitHub Pages repo (uses <code>rsync</code> by default).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>What I Use</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'>GHPSyncerTask</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="YardGhurt::GHPSyncerTask#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='op'>|</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_ghp_dir'>ghp_dir</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>../esotericpig.github.io/docs/yard_ghurt/yardoc</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_sync_args'>sync_args</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--delete-after</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Using All Options</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='comment'># Execute: rake ghp_doc[false,&#39;Ruby&#39;]
+</span><span class='const'><span class='object_link'><a href="../YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'>GHPSyncerTask</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="YardGhurt::GHPSyncerTask#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:ghp_doc</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='op'>|</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_arg_names'>arg_names</span>   <span class='op'>&lt;&lt;</span> <span class='symbol'>:name</span>                      <span class='comment'># Custom args
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_deps'>deps</span>        <span class='op'>&lt;&lt;</span> <span class='symbol'>:yard</span>                      <span class='comment'># Custom dependencies
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span>  <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Rsync my_doc/ to my page</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_doc_dir'>doc_dir</span>      <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my_doc</span><span class='tstring_end'>&#39;</span></span>                   <span class='comment'># YARDoc directory of generated files
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_ghp_dir'>ghp_dir</span>      <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>../dest_dir/my_page</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_strict'>strict</span>       <span class='op'>=</span> <span class='kw'>true</span>                       <span class='comment'># Fail if doc_dir doesn&#39;t exist
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_sync_args'>sync_args</span>   <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--delete-after</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_sync_cmd'>sync_cmd</span>     <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/usr/bin/rsync</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_before'>before</span> <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hi, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_after'>after</span>  <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Goodbye, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Jonathan Bradley Whited (@esotericpig)</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#after-instance_method" title="#after (instance method)">#<strong>after</strong>  &#x21d2; Proc<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The Proc ( <tt>respond_to?(:call)</tt> ) to call at the end of this task or <code>nil</code>; default: <code>nil</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#arg_names-instance_method" title="#arg_names (instance method)">#<strong>arg_names</strong>  &#x21d2; Array&lt;Symbol&gt;, Symbol </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The custom arg(s) for this task; default: <tt>[:deploy]</tt>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before-instance_method" title="#before (instance method)">#<strong>before</strong>  &#x21d2; Proc<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The Proc ( <tt>respond_to?(:call)</tt> ) to call at the beginning of this task or <code>nil</code>; default: <code>nil</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deps-instance_method" title="#deps (instance method)">#<strong>deps</strong>  &#x21d2; Array&lt;Symbol&gt;, Symbol </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The custom dependencies for this task; default: <tt>[]</tt>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#description-instance_method" title="#description (instance method)">#<strong>description</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The description of this task (customizable).</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#doc_dir-instance_method" title="#doc_dir (instance method)">#<strong>doc_dir</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The source directory of generated YARDoc files; default: <code>doc</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ghp_dir-instance_method" title="#ghp_dir (instance method)">#<strong>ghp_dir</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The destination directory to sync <span class='object_link'><a href="#doc_dir-instance_method" title="YardGhurt::GHPSyncerTask#doc_dir (method)">#doc_dir</a></span> to.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The name of this task (customizable); default: <code>yard_ghp_sync</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#strict-instance_method" title="#strict (instance method)">#<strong>strict</strong>  &#x21d2; true, false </a>
+    
+
+    
+      (also: #strict?)
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>If you want to use a non-local <span class='object_link'><a href="#doc_dir-instance_method" title="YardGhurt::GHPSyncerTask#doc_dir (method)">#doc_dir</a></span> (a remote host), set this to <code>false</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sync_args-instance_method" title="#sync_args (instance method)">#<strong>sync_args</strong>  &#x21d2; Array&lt;String&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The args to pass to the <span class='object_link'><a href="#sync_cmd-instance_method" title="YardGhurt::GHPSyncerTask#sync_cmd (method)">#sync_cmd</a></span>; default: <tt>[&#39;-ahv&#39;,&#39;–progress&#39;]</tt>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sync_cmd-instance_method" title="#sync_cmd (instance method)">#<strong>sync_cmd</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The sync command to use on the command line; default: <code>rsync</code>.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build_sh_cmd-instance_method" title="#build_sh_cmd (instance method)">#<strong>build_sh_cmd</strong>(deploy)  &#x21d2; Array&lt;String&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Build the sync command to use on the command line.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#define-instance_method" title="#define (instance method)">#<strong>define</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Define the Rake task and description using the instance variables.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(name = :yard_ghp_sync) {|_self| ... } &#x21d2; GHPSyncerTask </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of GHPSyncerTask.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(name = :yard_ghp_sync) {|_self| ... } &#x21d2; <tt><span class='object_link'><a href="" title="YardGhurt::GHPSyncerTask (class)">GHPSyncerTask</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of GHPSyncerTask</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:yard_ghp_sync</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of this task to use on the command line with <code>rake</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>_self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>_self</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="YardGhurt::GHPSyncerTask (class)">YardGhurt::GHPSyncerTask</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the object that the method was called on</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='symbol'>:yard_ghp_sync</span><span class='rparen'>)</span>
+  <span class='ivar'>@after</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@arg_names</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@before</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@deps</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@description</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sync YARDoc to GitHub Pages repo</span><span class='tstring_end'>&#39;</span></span>
+  <span class='ivar'>@doc_dir</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>doc</span><span class='tstring_end'>&#39;</span></span>
+  <span class='ivar'>@ghp_dir</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@strict</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='ivar'>@sync_args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-ahv</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--progress</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@sync_cmd</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rsync</span><span class='tstring_end'>&#39;</span></span>
+  
+  <span class='kw'>yield</span> <span class='kw'>self</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_define'>define</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="after=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="after-instance_method">
+  
+    #<strong>after</strong>  &#x21d2; <tt>Proc</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the Proc ( <tt>respond_to?(:call)</tt> ) to call at the end of this task or <code>nil</code>; default: <code>nil</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Proc ( <tt>respond_to?(:call)</tt> ) to call at the end of this task or <code>nil</code>; default: <code>nil</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_after'>after</span>
+  <span class='ivar'>@after</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="arg_names=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="arg_names-instance_method">
+  
+    #<strong>arg_names</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt>, <tt>Symbol</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p><code>:deploy</code> will be added no matter what (cannot be deleted)</p>
+</div>
+  </div>
+
+
+<p>Returns the custom arg(s) for this task; default: <tt>[:deploy]</tt></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the custom arg(s) for this task; default: <tt>[:deploy]</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_arg_names'>arg_names</span>
+  <span class='ivar'>@arg_names</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="before=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="before-instance_method">
+  
+    #<strong>before</strong>  &#x21d2; <tt>Proc</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the Proc ( <tt>respond_to?(:call)</tt> ) to call at the beginning of this task or <code>nil</code>; default: <code>nil</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Proc ( <tt>respond_to?(:call)</tt> ) to call at the beginning of this task or <code>nil</code>; default: <code>nil</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_before'>before</span>
+  <span class='ivar'>@before</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="deps=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="deps-instance_method">
+  
+    #<strong>deps</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt>, <tt>Symbol</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the custom dependencies for this task; default: <tt>[]</tt></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_deps'>deps</span> <span class='op'>=</span> <span class='symbol'>:yard</span>
+<span class='comment'># or...
+</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_deps'>deps</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='symbol'>:yard</span><span class='comma'>,</span><span class='symbol'>:yard_gfm_fix</span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the custom dependencies for this task; default: <tt>[]</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+79
+80
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 79</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deps'>deps</span>
+  <span class='ivar'>@deps</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="description=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="description-instance_method">
+  
+    #<strong>description</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the description of this task (customizable)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the description of this task (customizable)</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_description'>description</span>
+  <span class='ivar'>@description</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="doc_dir=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="doc_dir-instance_method">
+  
+    #<strong>doc_dir</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the source directory of generated YARDoc files; default: <code>doc</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the source directory of generated YARDoc files; default: <code>doc</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_doc_dir'>doc_dir</span>
+  <span class='ivar'>@doc_dir</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="ghp_dir=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="ghp_dir-instance_method">
+  
+    #<strong>ghp_dir</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>You must set this, else an error is thrown.</p>
+</div>
+  </div>
+
+
+<p>Returns the destination directory to sync <span class='object_link'><a href="#doc_dir-instance_method" title="YardGhurt::GHPSyncerTask#doc_dir (method)">#doc_dir</a></span> to</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the destination directory to sync <span class='object_link'><a href="#doc_dir-instance_method" title="YardGhurt::GHPSyncerTask#doc_dir (method)">#doc_dir</a></span> to</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 90</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ghp_dir'>ghp_dir</span>
+  <span class='ivar'>@ghp_dir</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    #<strong>name</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the name of this task (customizable); default: <code>yard_ghp_sync</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of this task (customizable); default: <code>yard_ghp_sync</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+93
+94
+95</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 93</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="strict=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="strict-instance_method">
+  
+    #<strong>strict</strong>  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='strict?-instance_method'>strict?</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>If you want to use a non-local <span class='object_link'><a href="#doc_dir-instance_method" title="YardGhurt::GHPSyncerTask#doc_dir (method)">#doc_dir</a></span> (a remote host), set this to <code>false</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to throw an error if <span class='object_link'><a href="#doc_dir-instance_method" title="YardGhurt::GHPSyncerTask#doc_dir (method)">#doc_dir</a></span> does not exist; default: <code>true</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_strict'>strict</span>
+  <span class='ivar'>@strict</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="sync_args=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="sync_args-instance_method">
+  
+    #<strong>sync_args</strong>  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>You should pass in multi-args separately: <tt>[&#39;–exclude&#39;,&#39;*~&#39;]</tt></p>
+</div>
+  </div>
+
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>You should not single/double quote the args; <tt>[&#39;“*~”&#39;]</tt> is unnecessary.</p>
+</div>
+  </div>
+
+
+<p>Returns the args to pass to the <span class='object_link'><a href="#sync_cmd-instance_method" title="YardGhurt::GHPSyncerTask#sync_cmd (method)">#sync_cmd</a></span>; default: <tt>[&#39;-ahv&#39;,&#39;–progress&#39;]</tt></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the args to pass to the <span class='object_link'><a href="#sync_cmd-instance_method" title="YardGhurt::GHPSyncerTask#sync_cmd (method)">#sync_cmd</a></span>; default: <tt>[&#39;-ahv&#39;,&#39;–progress&#39;]</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_sync_args'>sync_args</span>
+  <span class='ivar'>@sync_args</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="sync_cmd=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="sync_cmd-instance_method">
+  
+    #<strong>sync_cmd</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the sync command to use on the command line; default: <code>rsync</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the sync command to use on the command line; default: <code>rsync</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 107</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_sync_cmd'>sync_cmd</span>
+  <span class='ivar'>@sync_cmd</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="build_sh_cmd-instance_method">
+  
+    #<strong>build_sh_cmd</strong>(deploy)  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Build the sync command to use on the command line.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>deploy</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to actually deploy (<code>true</code>) or to run a dry-run (<code>false</code>)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the sync command and its args</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 170</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_build_sh_cmd'>build_sh_cmd</span><span class='lparen'>(</span><span class='id identifier rubyid_deploy'>deploy</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sh_cmd'>sh_cmd</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='ivar'>@sync_cmd</span><span class='rbracket'>]</span>
+  
+  <span class='id identifier rubyid_sh_cmd'>sh_cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--dry-run</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_deploy'>deploy</span>
+  <span class='id identifier rubyid_sh_cmd'>sh_cmd</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@sync_args</span><span class='rparen'>)</span>
+  
+  <span class='comment'># File.join() to add a trailing &#39;/&#39; if not present
+</span>  <span class='id identifier rubyid_sh_cmd'>sh_cmd</span> <span class='op'>&lt;&lt;</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='ivar'>@doc_dir</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sh_cmd'>sh_cmd</span> <span class='op'>&lt;&lt;</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='ivar'>@ghp_dir</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  
+  <span class='kw'>return</span> <span class='id identifier rubyid_sh_cmd'>sh_cmd</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="define-instance_method">
+  
+    #<strong>define</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Define the Rake task and description using the instance variables.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/ghp_syncer_task.rb', line 130</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_define'>define</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@arg_names</span> <span class='op'>=</span> <span class='op'>*</span><span class='ivar'>@arg_names</span>
+  <span class='ivar'>@arg_names</span><span class='period'>.</span><span class='id identifier rubyid_unshift'>unshift</span><span class='lparen'>(</span><span class='symbol'>:deploy</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='ivar'>@arg_names</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='symbol'>:deploy</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_desc'>desc</span> <span class='ivar'>@description</span>
+  <span class='id identifier rubyid_task'>task</span> <span class='ivar'>@name</span><span class='comma'>,</span><span class='ivar'>@arg_names</span> <span class='op'>=&gt;</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='ivar'>@deps</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span>
+    <span class='id identifier rubyid_deploy'>deploy</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Util.html" title="YardGhurt::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bool'><span class='object_link'><a href="Util/ClassMethods.html#to_bool-instance_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">to_bool</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_deploy'>deploy</span><span class='rparen'>)</span>
+    
+    <span class='ivar'>@before</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@before</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:call</span><span class='rparen'>)</span>
+    
+    <span class='comment'># Without these checks, sh raises some pretty cryptic errors.
+</span>    <span class='kw'>if</span> <span class='ivar'>@strict</span>
+      <span class='comment'># If you want to use a non-local dir, set strict to false.
+</span>      <span class='kw'>if</span> <span class='op'>!</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='ivar'>@doc_dir</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>%Q(</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>.doc_dir [</span><span class='embexpr_beg'>#{</span><span class='ivar'>@doc_dir</span><span class='embexpr_end'>}</span><span class='tstring_content'>] does not exist; execute &quot;rake yard&quot;?</span><span class='tstring_end'>)</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='comment'># Do not check if ghp_dir exists because rsync may create it.
+</span>    <span class='kw'>if</span> <span class='ivar'>@ghp_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='ivar'>@ghp_dir</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>.ghp_dir must be set</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+    
+    <span class='id identifier rubyid_sh'>sh</span> <span class='op'>*</span><span class='id identifier rubyid_build_sh_cmd'>build_sh_cmd</span><span class='lparen'>(</span><span class='id identifier rubyid_deploy'>deploy</span><span class='rparen'>)</span>
+    
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_deploy'>deploy</span>
+      <span class='id identifier rubyid_puts'>puts</span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>%Q(</span><span class='tstring_content'>Execute &quot;rake </span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_content'>[true]&quot; for actually deploying (not a dry-run)</span><span class='tstring_end'>)</span></span>
+    <span class='kw'>end</span>
+    
+    <span class='ivar'>@after</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@after</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:call</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      
+<div id="footer">
+  Generated by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,4542 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: YardGhurt::GFMFixerTask
+  
+    &mdash; YardGhurt v1.0.0 Doc
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "YardGhurt::GFMFixerTask";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (G)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span>
+     &raquo; 
+    <span class="title">GFMFixerTask</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: YardGhurt::GFMFixerTask
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Rake::TaskLib</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Rake::TaskLib</li>
+          
+            <li class="next">YardGhurt::GFMFixerTask</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/yard_ghurt/gfm_fixer_task.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Fix (find &amp; replace) text in the GitHub Flavored Markdown (GFM) files in the YARDoc directory, for differences between the two formats.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>What I Use</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'>GFMFixerTask</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="YardGhurt::GFMFixerTask#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='op'>|</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_arg_names'>arg_names</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='symbol'>:dev</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_dry_run'>dry_run</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_fix_code_langs'>fix_code_langs</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_md_files'>md_files</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>index.html</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_before'>before</span> <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span>
+    <span class='comment'># Delete this file as it&#39;s never used (index.html is an exact copy)
+</span>    <span class='const'><span class='object_link'><a href="../YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rm_exist'><span class='object_link'><a href="Util/ClassMethods.html#rm_exist-instance_method" title="YardGhurt::Util::ClassMethods#rm_exist (method)">rm_exist</a></span></span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_doc_dir'>doc_dir</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>file.README.html</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+    <span class='comment'># Root dir of my GitHub Page for CSS/JS
+</span>    <span class='const'>GHP_ROOT_DIR</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bool'><span class='object_link'><a href="Util/ClassMethods.html#to_bool-instance_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">to_bool</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_dev'>dev</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>../../esotericpig.github.io</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>../../..</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_css_styles'>css_styles</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%Q(</span><span class='tstring_content'>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>GHP_ROOT_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/css/prism.css&quot; /&gt;</span><span class='tstring_end'>)</span></span>
+    <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_js_scripts'>js_scripts</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%Q(</span><span class='tstring_content'>&lt;script src=&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>GHP_ROOT_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/js/prism.js&quot;&gt;&lt;/script&gt;</span><span class='tstring_end'>)</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Using All Options</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'>GFMFixerTask</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="YardGhurt::GFMFixerTask#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:yard_fix</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='op'>|</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_anchor_db'>anchor_db</span>           <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tests</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Testing</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span> <span class='comment'># #tests =&gt; #Testing
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_arg_names'>arg_names</span>          <span class='op'>&lt;&lt;</span> <span class='symbol'>:name</span> <span class='comment'># Custom args
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_css_styles'>css_styles</span>         <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/my_css.css&quot; /&gt;</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># Inserted at &lt;/head&gt;
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_css_styles'>css_styles</span>         <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;style&gt;body{ background-color: linen; }&lt;/style&gt;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_custom_gsub'>custom_gsub</span>         <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span> <span class='op'>!</span><span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>YardGhurt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>YARD GHURT!</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_custom_gsubs'>custom_gsubs</span>       <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>newline</span><span class='regexp_end'>/i</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Do you smell what The Rock is cooking?</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_deps'>deps</span>               <span class='op'>&lt;&lt;</span> <span class='symbol'>:yard</span> <span class='comment'># Custom dependencies
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span>         <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fix it</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_doc_dir'>doc_dir</span>             <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>doc</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_dry_run'>dry_run</span>             <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_exclude_code_langs'>exclude_code_langs</span>  <span class='op'>=</span> <span class='const'>Set</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ruby</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_fix_anchor_links'>fix_anchor_links</span>    <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_fix_code_langs'>fix_code_langs</span>      <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_fix_file_links'>fix_file_links</span>      <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_js_scripts'>js_scripts</span>         <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;script src=&quot;js/my_js.js&quot;&gt;&lt;/script&gt;</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># Inserted at &lt;/body&gt;
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_js_scripts'>js_scripts</span>         <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;script&gt;document.write(&quot;Hello World!&quot;);&lt;/script&gt;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_md_files'>md_files</span>            <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>index.html</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_verbose'>verbose</span>             <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_before'>before</span> <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hi, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_during'>during</span> <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> can haz </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file'>file</span><span class='embexpr_end'>}</span><span class='tstring_content'>?</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_after'>after</span>  <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Goodbye, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Jonathan Bradley Whited (@esotericpig)</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="CSS_COMMENT-constant" class="">CSS_COMMENT =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>This is important so that a subsequent call to this task will not write the CSS again.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the comment tag of where to place <span class='object_link'><a href="#css_styles-instance_method" title="YardGhurt::GFMFixerTask#css_styles (method)">#css_styles</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#add_css_styles!-instance_method" title="YardGhurt::GFMFixerTask#add_css_styles! (method)">#add_css_styles!</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;!-- </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_content'> CSS - Do NOT remove this comment! --&gt;</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="JS_COMMENT-constant" class="">JS_COMMENT =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>This is important so that a subsequent call to this task will not write the JS again.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the comment tag of where to place <span class='object_link'><a href="#js_scripts-instance_method" title="YardGhurt::GFMFixerTask#js_scripts (method)">#js_scripts</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#add_js_scripts!-instance_method" title="YardGhurt::GFMFixerTask#add_js_scripts! (method)">#add_js_scripts!</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;!-- </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_content'> JS - Do NOT remove this comment! --&gt;</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#after-instance_method" title="#after (instance method)">#<strong>after</strong>  &#x21d2; Proc<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The Proc ( <tt>respond_to?(:call)</tt> ) to call at the end of this task or <code>nil</code>; default: <code>nil</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#anchor_db-instance_method" title="#anchor_db (instance method)">#<strong>anchor_db</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The anchor links to override in the database.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#arg_names-instance_method" title="#arg_names (instance method)">#<strong>arg_names</strong>  &#x21d2; Array&lt;Symbol&gt;, Symbol </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The custom arg(s) for this task; default: <tt>[]</tt>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#before-instance_method" title="#before (instance method)">#<strong>before</strong>  &#x21d2; Proc<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The Proc ( <tt>respond_to?(:call)</tt> ) to call at the beginning of this task or <code>nil</code>; default: <code>nil</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#css_styles-instance_method" title="#css_styles (instance method)">#<strong>css_styles</strong>  &#x21d2; Array&lt;String&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The CSS styles to add to each file; default: <tt>[]</tt>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#custom_gsub-instance_method" title="#custom_gsub (instance method)">#<strong>custom_gsub</strong>  &#x21d2; Proc<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The custom Proc ( <tt>respond_to?(:call)</tt> ) to call to gsub! each line for each file.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#custom_gsubs-instance_method" title="#custom_gsubs (instance method)">#<strong>custom_gsubs</strong>  &#x21d2; Array&lt;[Regexp,String]&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The custom args to use in gsub on each line for each file.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deps-instance_method" title="#deps (instance method)">#<strong>deps</strong>  &#x21d2; Array&lt;Symbol&gt;, Symbol </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The custom dependencies for this task; default: <tt>[]</tt>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#description-instance_method" title="#description (instance method)">#<strong>description</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The description of this task (customizable).</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#doc_dir-instance_method" title="#doc_dir (instance method)">#<strong>doc_dir</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The directory of generated YARDoc files; default: <code>doc</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dry_run-instance_method" title="#dry_run (instance method)">#<strong>dry_run</strong>  &#x21d2; true, false </a>
+    
+
+    
+      (also: #dry_run?)
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether to run a dry run (no writing to the files); default: <code>false</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#during-instance_method" title="#during (instance method)">#<strong>during</strong>  &#x21d2; Proc<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The Proc to call ( <tt>respond_to?(:call)</tt> ) at the beginning of processing each file or <code>nil</code>; default: <code>nil</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#exclude_code_langs-instance_method" title="#exclude_code_langs (instance method)">#<strong>exclude_code_langs</strong>  &#x21d2; Set&lt;String&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The case-sensitive code languages to not fix; default: <tt>Set[ &#39;ruby&#39; ]</tt>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fix_anchor_links-instance_method" title="#fix_anchor_links (instance method)">#<strong>fix_anchor_links</strong>  &#x21d2; true, false </a>
+    
+
+    
+      (also: #fix_anchor_links?)
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether to fix anchor links; default: <code>true</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fix_code_langs-instance_method" title="#fix_code_langs (instance method)">#<strong>fix_code_langs</strong>  &#x21d2; true, false </a>
+    
+
+    
+      (also: #fix_code_langs?)
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>If <code>true</code>, <code>language-</code> will be added to code classes, except for <span class='object_link'><a href="#exclude_code_langs-instance_method" title="YardGhurt::GFMFixerTask#exclude_code_langs (method)">#exclude_code_langs</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fix_file_links-instance_method" title="#fix_file_links (instance method)">#<strong>fix_file_links</strong>  &#x21d2; true, false </a>
+    
+
+    
+      (also: #fix_file_links?)
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>If <code>true</code>, local file links (if the local file exists), will be changed to <tt>file.{filename}.html</tt>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_css_comment-instance_method" title="#has_css_comment (instance method)">#<strong>has_css_comment</strong>  &#x21d2; true, false </a>
+    
+
+    
+      (also: #has_css_comment?)
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>This is an internal flag meant to be changed internally.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_js_comment-instance_method" title="#has_js_comment (instance method)">#<strong>has_js_comment</strong>  &#x21d2; true, false </a>
+    
+
+    
+      (also: #has_js_comment?)
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>This is an internal flag meant to be changed internally.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#js_scripts-instance_method" title="#js_scripts (instance method)">#<strong>js_scripts</strong>  &#x21d2; Array&lt;String&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The JS scripts to add to each file; default: <tt>[]</tt>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#md_files-instance_method" title="#md_files (instance method)">#<strong>md_files</strong>  &#x21d2; Array&lt;String&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The (GFM) Markdown files to fix; default: <tt>[&#39;file.README.html&#39;,&#39;index.html&#39;]</tt>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The name of this task (customizable); default: <code>yard_gfm_fix</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#verbose-instance_method" title="#verbose (instance method)">#<strong>verbose</strong>  &#x21d2; true, false </a>
+    
+
+    
+      (also: #verbose?)
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether to output each change to stdout; default: <code>true</code>.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_css_styles!-instance_method" title="#add_css_styles! (instance method)">#<strong>add_css_styles!</strong>(line)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Add <span class='object_link'><a href="#CSS_COMMENT-constant" title="YardGhurt::GFMFixerTask::CSS_COMMENT (constant)">CSS_COMMENT</a></span> &amp; <span class='object_link'><a href="#css_styles-instance_method" title="YardGhurt::GFMFixerTask#css_styles (method)">#css_styles</a></span> to <code>line</code> if it is <tt>&lt;/head&gt;</tt>, unless <span class='object_link'><a href="#CSS_COMMENT-constant" title="YardGhurt::GFMFixerTask::CSS_COMMENT (constant)">CSS_COMMENT</a></span> has already been found or <span class='object_link'><a href="#has_css_comment-instance_method" title="YardGhurt::GFMFixerTask#has_css_comment (method)">#has_css_comment</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_js_scripts!-instance_method" title="#add_js_scripts! (instance method)">#<strong>add_js_scripts!</strong>(line)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Add <span class='object_link'><a href="#JS_COMMENT-constant" title="YardGhurt::GFMFixerTask::JS_COMMENT (constant)">JS_COMMENT</a></span> &amp; <span class='object_link'><a href="#js_scripts-instance_method" title="YardGhurt::GFMFixerTask#js_scripts (method)">#js_scripts</a></span> to <code>line</code> if it is <tt>&lt;/body&gt;</tt>, unless <span class='object_link'><a href="#JS_COMMENT-constant" title="YardGhurt::GFMFixerTask::JS_COMMENT (constant)">JS_COMMENT</a></span> has already been found or <span class='object_link'><a href="#has_js_comment-instance_method" title="YardGhurt::GFMFixerTask#has_js_comment (method)">#has_js_comment</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build_anchor_links_db-instance_method" title="#build_anchor_links_db (instance method)">#<strong>build_anchor_links_db</strong>(md_file)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Convert each HTML header tag in <code>md_file</code> to a GFM &amp; YARDoc anchor link and build a database using them.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#define-instance_method" title="#define (instance method)">#<strong>define</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Define the Rake task and description using the instance variables.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fix_md_file-instance_method" title="#fix_md_file (instance method)">#<strong>fix_md_file</strong>(md_file)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fix (find &amp; replace) text in <code>md_file</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gsub_anchor_links!-instance_method" title="#gsub_anchor_links! (instance method)">#<strong>gsub_anchor_links!</strong>(line)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Replace GFM anchor links with their equivalent YARDoc anchor links, using <span class='object_link'><a href="#build_anchor_links_db-instance_method" title="YardGhurt::GFMFixerTask#build_anchor_links_db (method)">#build_anchor_links_db</a></span> &amp; <span class='object_link'><a href="#anchor_db-instance_method" title="YardGhurt::GFMFixerTask#anchor_db (method)">#anchor_db</a></span>, if <span class='object_link'><a href="#fix_anchor_links-instance_method" title="YardGhurt::GFMFixerTask#fix_anchor_links (method)">#fix_anchor_links</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gsub_code_langs!-instance_method" title="#gsub_code_langs! (instance method)">#<strong>gsub_code_langs!</strong>(line)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Add <code>language-</code> to code class languages and down case them, if <span class='object_link'><a href="#fix_code_langs-instance_method" title="YardGhurt::GFMFixerTask#fix_code_langs (method)">#fix_code_langs</a></span> and the language is not in <span class='object_link'><a href="#exclude_code_langs-instance_method" title="YardGhurt::GFMFixerTask#exclude_code_langs (method)">#exclude_code_langs</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gsub_custom!-instance_method" title="#gsub_custom! (instance method)">#<strong>gsub_custom!</strong>(line)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Call the custom Proc <span class='object_link'><a href="#custom_gsub-instance_method" title="YardGhurt::GFMFixerTask#custom_gsub (method)">#custom_gsub</a></span> (if it responds to <code>:call</code>) on <code>line</code>,.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gsub_customs!-instance_method" title="#gsub_customs! (instance method)">#<strong>gsub_customs!</strong>(line)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Call <tt>gsub!()</tt> on <code>line</code> with each <span class='object_link'><a href="#custom_gsubs-instance_method" title="YardGhurt::GFMFixerTask#custom_gsubs (method)">#custom_gsubs</a></span>, which is an Array of pairs of arguments:   task.custom_gsubs = [     [&#39;dev&#39;,&#39;prod&#39;],     [/<a href="^"">href=“#</a>*”/,&#39;href=“#contents”&#39;]   ].</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gsub_local_file_links!-instance_method" title="#gsub_local_file_links! (instance method)">#<strong>gsub_local_file_links!</strong>(line)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Replace local file links (that exist) to be <tt>file.{filename}.html</tt>, if <span class='object_link'><a href="#fix_file_links-instance_method" title="YardGhurt::GFMFixerTask#fix_file_links (method)">#fix_file_links</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(name = :yard_gfm_fix) {|_self| ... } &#x21d2; GFMFixerTask </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of GFMFixerTask.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reset_per_file-instance_method" title="#reset_per_file (instance method)">#<strong>reset_per_file</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Reset certain instance vars per file.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(name = :yard_gfm_fix) {|_self| ... } &#x21d2; <tt><span class='object_link'><a href="" title="YardGhurt::GFMFixerTask (class)">GFMFixerTask</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of GFMFixerTask</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:yard_gfm_fix</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of this task to use on the command line with <code>rake</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>_self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>_self</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="YardGhurt::GFMFixerTask (class)">YardGhurt::GFMFixerTask</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the object that the method was called on</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 270</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='symbol'>:yard_gfm_fix</span><span class='rparen'>)</span>
+  <span class='ivar'>@after</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@anchor_db</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@arg_names</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@before</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@css_styles</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@custom_gsub</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@custom_gsubs</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@deps</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@description</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fix (find &amp; replace) text in the YARDoc GitHub Flavored Markdown files</span><span class='tstring_end'>&#39;</span></span>
+  <span class='ivar'>@doc_dir</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>doc</span><span class='tstring_end'>&#39;</span></span>
+  <span class='ivar'>@dry_run</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@during</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@exclude_code_langs</span> <span class='op'>=</span> <span class='const'>Set</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ruby</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@fix_anchor_links</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='ivar'>@fix_code_langs</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@fix_file_links</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='ivar'>@js_scripts</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@md_files</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>file.README.html</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>index.html</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@verbose</span> <span class='op'>=</span> <span class='kw'>true</span>
+  
+  <span class='kw'>yield</span> <span class='kw'>self</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_define'>define</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="after=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="after-instance_method">
+  
+    #<strong>after</strong>  &#x21d2; <tt>Proc</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the Proc ( <tt>respond_to?(:call)</tt> ) to call at the end of this task or <code>nil</code>; default: <code>nil</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_arg_names'>arg_names</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='symbol'>:dev</span><span class='rbracket'>]</span>
+
+<span class='comment'># @param task [self]
+</span><span class='comment'># @param args [Rake::TaskArguments] the args specified by {arg_names}
+</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_after'>after</span> <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_dev'>dev</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Proc ( <tt>respond_to?(:call)</tt> ) to call at the end of this task or <code>nil</code>; default: <code>nil</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 110</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_after'>after</span>
+  <span class='ivar'>@after</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="anchor_db=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="anchor_db-instance_method">
+  
+    #<strong>anchor_db</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The anchor links to override in the database.</p>
+
+<p>The keys are GFM anchor IDs and the values are their equivalent YARDoc anchor IDs.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the custom database (key-value pairs) of GFM anchor links to YARDoc anchor links; default: <tt>{}</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#build_anchor_links_db-instance_method" title="YardGhurt::GFMFixerTask#build_anchor_links_db (method)">#build_anchor_links_db</a></span></li>
+    
+      <li><span class='object_link'><a href="AnchorLinks.html#merge_anchor_ids!-instance_method" title="YardGhurt::AnchorLinks#merge_anchor_ids! (method)">AnchorLinks#merge_anchor_ids!</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+121
+122
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 121</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_anchor_db'>anchor_db</span>
+  <span class='ivar'>@anchor_db</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="arg_names=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="arg_names-instance_method">
+  
+    #<strong>arg_names</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt>, <tt>Symbol</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the custom arg(s) for this task; default: <tt>[]</tt></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the custom arg(s) for this task; default: <tt>[]</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_arg_names'>arg_names</span>
+  <span class='ivar'>@arg_names</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="before=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="before-instance_method">
+  
+    #<strong>before</strong>  &#x21d2; <tt>Proc</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the Proc ( <tt>respond_to?(:call)</tt> ) to call at the beginning of this task or <code>nil</code>; default: <code>nil</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_arg_names'>arg_names</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='symbol'>:dev</span><span class='rbracket'>]</span>
+
+<span class='comment'># @param task [self]
+</span><span class='comment'># @param args [Rake::TaskArguments] the args specified by {arg_names}
+</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_before'>before</span> <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_dev'>dev</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Proc ( <tt>respond_to?(:call)</tt> ) to call at the beginning of this task or <code>nil</code>; default: <code>nil</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+137
+138
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 137</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_before'>before</span>
+  <span class='ivar'>@before</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="css_styles=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="css_styles-instance_method">
+  
+    #<strong>css_styles</strong>  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the CSS styles to add to each file; default: <tt>[]</tt></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_css_styles'>css_styles</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/prism.css&quot; /&gt;</span><span class='tstring_end'>&#39;</span></span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the CSS styles to add to each file; default: <tt>[]</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+143
+144
+145</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 143</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_css_styles'>css_styles</span>
+  <span class='ivar'>@css_styles</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="custom_gsub=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="custom_gsub-instance_method">
+  
+    #<strong>custom_gsub</strong>  &#x21d2; <tt>Proc</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the custom Proc ( <tt>respond_to?(:call)</tt> ) to call to gsub! each line for each file</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='comment'># +gsub!()+ (and other mutable methods) must be used
+</span><span class='comment'># as the return value must be +true+ or +false+.
+</span><span class='comment'># 
+</span><span class='comment'># @param line [String] the current line being processed from the current file
+</span><span class='comment'># 
+</span><span class='comment'># @return [true,false] whether there was a change
+</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_custom_gsub'>custom_gsub</span> <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
+  <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dev</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prod</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_has_change'>has_change</span>
+  <span class='comment'># More changes...
+</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_has_change'>has_change</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the custom Proc ( <tt>respond_to?(:call)</tt> ) to call to gsub! each line for each file</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+162
+163
+164</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 162</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_custom_gsub'>custom_gsub</span>
+  <span class='ivar'>@custom_gsub</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="custom_gsubs=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="custom_gsubs-instance_method">
+  
+    #<strong>custom_gsubs</strong>  &#x21d2; <tt>Array&lt;[Regexp,String]&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the custom args to use in gsub on each line for each file</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_custom_gsubs'>custom_gsubs</span> <span class='op'>=</span> <span class='lbracket'>[</span>
+  <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dev</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prod</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>href=&quot;#[^&quot;]*&quot;</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>href=&quot;#contents&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='rbracket'>]</span>
+
+<span class='comment'># Internal code:
+</span><span class='comment'># ---
+</span><span class='comment'># @custom_gsubs.each do |custom_gsub|
+</span><span class='comment'>#   line.gsub!(custom_gsub[0],custom_gsub[1])
+</span><span class='comment'># end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;[Regexp,String]&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the custom args to use in gsub on each line for each file</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+177
+178
+179</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 177</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_custom_gsubs'>custom_gsubs</span>
+  <span class='ivar'>@custom_gsubs</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="deps=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="deps-instance_method">
+  
+    #<strong>deps</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt>, <tt>Symbol</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the custom dependencies for this task; default: <tt>[]</tt></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_deps'>deps</span> <span class='op'>=</span> <span class='symbol'>:yard</span>
+<span class='comment'># or...
+</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_deps'>deps</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='symbol'>:clobber</span><span class='comma'>,</span><span class='symbol'>:yard</span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the custom dependencies for this task; default: <tt>[]</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+185
+186
+187</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 185</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deps'>deps</span>
+  <span class='ivar'>@deps</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="description=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="description-instance_method">
+  
+    #<strong>description</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the description of this task (customizable)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the description of this task (customizable)</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+188
+189
+190</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 188</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_description'>description</span>
+  <span class='ivar'>@description</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="doc_dir=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="doc_dir-instance_method">
+  
+    #<strong>doc_dir</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the directory of generated YARDoc files; default: <code>doc</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the directory of generated YARDoc files; default: <code>doc</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+191
+192
+193</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 191</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_doc_dir'>doc_dir</span>
+  <span class='ivar'>@doc_dir</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="dry_run=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="dry_run-instance_method">
+  
+    #<strong>dry_run</strong>  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='dry_run?-instance_method'>dry_run?</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns whether to run a dry run (no writing to the files); default: <code>false</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to run a dry run (no writing to the files); default: <code>false</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+194
+195
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 194</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dry_run'>dry_run</span>
+  <span class='ivar'>@dry_run</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="during=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="during-instance_method">
+  
+    #<strong>during</strong>  &#x21d2; <tt>Proc</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the Proc to call ( <tt>respond_to?(:call)</tt> ) at the beginning of processing each file or <code>nil</code>; default: <code>nil</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_arg_names'>arg_names</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='symbol'>:dev</span><span class='rbracket'>]</span>
+
+<span class='comment'># @param task [self]
+</span><span class='comment'># @param args [Rake::TaskArguments] the args specified by {arg_names}
+</span><span class='comment'># @param file [String] the current file being processed
+</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_during'>during</span> <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_dev'>dev</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Proc to call ( <tt>respond_to?(:call)</tt> ) at the beginning of processing each file or <code>nil</code>; default: <code>nil</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 208</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_during'>during</span>
+  <span class='ivar'>@during</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="exclude_code_langs=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="exclude_code_langs-instance_method">
+  
+    #<strong>exclude_code_langs</strong>  &#x21d2; <tt>Set&lt;String&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the case-sensitive code languages to not fix; default: <tt>Set[ &#39;ruby&#39; ]</tt></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Set&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the case-sensitive code languages to not fix; default: <tt>Set[ &#39;ruby&#39; ]</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#fix_code_langs-instance_method" title="YardGhurt::GFMFixerTask#fix_code_langs (method)">#fix_code_langs</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+213
+214
+215</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 213</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_exclude_code_langs'>exclude_code_langs</span>
+  <span class='ivar'>@exclude_code_langs</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="fix_anchor_links=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fix_anchor_links-instance_method">
+  
+    #<strong>fix_anchor_links</strong>  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='fix_anchor_links?-instance_method'>fix_anchor_links?</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns whether to fix anchor links; default: <code>true</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to fix anchor links; default: <code>true</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+216
+217
+218</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 216</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fix_anchor_links'>fix_anchor_links</span>
+  <span class='ivar'>@fix_anchor_links</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="fix_code_langs=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fix_code_langs-instance_method">
+  
+    #<strong>fix_code_langs</strong>  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='fix_code_langs?-instance_method'>fix_code_langs?</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>If <code>true</code>, <code>language-</code> will be added to code classes, except for <span class='object_link'><a href="#exclude_code_langs-instance_method" title="YardGhurt::GFMFixerTask#exclude_code_langs (method)">#exclude_code_langs</a></span>.</p>
+
+<p>For example, <tt>code class=“ruby”</tt> will be changed to <tt>code class=“language-ruby”</tt>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to fix code languages; default: <code>false</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+223
+224
+225</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 223</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fix_code_langs'>fix_code_langs</span>
+  <span class='ivar'>@fix_code_langs</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="fix_file_links=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fix_file_links-instance_method">
+  
+    #<strong>fix_file_links</strong>  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='fix_file_links?-instance_method'>fix_file_links?</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>If <code>true</code>, local file links (if the local file exists), will be changed to <tt>file.{filename}.html</tt>.</p>
+
+<p>This is useful for <code>README.md</code>, <code>LICENSE.txt</code>, etc.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to fix local file links; default: <code>true</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+230
+231
+232</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 230</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fix_file_links'>fix_file_links</span>
+  <span class='ivar'>@fix_file_links</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="has_css_comment=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="has_css_comment-instance_method">
+  
+    #<strong>has_css_comment</strong>  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='has_css_comment?-instance_method'>has_css_comment?</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>This is an internal flag meant to be changed internally.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether <span class='object_link'><a href="#CSS_COMMENT-constant" title="YardGhurt::GFMFixerTask::CSS_COMMENT (constant)">CSS_COMMENT</a></span> has been seen/added; default: <code>false</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#add_css_styles!-instance_method" title="YardGhurt::GFMFixerTask#add_css_styles! (method)">#add_css_styles!</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+237
+238
+239</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 237</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_css_comment'>has_css_comment</span>
+  <span class='ivar'>@has_css_comment</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="has_js_comment=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="has_js_comment-instance_method">
+  
+    #<strong>has_js_comment</strong>  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='has_js_comment?-instance_method'>has_js_comment?</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>This is an internal flag meant to be changed internally.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether <span class='object_link'><a href="#JS_COMMENT-constant" title="YardGhurt::GFMFixerTask::JS_COMMENT (constant)">JS_COMMENT</a></span> has been seen/added; default: <code>false</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#add_js_scripts!-instance_method" title="YardGhurt::GFMFixerTask#add_js_scripts! (method)">#add_js_scripts!</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+244
+245
+246</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 244</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_js_comment'>has_js_comment</span>
+  <span class='ivar'>@has_js_comment</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="js_scripts=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="js_scripts-instance_method">
+  
+    #<strong>js_scripts</strong>  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the JS scripts to add to each file; default: <tt>[]</tt></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_js_scripts'>js_scripts</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;script src=&quot;js/prism.js&quot;&gt;&lt;/script&gt;</span><span class='tstring_end'>&#39;</span></span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the JS scripts to add to each file; default: <tt>[]</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+250
+251
+252</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 250</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_js_scripts'>js_scripts</span>
+  <span class='ivar'>@js_scripts</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="md_files=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="md_files-instance_method">
+  
+    #<strong>md_files</strong>  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the (GFM) Markdown files to fix; default: <tt>[&#39;file.README.html&#39;,&#39;index.html&#39;]</tt></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the (GFM) Markdown files to fix; default: <tt>[&#39;file.README.html&#39;,&#39;index.html&#39;]</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 253</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_md_files'>md_files</span>
+  <span class='ivar'>@md_files</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    #<strong>name</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the name of this task (customizable); default: <code>yard_gfm_fix</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of this task (customizable); default: <code>yard_gfm_fix</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+256
+257
+258</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 256</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="verbose=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="verbose-instance_method">
+  
+    #<strong>verbose</strong>  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='verbose?-instance_method'>verbose?</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns whether to output each change to stdout; default: <code>true</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to output each change to stdout; default: <code>true</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+259
+260
+261</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 259</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_verbose'>verbose</span>
+  <span class='ivar'>@verbose</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_css_styles!-instance_method">
+  
+    #<strong>add_css_styles!</strong>(line)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Add <span class='object_link'><a href="#CSS_COMMENT-constant" title="YardGhurt::GFMFixerTask::CSS_COMMENT (constant)">CSS_COMMENT</a></span> &amp; <span class='object_link'><a href="#css_styles-instance_method" title="YardGhurt::GFMFixerTask#css_styles (method)">#css_styles</a></span> to <code>line</code> if it is <tt>&lt;/head&gt;</tt>, unless <span class='object_link'><a href="#CSS_COMMENT-constant" title="YardGhurt::GFMFixerTask::CSS_COMMENT (constant)">CSS_COMMENT</a></span> has already been found or <span class='object_link'><a href="#has_css_comment-instance_method" title="YardGhurt::GFMFixerTask#has_css_comment (method)">#has_css_comment</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the line from the file to check if <tt>&lt;/head&gt;</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 414</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_css_styles!'>add_css_styles!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='ivar'>@has_css_comment</span> <span class='op'>||</span> <span class='ivar'>@css_styles</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="#CSS_COMMENT-constant" title="YardGhurt::GFMFixerTask::CSS_COMMENT (constant)">CSS_COMMENT</a></span></span>
+    <span class='ivar'>@has_css_comment</span> <span class='op'>=</span> <span class='kw'>true</span>
+    
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*&lt;\/head&gt;\s*$</span><span class='regexp_end'>/i</span></span>
+  
+  <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_slice!'>slice!</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_line'>line</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#CSS_COMMENT-constant" title="YardGhurt::GFMFixerTask::CSS_COMMENT (constant)">CSS_COMMENT</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  
+  <span class='ivar'>@css_styles</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_css_style'>css_style</span><span class='op'>|</span>
+    <span class='id identifier rubyid_line'>line</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_css_style'>css_style</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_line'>line</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\n  &lt;/head&gt;</span><span class='tstring_end'>&quot;</span></span>
+  
+  <span class='ivar'>@has_css_comment</span> <span class='op'>=</span> <span class='kw'>true</span>
+  
+  <span class='kw'>return</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_js_scripts!-instance_method">
+  
+    #<strong>add_js_scripts!</strong>(line)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Add <span class='object_link'><a href="#JS_COMMENT-constant" title="YardGhurt::GFMFixerTask::JS_COMMENT (constant)">JS_COMMENT</a></span> &amp; <span class='object_link'><a href="#js_scripts-instance_method" title="YardGhurt::GFMFixerTask#js_scripts (method)">#js_scripts</a></span> to <code>line</code> if it is <tt>&lt;/body&gt;</tt>, unless <span class='object_link'><a href="#JS_COMMENT-constant" title="YardGhurt::GFMFixerTask::JS_COMMENT (constant)">JS_COMMENT</a></span> has already been found or <span class='object_link'><a href="#has_js_comment-instance_method" title="YardGhurt::GFMFixerTask#has_js_comment (method)">#has_js_comment</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the line from the file to check if <tt>&lt;/body&gt;</tt></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 443</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_js_scripts!'>add_js_scripts!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='ivar'>@has_js_comment</span> <span class='op'>||</span> <span class='ivar'>@js_scripts</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="#JS_COMMENT-constant" title="YardGhurt::GFMFixerTask::JS_COMMENT (constant)">JS_COMMENT</a></span></span>
+    <span class='ivar'>@has_js_comment</span> <span class='op'>=</span> <span class='kw'>true</span>
+    
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*&lt;\/body&gt;\s*$</span><span class='regexp_end'>/i</span></span>
+  
+  <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_slice!'>slice!</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_line'>line</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n    </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#JS_COMMENT-constant" title="YardGhurt::GFMFixerTask::JS_COMMENT (constant)">JS_COMMENT</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  
+  <span class='ivar'>@js_scripts</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_js_script'>js_script</span><span class='op'>|</span>
+    <span class='id identifier rubyid_line'>line</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_js_script'>js_script</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_line'>line</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\n  &lt;/body&gt;</span><span class='tstring_end'>&quot;</span></span>
+  
+  <span class='ivar'>@has_js_comment</span> <span class='op'>=</span> <span class='kw'>true</span>
+  
+  <span class='kw'>return</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="build_anchor_links_db-instance_method">
+  
+    #<strong>build_anchor_links_db</strong>(md_file)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Convert each HTML header tag in <code>md_file</code> to a GFM &amp; YARDoc anchor link and build a database using them.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>md_file</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the file (no dir) to build the anchor links database with, will be joined to <span class='object_link'><a href="#doc_dir-instance_method" title="YardGhurt::GFMFixerTask#doc_dir (method)">#doc_dir</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="AnchorLinks.html#<<-instance_method" title="YardGhurt::AnchorLinks#&lt;&lt; (method)">AnchorLinks#&lt;&lt;</a></span></li>
+    
+      <li><span class='object_link'><a href="AnchorLinks.html#merge_anchor_ids!-instance_method" title="YardGhurt::AnchorLinks#merge_anchor_ids! (method)">AnchorLinks#merge_anchor_ids!</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 333</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_build_anchor_links_db'>build_anchor_links_db</span><span class='lparen'>(</span><span class='id identifier rubyid_md_file'>md_file</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='ivar'>@doc_dir</span><span class='comma'>,</span><span class='id identifier rubyid_md_file'>md_file</span><span class='rparen'>)</span>
+  
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+  
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+    <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_each_line'>each_line</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
+      <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>!~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;h\d+&gt;</span><span class='regexp_end'>/i</span></span>
+      
+      <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;[^&gt;]+&gt;</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># Remove tags: &lt;...&gt;
+</span>      
+      <span class='ivar'>@anchor_links</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='ivar'>@anchor_links</span><span class='period'>.</span><span class='id identifier rubyid_merge_anchor_ids!'>merge_anchor_ids!</span><span class='lparen'>(</span><span class='ivar'>@anchor_db</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="define-instance_method">
+  
+    #<strong>define</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Define the Rake task and description using the instance variables.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 305</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_define'>define</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_desc'>desc</span> <span class='ivar'>@description</span>
+  <span class='id identifier rubyid_task'>task</span> <span class='ivar'>@name</span><span class='comma'>,</span><span class='const'>Array</span><span class='lparen'>(</span><span class='ivar'>@arg_names</span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='ivar'>@deps</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span>
+    <span class='ivar'>@before</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@before</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:call</span><span class='rparen'>)</span>
+    
+    <span class='ivar'>@md_files</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_md_file'>md_file</span><span class='op'>|</span>
+      <span class='id identifier rubyid_reset_per_file'>reset_per_file</span><span class='lparen'>(</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_build_anchor_links_db'>build_anchor_links_db</span><span class='lparen'>(</span><span class='id identifier rubyid_md_file'>md_file</span><span class='rparen'>)</span>
+      
+      <span class='ivar'>@during</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='id identifier rubyid_md_file'>md_file</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@during</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:call</span><span class='rparen'>)</span>
+      
+      <span class='id identifier rubyid_fix_md_file'>fix_md_file</span><span class='lparen'>(</span><span class='id identifier rubyid_md_file'>md_file</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    
+    <span class='ivar'>@after</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@after</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:call</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fix_md_file-instance_method">
+  
+    #<strong>fix_md_file</strong>(md_file)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fix (find &amp; replace) text in <code>md_file</code>. Calls all <code>add_*</code> &amp; <code>gsub_*</code> methods.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>md_file</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the file (no dir) to fix, will be joined to <span class='object_link'><a href="#doc_dir-instance_method" title="YardGhurt::GFMFixerTask#doc_dir (method)">#doc_dir</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 354</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fix_md_file'>fix_md_file</span><span class='lparen'>(</span><span class='id identifier rubyid_md_file'>md_file</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='ivar'>@doc_dir</span><span class='comma'>,</span><span class='id identifier rubyid_md_file'>md_file</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>]:</span><span class='tstring_end'>&quot;</span></span>
+  
+  <span class='kw'>if</span> <span class='op'>!</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>! File does not exist</span><span class='tstring_end'>&#39;</span></span>
+    
+    <span class='kw'>return</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_changes'>changes</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_lines'>lines</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+    <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_each_line'>each_line</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
+      <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='kw'>false</span>
+      
+      <span class='comment'># Standard
+</span>      <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='id identifier rubyid_add_css_styles!'>add_css_styles!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_has_change'>has_change</span>
+      <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='id identifier rubyid_add_js_scripts!'>add_js_scripts!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_has_change'>has_change</span>
+      <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='id identifier rubyid_gsub_anchor_links!'>gsub_anchor_links!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_has_change'>has_change</span>
+      <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='id identifier rubyid_gsub_code_langs!'>gsub_code_langs!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_has_change'>has_change</span>
+      <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='id identifier rubyid_gsub_local_file_links!'>gsub_local_file_links!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_has_change'>has_change</span>
+      
+      <span class='comment'># Custom
+</span>      <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='id identifier rubyid_gsub_customs!'>gsub_customs!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_has_change'>has_change</span>
+      <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='id identifier rubyid_gsub_custom!'>gsub_custom!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_has_change'>has_change</span>
+      
+      <span class='kw'>if</span> <span class='id identifier rubyid_has_change'>has_change</span>
+        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>+ </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line'>line</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@verbose</span>
+        
+        <span class='id identifier rubyid_changes'>changes</span> <span class='op'>+=</span> <span class='int'>1</span>
+      <span class='kw'>end</span>
+      
+      <span class='id identifier rubyid_lines'>lines</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>= </span><span class='tstring_end'>&#39;</span></span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_changes'>changes</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='kw'>if</span> <span class='ivar'>@dry_run</span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Nothing written (dry run)</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>else</span>
+      <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+        <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_lines'>lines</span>
+      <span class='kw'>end</span>
+      
+      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_changes'>changes</span><span class='embexpr_end'>}</span><span class='tstring_content'> changes written</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Nothing written (up-to-date)</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gsub_anchor_links!-instance_method">
+  
+    #<strong>gsub_anchor_links!</strong>(line)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Replace GFM anchor links with their equivalent YARDoc anchor links, using <span class='object_link'><a href="#build_anchor_links_db-instance_method" title="YardGhurt::GFMFixerTask#build_anchor_links_db (method)">#build_anchor_links_db</a></span> &amp; <span class='object_link'><a href="#anchor_db-instance_method" title="YardGhurt::GFMFixerTask#anchor_db (method)">#anchor_db</a></span>, if <span class='object_link'><a href="#fix_anchor_links-instance_method" title="YardGhurt::GFMFixerTask#fix_anchor_links (method)">#fix_anchor_links</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the line from the file to fix</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 472</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gsub_anchor_links!'>gsub_anchor_links!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='ivar'>@fix_anchor_links</span>
+  
+  <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>href=&quot;#</span><span class='tstring_end'>&#39;</span></span>
+  
+  <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>[^&quot;]*&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_href'>href</span><span class='op'>|</span>
+    <span class='id identifier rubyid_link'>link</span> <span class='op'>=</span> <span class='id identifier rubyid_href'>href</span><span class='lbracket'>[</span><span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>..</span><span class='op'>-</span><span class='int'>2</span><span class='rbracket'>]</span>
+    
+    <span class='kw'>if</span> <span class='ivar'>@anchor_links</span><span class='period'>.</span><span class='id identifier rubyid_yard_anchor_id?'>yard_anchor_id?</span><span class='lparen'>(</span><span class='id identifier rubyid_link'>link</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_href'>href</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_yard_link'>yard_link</span> <span class='op'>=</span> <span class='ivar'>@anchor_links</span><span class='lbracket'>[</span><span class='id identifier rubyid_link'>link</span><span class='rbracket'>]</span>
+      
+      <span class='kw'>if</span> <span class='id identifier rubyid_yard_link'>yard_link</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='comment'># Either the GFM link is wrong [check with @anchor_links.to_github_anchor_id()]
+</span>        <span class='comment'>#   or the internal code is broken [check with @anchor_links.to_s()]
+</span>        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! YARDoc anchor link for GFM anchor link [</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_link'>link</span><span class='embexpr_end'>}</span><span class='tstring_content'>] does not exist</span><span class='tstring_end'>&quot;</span></span>
+        
+        <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@has_verbose_anchor_links</span>
+          <span class='kw'>if</span> <span class='ivar'>@verbose</span>
+            <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>  GFM anchor link in the Markdown file is wrong?</span><span class='tstring_end'>&#39;</span></span>
+            <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>  Please check the generated links:</span><span class='tstring_end'>&#39;</span></span>
+            <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>%Q(</span><span class='tstring_content'>  </span><span class='embexpr_beg'>#{</span><span class='ivar'>@anchor_links</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n  </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>)</span></span>
+          <span class='kw'>else</span>
+            <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  Turn on </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>.verbose for more info</span><span class='tstring_end'>&quot;</span></span>
+          <span class='kw'>end</span>
+          
+          <span class='ivar'>@has_verbose_anchor_links</span> <span class='op'>=</span> <span class='kw'>true</span>
+        <span class='kw'>end</span>
+        
+        <span class='id identifier rubyid_href'>href</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='kw'>true</span>
+        
+        <span class='tstring'><span class='tstring_beg'>%Q(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tag'>tag</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_yard_link'>yard_link</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>)</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='id identifier rubyid_has_change'>has_change</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gsub_code_langs!-instance_method">
+  
+    #<strong>gsub_code_langs!</strong>(line)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Add <code>language-</code> to code class languages and down case them, if <span class='object_link'><a href="#fix_code_langs-instance_method" title="YardGhurt::GFMFixerTask#fix_code_langs (method)">#fix_code_langs</a></span> and the language is not in <span class='object_link'><a href="#exclude_code_langs-instance_method" title="YardGhurt::GFMFixerTask#exclude_code_langs (method)">#exclude_code_langs</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the line from the file to fix</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 519</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gsub_code_langs!'>gsub_code_langs!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='ivar'>@fix_code_langs</span>
+  
+  <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>code class=&quot;</span><span class='tstring_end'>&#39;</span></span>
+  
+  <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>[^&quot;]*&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_code_class'>code_class</span><span class='op'>|</span>
+    <span class='id identifier rubyid_lang'>lang</span> <span class='op'>=</span> <span class='id identifier rubyid_code_class'>code_class</span><span class='lbracket'>[</span><span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>..</span><span class='op'>-</span><span class='int'>2</span><span class='rbracket'>]</span>
+    
+    <span class='kw'>if</span> <span class='id identifier rubyid_lang'>lang</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^language\-</span><span class='regexp_end'>/</span></span> <span class='op'>||</span> <span class='ivar'>@exclude_code_langs</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_lang'>lang</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_code_class'>code_class</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='kw'>true</span>
+      
+      <span class='tstring'><span class='tstring_beg'>%Q(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tag'>tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>language-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_lang'>lang</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>)</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='id identifier rubyid_has_change'>has_change</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gsub_custom!-instance_method">
+  
+    #<strong>gsub_custom!</strong>(line)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Call the custom Proc <span class='object_link'><a href="#custom_gsub-instance_method" title="YardGhurt::GFMFixerTask#custom_gsub (method)">#custom_gsub</a></span> (if it responds to <code>:call</code>) on <code>line</code>,</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the line from the file to fix</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+543
+544
+545
+546</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 543</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gsub_custom!'>gsub_custom!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='ivar'>@custom_gsub</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:call</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='ivar'>@custom_gsub</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gsub_customs!-instance_method">
+  
+    #<strong>gsub_customs!</strong>(line)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Call <tt>gsub!()</tt> on <code>line</code> with each <span class='object_link'><a href="#custom_gsubs-instance_method" title="YardGhurt::GFMFixerTask#custom_gsubs (method)">#custom_gsubs</a></span>, which is an Array of pairs of arguments:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_custom_gsubs'>custom_gsubs</span> <span class='op'>=</span> <span class='lbracket'>[</span>
+  <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dev</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prod</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>href=&quot;#[^&quot;]*&quot;</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>href=&quot;#contents&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='rbracket'>]</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the line from the file to fix</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 556</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gsub_customs!'>gsub_customs!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='ivar'>@custom_gsubs</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='kw'>false</span>
+  
+  <span class='ivar'>@custom_gsubs</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_custom_gsub'>custom_gsub</span><span class='op'>|</span>
+    <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='id identifier rubyid_custom_gsub'>custom_gsub</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='id identifier rubyid_custom_gsub'>custom_gsub</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_has_change'>has_change</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='id identifier rubyid_has_change'>has_change</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gsub_local_file_links!-instance_method">
+  
+    #<strong>gsub_local_file_links!</strong>(line)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Replace local file links (that exist) to be <tt>file.{filename}.html</tt>, if <span class='object_link'><a href="#fix_file_links-instance_method" title="YardGhurt::GFMFixerTask#fix_file_links (method)">#fix_file_links</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the line from the file to fix</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 572</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gsub_local_file_links!'>gsub_local_file_links!</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='ivar'>@fix_file_links</span>
+  
+  <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>href=&quot;</span><span class='tstring_end'>&#39;</span></span>
+  
+  <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_quote'>quote</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>[^#][^&quot;]*&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_href'>href</span><span class='op'>|</span>
+    <span class='id identifier rubyid_link'>link</span> <span class='op'>=</span> <span class='id identifier rubyid_href'>href</span><span class='lbracket'>[</span><span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>..</span><span class='op'>-</span><span class='int'>2</span><span class='rbracket'>]</span>
+    
+    <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_link'>link</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_link'>link</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_link'>link</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_has_change'>has_change</span> <span class='op'>=</span> <span class='kw'>true</span>
+      
+      <span class='tstring'><span class='tstring_beg'>%Q(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tag'>tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>file.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_link'>link</span><span class='embexpr_end'>}</span><span class='tstring_content'>.html&quot;</span><span class='tstring_end'>)</span></span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_href'>href</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='id identifier rubyid_has_change'>has_change</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="reset_per_file-instance_method">
+  
+    #<strong>reset_per_file</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Reset certain instance vars per file.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+297
+298
+299
+300
+301
+302</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/gfm_fixer_task.rb', line 297</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_reset_per_file'>reset_per_file</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@anchor_links</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="AnchorLinks.html" title="YardGhurt::AnchorLinks (class)">AnchorLinks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AnchorLinks.html#initialize-instance_method" title="YardGhurt::AnchorLinks#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@has_css_comment</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@has_js_comment</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@has_verbose_anchor_links</span> <span class='op'>=</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      
+<div id="footer">
+  Generated by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

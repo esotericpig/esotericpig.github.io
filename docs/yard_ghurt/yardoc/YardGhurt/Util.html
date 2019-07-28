@@ -6,7 +6,7 @@
 <title>
   Module: YardGhurt::Util
   
-    &mdash; YardGhurt v1.0.0 Doc
+    &mdash; YardGhurt v1.0.1 Doc
   
 </title>
 
@@ -108,7 +108,7 @@
 
 <p>All internal code should use this module.</p>
 
-<p>All external code should use <span class='object_link'><a href="../YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span>, which includes this module as a mixin.</p>
+<p>External code can either use this module or <span class='object_link'><a href="../YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span>, which includes this module as a mixin.</p>
 
 
   </div>
@@ -340,12 +340,12 @@
       <pre class="lines">
 
 
-47
 48
-49</pre>
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/util.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/util.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_included'>included</span><span class='lparen'>(</span><span class='id identifier rubyid_mod'>mod</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_mod'>mod</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="Util/ClassMethods.html" title="YardGhurt::Util::ClassMethods (module)">ClassMethods</a></span></span>

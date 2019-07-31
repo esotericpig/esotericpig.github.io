@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; YardGhurt v1.0.1 Doc
+    &mdash; YardGhurt v1.1.0 Doc
   
 </title>
 
@@ -25,7 +25,7 @@
   <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
 
 
-    <!-- YardGhurt::GFMFixerTask CSS - Do NOT remove this comment! -->
+    <!-- YardGhurt::GFMFixTask CSS - Do NOT remove this comment! -->
     <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
 
   </head>
@@ -83,8 +83,8 @@
 <li><a href="#Using">Using</a>
 
 <ul>
-<li><a href="#GFMFixerTask">GFMFixerTask</a></li>
-<li><a href="#GHPSyncerTask">GHPSyncerTask</a></li>
+<li><a href="#GFMFixTask">GFMFixTask</a></li>
+<li><a href="#GHPSyncTask">GHPSyncTask</a></li>
 <li><a href="#Util___YardGhurt">Util / YardGhurt</a></li>
 <li><a href="#AnchorLinks">AnchorLinks</a></li>
 </ul></li>
@@ -137,11 +137,11 @@ $ bundle exec rake install:local
 </tr>
 </thead><tbody>
 <tr>
-<td><a href="#GFMFixerTask">GFMFixerTask</a></td>
+<td><a href="#GFMFixTask">GFMFixTask</a></td>
 <td>Fix GitHub Flavored Markdown files</td>
 </tr>
 <tr>
-<td><a href="#GHPSyncerTask">GHPSyncerTask</a></td>
+<td><a href="#GHPSyncTask">GHPSyncTask</a></td>
 <td>Sync YARDoc to a local GitHub Pages repo.</td>
 </tr>
 </tbody></table>
@@ -164,13 +164,17 @@ $ bundle exec rake install:local
 </tr>
 </tbody></table>
 
-<h3><a href="#Using">GFMFixerTask</a></h3>
+<h3><a href="#Using">GFMFixTask</a></h3>
 
 <p>Fix (find &amp; replace) text in the GitHub Flavored Markdown (GFM) files in the YARDoc directory, for differences between the two formats.</p>
 
+<p>You can set <em>dry_run</em> on the command line:</p>
+
+<p><code>$ rake yard_gfm_fix dryrun=true</code></p>
+
 <p><strong>What I typically use:</strong></p>
 
-<pre class="code Ruby"><code class="language-ruby">YardGhurt::GFMFixerTask.new() do |task|
+<pre class="code Ruby"><code class="language-ruby">YardGhurt::GFMFixTask.new() do |task|
   task.arg_names = [:dev]
   task.dry_run = false
   task.fix_code_langs = true
@@ -191,7 +195,7 @@ end
 
 <p><strong>Using all options:</strong></p>
 
-<pre class="code Ruby"><code class="language-ruby">YardGhurt::GFMFixerTask.new(:yard_fix) do |task|
+<pre class="code Ruby"><code class="language-ruby">YardGhurt::GFMFixTask.new(:yard_fix) do |task|
   task.anchor_db           = {&#39;tests&#39; =&gt; &#39;Testing&#39;} # #tests =&gt; #Testing
   task.arg_names          &lt;&lt; :name # Custom args
   task.css_styles         &lt;&lt; &#39;&lt;link rel=&quot;stylesheet&quot; href=&quot;css/my_css.css&quot; /&gt;&#39; # Inserted at &lt;/head&gt;
@@ -217,13 +221,13 @@ end
 end
 </code></pre>
 
-<h3><a href="#Using">GHPSyncerTask</a></h3>
+<h3><a href="#Using">GHPSyncTask</a></h3>
 
 <p>Sync YARDoc to a local GitHub Pages repo (uses <code>rsync</code> by default).</p>
 
 <p><strong>What I typically use:</strong></p>
 
-<pre class="code Ruby"><code class="language-ruby">YardGhurt::GHPSyncerTask.new() do |task|
+<pre class="code Ruby"><code class="language-ruby">YardGhurt::GHPSyncTask.new() do |task|
   task.ghp_dir = &#39;../esotericpig.github.io/docs/yard_ghurt/yardoc&#39;
   task.sync_args &lt;&lt; &#39;--delete-after&#39;
 end
@@ -232,7 +236,7 @@ end
 <p><strong>Using all options:</strong></p>
 
 <pre class="code Ruby"><code class="language-ruby"># Execute: rake ghp_doc[false,&#39;Ruby&#39;]
-YardGhurt::GHPSyncerTask.new(:ghp_doc) do |task|
+YardGhurt::GHPSyncTask.new(:ghp_doc) do |task|
   task.arg_names   &lt;&lt; :name                      # Custom args
   task.deps        &lt;&lt; :yard                      # Custom dependencies
   task.description  = &#39;Rsync my_doc/ to my page&#39;
@@ -439,7 +443,7 @@ along with YardGhurt.  If not, see <a href="https://www.gnu.org/licenses/">https
 
     </div>
 
-    <!-- YardGhurt::GFMFixerTask JS - Do NOT remove this comment! -->
+    <!-- YardGhurt::GFMFixTask JS - Do NOT remove this comment! -->
     <script src="../../../js/prism.js"></script>
 
   </body>

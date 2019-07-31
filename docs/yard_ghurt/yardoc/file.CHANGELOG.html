@@ -6,7 +6,7 @@
 <title>
   File: CHANGELOG
   
-    &mdash; YardGhurt v1.0.1 Doc
+    &mdash; YardGhurt v1.1.0 Doc
   
 </title>
 
@@ -61,7 +61,35 @@
 
 <p>Format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>.</p>
 
-<h2><a href="https://github.com/esotericpig/yard_ghurt/compare/v1.0.1...master">[Unreleased]</a></h2>
+<h2><a href="https://github.com/esotericpig/yard_ghurt/compare/v1.1.0...master">[Unreleased]</a></h2>
+
+<h2>[v1.1.0] - 2019-07-31</h2>
+
+<h3>Added</h3>
+
+<ul>
+<li>Added environment var <em>dryrun</em> to GFMFixTask:
+
+<ul>
+<li>rake yard_gfm_fix dryrun=true</li>
+</ul></li>
+</ul>
+
+<h3>Changed</h3>
+
+<ul>
+<li>Renamed GFMFixerTask to GFMFixTask
+
+<ul>
+<li>lib/yard_ghurt/gfm_fixer_task.rb =&gt; lib/yard_ghurt/gfm_fix_task.rb</li>
+</ul></li>
+<li>Renamed GHPSyncerTask to GHPSyncTask
+
+<ul>
+<li>lib/yard_ghurt/ghp_syncer_task.rb =&gt; lib/yard_ghurt/ghp_sync_task.rb</li>
+</ul></li>
+<li>Updated development dependency gems</li>
+</ul>
 
 <h2>[v1.0.1] - 2019-07-28</h2>
 

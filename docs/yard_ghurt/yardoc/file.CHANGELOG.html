@@ -6,15 +6,15 @@
 <title>
   File: CHANGELOG
   
-    &mdash; YardGhurt v1.1.0 Doc
+    &mdash; YardGhurt v1.2.0 Doc
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "CHANGELOG";
   relpath = '';
 </script>
@@ -61,7 +61,37 @@
 
 <p>Format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>.</p>
 
-<h2><a href="https://github.com/esotericpig/yard_ghurt/compare/v1.1.0...master">[Unreleased]</a></h2>
+<h2><a href="https://github.com/esotericpig/yard_ghurt/compare/v1.2.0...master">[Unreleased]</a></h2>
+
+<h2>[v1.2.0] - 2020-02-29</h2>
+
+<h3>Added</h3>
+
+<ul>
+<li>bin/yard_ghurt
+
+<ul>
+<li>For getting the GitHub/YARDoc anchor link ID from a string</li>
+</ul></li>
+<li>App class</li>
+<li>AnchorLinks.escape()</li>
+</ul>
+
+<h3>Changed</h3>
+
+<ul>
+<li>README to talk about bin/yard_ghurt</li>
+</ul>
+
+<h3>Fixed</h3>
+
+<ul>
+<li>In AnchorLinks, don&#39;t use obsolete method URI.escape()/encode()
+
+<ul>
+<li>This outputted a lot of warnings</li>
+</ul></li>
+</ul>
 
 <h2>[v1.1.0] - 2019-07-31</h2>
 

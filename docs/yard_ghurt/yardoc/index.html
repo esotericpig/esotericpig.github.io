@@ -6,15 +6,15 @@
 <title>
   File: README
   
-    &mdash; YardGhurt v1.1.0 Doc
+    &mdash; YardGhurt v1.2.0 Doc
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "README";
   relpath = '';
 </script>
@@ -88,6 +88,7 @@
 <li><a href="#Util___YardGhurt">Util / YardGhurt</a></li>
 <li><a href="#AnchorLinks">AnchorLinks</a></li>
 </ul></li>
+<li><a href="#CLI_App">CLI App</a></li>
 <li><a href="#Hacking">Hacking</a>
 
 <ul>
@@ -328,6 +329,34 @@ puts al.to_github_anchor_id(name) # this-is-another-test-1
 puts al.to_github_anchor_id(name) # this-is-another-test-1
 </code></pre>
 
+<h2><a href="#Contents">CLI App</a></h2>
+
+<p>A CLI app has been added for convenience for when writing your own README.</p>
+
+<p>On the command line:</p>
+
+<pre class="code ruby"><code class="ruby">$ yard_ghurt -g &quot;What&#39;s this ID?&quot;
+# =&gt; whats-this-id
+
+$ yard_ghurt -y &quot;What&#39;s this ID?&quot;
+# =&gt; What_s_this_ID_
+
+$ yard_ghurt -a &quot;What&#39;s this ID?&quot;
+# =&gt; GitHub: whats-this-id
+#    YARDoc: What_s_this_ID_
+</code></pre>
+
+<p>Help:</p>
+
+<pre class="code ruby"><code class="ruby">Usage: yard_ghurt [options]
+    -a, --anchor &lt;string&gt;            Print GitHub &amp; YARDoc anchor link IDs of &lt;string&gt;
+    -g, --github &lt;string&gt;            Print GitHub anchor link ID of &lt;string&gt;
+    -y, --yard &lt;string&gt;              Print YARDoc anchor link ID of &lt;string&gt;
+    ---
+    -h, --help                       Print this help
+    -v, --version                    Print the version
+</code></pre>
+
 <h2><a href="#Contents">Hacking</a></h2>
 
 <pre class="code ruby"><code class="ruby">$ git clone &#39;https://github.com/esotericpig/yard_ghurt.git&#39;
@@ -418,7 +447,7 @@ $ bundle exec rake -T
 
 <blockquote>
 <p>YardGhurt (<a href="https://github.com/esotericpig/yard_ghurt">https://github.com/esotericpig/yard_ghurt</a>)<br>
-Copyright (c) 2019 Jonathan Bradley Whited (@esotericpig)  </p>
+Copyright (c) 2019-2020 Jonathan Bradley Whited (@esotericpig)  </p>
 
 <p>YardGhurt is free software: you can redistribute it and/or modify<br>
 it under the terms of the GNU Lesser General Public License as published by<br>

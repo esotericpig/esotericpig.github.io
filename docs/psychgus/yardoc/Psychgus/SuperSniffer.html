@@ -10,11 +10,11 @@
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "Psychgus::SuperSniffer";
   relpath = '../';
 </script>
@@ -1153,7 +1153,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the aliases processed so far</p>
+<p>Returns the aliases processed so far.</p>
 
 
   </div>
@@ -1230,7 +1230,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the documents processed so far</p>
+<p>Returns the documents processed so far.</p>
 
 
   </div>
@@ -1307,7 +1307,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the current level</p>
+<p>Returns the current level.</p>
 
 
   </div>
@@ -1384,7 +1384,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the mappings processed so far</p>
+<p>Returns the mappings processed so far.</p>
 
 
   </div>
@@ -1461,7 +1461,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the nodes processed so far</p>
+<p>Returns the nodes processed so far.</p>
 
 
   </div>
@@ -1538,7 +1538,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the current parent</p>
+<p>Returns the current parent.</p>
 
 
   </div>
@@ -1615,7 +1615,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the current (grand)parents</p>
+<p>Returns the current (grand)parents.</p>
 
 
   </div>
@@ -1692,7 +1692,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the current position</p>
+<p>Returns the current position.</p>
 
 
   </div>
@@ -1769,7 +1769,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the scalars processed so far</p>
+<p>Returns the scalars processed so far.</p>
 
 
   </div>
@@ -1846,7 +1846,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the sequences processed so far</p>
+<p>Returns the sequences processed so far.</p>
 
 
   </div>
@@ -1923,7 +1923,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the streams processed so far</p>
+<p>Returns the streams processed so far.</p>
 
 
   </div>
@@ -2176,9 +2176,9 @@
       <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer.rb', line 325</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
-    <span class='comment'># Fake a &quot;parent&quot; if necessary
-</span>    <span class='kw'>case</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_child_type'>child_type</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>    <span class='comment'># Fake a &quot;parent&quot; if necessary
+</span>
+    <span class='kw'>case</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_child_type'>child_type</span>
     <span class='kw'>when</span> <span class='symbol'>:key</span>
       <span class='id identifier rubyid_start_mapping_key'>start_mapping_key</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
       <span class='kw'>return</span>
@@ -2515,6 +2515,8 @@
         <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -2530,6 +2532,8 @@
       
         <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
       
       
         &mdash;
@@ -3066,6 +3070,8 @@
       
         <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
       
       
         &mdash;

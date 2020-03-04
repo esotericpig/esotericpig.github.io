@@ -10,11 +10,11 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "Psychgus";
   relpath = '';
 </script>
@@ -112,9 +112,9 @@
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>psychgus</span><span class='tstring_end'>&#39;</span></span>
 
-<span class='kw'>class</span> <span class='const'>BurgerStyler</span>
-  <span class='comment'># Mix in methods needed for styling
-</span>  <span class='id identifier rubyid_include'>include</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span></span>
+<span class='kw'>class</span> <span class='const'>BurgerStyler</span>  <span class='comment'># Mix in methods needed for styling
+</span>
+  <span class='id identifier rubyid_include'>include</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span></span>
 
   <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -146,9 +146,9 @@
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_style_mapping'>style_mapping</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_parent'>parent</span> <span class='op'>=</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span>
 
-    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
-      <span class='comment'># BBQ
-</span>      <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_style'>style</span> <span class='op'>=</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#MAPPING_FLOW-constant" title="Psychgus::MAPPING_FLOW (constant)">MAPPING_FLOW</a></span></span> <span class='kw'>if</span> <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_node_of?'>node_of?</span><span class='lparen'>(</span><span class='symbol'>:scalar</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>      <span class='comment'># BBQ
+</span>
+      <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_style'>style</span> <span class='op'>=</span> <span class='const'>Psychgus</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#MAPPING_FLOW-constant" title="Psychgus::MAPPING_FLOW (constant)">MAPPING_FLOW</a></span></span> <span class='kw'>if</span> <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_node_of?'>node_of?</span><span class='lparen'>(</span><span class='symbol'>:scalar</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
                                              <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_casecmp'>casecmp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BBQ</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>0</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -1693,6 +1693,8 @@
         <span class='type'>(<tt>String</tt>, <tt>Integer</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>&#39;w&#39;</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -1716,6 +1718,8 @@
         <span class='type'>(<tt>Integer</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -1731,6 +1735,8 @@
       
         <span class='type'>(<tt>Symbol</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
       
       
         &mdash;
@@ -1860,6 +1866,8 @@
         <span class='type'>(<tt>nil</tt>, <tt>IO</tt>, <tt>Hash</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -1876,6 +1884,8 @@
         <span class='type'>(<tt>nil</tt>, <tt><span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span></tt>, <tt>Array&lt;<span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span>&gt;</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -1891,6 +1901,8 @@
       
         <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
       
       
         &mdash;
@@ -2069,12 +2081,12 @@
   <span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>=</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Visitors</span><span class='op'>::</span><span class='const'>YAMLTree</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html#initialize-instance_method" title="Psychgus::StyledTreeBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span>
     <span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='rparen'>)</span><span class='rparen'>)</span>
   
-  <span class='kw'>if</span> <span class='id identifier rubyid_objects'>objects</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='lparen'>(</span><span class='rparen'>)</span>
-    <span class='comment'># Else, will throw a cryptic NoMethodError:
+  <span class='kw'>if</span> <span class='id identifier rubyid_objects'>objects</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='lparen'>(</span><span class='rparen'>)</span>    <span class='comment'># Else, will throw a cryptic NoMethodError:
 </span>    <span class='comment'># - &quot;psych/tree_builder.rb:in `set_end_location&#39;: undefined method `end_line=&#39; for nil:NilClass (NoMethodError)&quot;
 </span>    <span class='comment'># 
 </span>    <span class='comment'># This should never occur because of the if-statement at the top of this method.
-</span>    <span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>&lt;&lt;</span> <span class='kw'>nil</span>
+</span>
+    <span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>&lt;&lt;</span> <span class='kw'>nil</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_objects'>objects</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_object'>object</span><span class='op'>|</span>
       <span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_object'>object</span>
@@ -2742,6 +2754,8 @@
         <span class='type'>(<tt>Object</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -2757,6 +2771,8 @@
       
         <span class='type'>(<tt>String</tt>, <tt>Integer</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>&#39;r:BOM|UTF-8&#39;</tt>)</em>
       
       
         &mdash;
@@ -2947,6 +2963,8 @@ Toppings:
         <span class='type'>(<tt>String</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -2963,6 +2981,8 @@ Toppings:
         <span class='type'>(<tt>nil</tt>, <tt><span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span></tt>, <tt>Array&lt;<span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span>&gt;</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -2978,6 +2998,8 @@ Toppings:
       
         <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
       
       
         &mdash;
@@ -3158,6 +3180,8 @@ Toppings:
         <span class='type'>(<tt>nil</tt>, <tt><span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span></tt>, <tt>Array&lt;<span class='object_link'><a href="Psychgus/Styler.html" title="Psychgus::Styler (module)">Styler</a></span>&gt;</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -3173,6 +3197,8 @@ Toppings:
       
         <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
       
       
         &mdash;

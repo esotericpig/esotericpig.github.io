@@ -10,11 +10,11 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "README";
   relpath = '';
 </script>
@@ -658,6 +658,7 @@ puts EggCarton.new.to_yaml
 <h2><a href="#Contents">Hacking</a></h2>
 
 <pre class="code ruby"><code class="ruby">$ git clone &#39;https://github.com/esotericpig/psychgus.git&#39;
+$ cd psychgus
 $ bundle install
 $ bundle exec rake -T
 </code></pre>
@@ -674,21 +675,13 @@ $ bundle exec rake -T
 
 <h3><a href="#Hacking">Generating Doc</a></h3>
 
-<p>Generate basic doc:</p>
+<p>Generate doc:</p>
 
-<p><code>$ bundle exec rake yard</code></p>
+<p><code>$ bundle exec rake doc</code></p>
 
-<p>Fix GitHub-specific differences:</p>
+<p>Clean &amp; generate pristine doc:</p>
 
-<p><code>$ bundle exec rake yard_fix</code></p>
-
-<p>Clean doc &amp; run all of the above:</p>
-
-<p><code>$ bundle exec rake yard_fresh</code></p>
-
-<p>Deploy doc to my GitHub Page (not useful for others):</p>
-
-<p><code>$ bundle exec rake ghp_doc</code></p>
+<p><code>$ bundle exec rake clobber doc</code></p>
 
 <h2><a href="#Contents">License</a></h2>
 
@@ -696,7 +689,7 @@ $ bundle exec rake -T
 
 <blockquote>
 <p>Psychgus (<a href="https://github.com/esotericpig/psychgus">https://github.com/esotericpig/psychgus</a>)<br>
-Copyright (c) 2017-2019 Jonathan Bradley Whited (@esotericpig)  </p>
+Copyright (c) 2017-2020 Jonathan Bradley Whited (@esotericpig)  </p>
 
 <p>Psychgus is free software: you can redistribute it and/or modify<br>
 it under the terms of the GNU Lesser General Public License as published by<br>

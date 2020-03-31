@@ -171,6 +171,15 @@ $ bundle exec rake install:local
 
 <p>Fix (find &amp; replace) text in the GitHub Flavored Markdown (GFM) files in the YARDoc directory, for differences between the two formats.</p>
 
+<p><strong>Very Important!</strong></p>
+
+<p>In order for this to work, you must also add <code>redcarpet</code> as a dependency, per YARDoc&#39;s documentation:</p>
+
+<pre class="code Ruby"><code class="language-ruby">spec.add_development_dependency &#39;redcarpet&#39;,&#39;~&gt; X.X&#39; # For YARDoc Markdown (*.md)
+</code></pre>
+
+<p>Else, you&#39;ll get a bunch of <code>label-*</code> relative links.</p>
+
 <p>You can set <em>dry_run</em> on the command line:</p>
 
 <p><code>$ rake yard_gfm_fix dryrun=true</code></p>

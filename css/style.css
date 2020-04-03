@@ -62,6 +62,10 @@ td.docs,th.docs {
   width: 11em;
 }
 
+td.docs a {
+  display: inline;
+}
+
 td.lang,th.lang {
   font-weight: bold;
   width: 5em;

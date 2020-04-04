@@ -75,6 +75,10 @@ td.repo,th.repo {
   width: 11em;
 }
 
+td.show,th.show {
+  width: 21em;
+}
+
 td.vers,th.vers {
   font-weight: bold;
   width: 5em;

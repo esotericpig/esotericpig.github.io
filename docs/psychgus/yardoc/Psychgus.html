@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus
   
-    &mdash; Psychgus v1.2.2 Doc
+    &mdash; Psychgus v1.3.2 Doc
   
 </title>
 
@@ -1191,7 +1191,7 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1.2.2</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1.3.2</span><span class='tstring_end'>&#39;</span></span></pre></dd>
       
     </dl>
   
@@ -1381,7 +1381,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parse_file-class_method" title="parse_file (class method)">.<strong>parse_file</strong>(filename, fallback: false, mode: &#39;r:BOM|UTF-8&#39;, **kargs)  &#x21d2; Psych::Nodes::Document </a>
+      <a href="#parse_file-class_method" title="parse_file (class method)">.<strong>parse_file</strong>(filename, fallback: false, mode: &#39;r:BOM|UTF-8&#39;, opt: nil, **kargs)  &#x21d2; Psych::Nodes::Document </a>
     
 
     
@@ -1733,7 +1733,7 @@
         <span class='name'>opt</span>
       
       
-        <span class='type'>(<tt>Symbol</tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -1741,7 +1741,7 @@
       
         &mdash;
         <div class='inline'>
-<p>the option(s) to use, more readable alternative to <code>mode</code>; examples: <code>:textmode</code>, <code>:autoclose</code></p>
+<p>Hash of keyword args to pass to <tt>File.open()</tt></p>
 </div>
       
     </li>
@@ -1800,17 +1800,21 @@
       <pre class="lines">
 
 
+423
 424
 425
 426
 427
-428</pre>
+428
+429</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 424</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 423</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dump_file'>dump_file</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='op'>*</span><span class='id identifier rubyid_objects'>objects</span><span class='comma'>,</span><span class='label'>mode:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='label'>perm:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>opt:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
-  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='id identifier rubyid_mode'>mode</span><span class='comma'>,</span><span class='id identifier rubyid_perm'>perm</span><span class='comma'>,</span><span class='id identifier rubyid_opt'>opt</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+  <span class='id identifier rubyid_opt'>opt</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='lparen'>(</span><span class='id identifier rubyid_opt'>opt</span><span class='rparen'>)</span>
+  
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='id identifier rubyid_mode'>mode</span><span class='comma'>,</span><span class='id identifier rubyid_perm'>perm</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_opt'>opt</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
     <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_dump_stream'>dump_stream</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_objects'>objects</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1999,7 +2003,6 @@
       <pre class="lines">
 
 
-456
 457
 458
 459
@@ -2044,10 +2047,11 @@
 498
 499
 500
-501</pre>
+501
+502</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 456</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 457</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dump_stream'>dump_stream</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_objects'>objects</span><span class='comma'>,</span><span class='label'>io:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='comment'># If you call this method with only a Hash that uses symbols as keys,
@@ -2287,16 +2291,16 @@
       <pre class="lines">
 
 
-591
 592
 593
 594
 595
 596
-597</pre>
+597
+598</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 591</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 592</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_hierarchy'>hierarchy</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_objects'>objects</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_styler'>styler</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Psychgus/Stylers.html" title="Psychgus::Stylers (module)">Stylers</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Psychgus/Stylers/HierarchyStyler.html" title="Psychgus::Stylers::HierarchyStyler (class)">HierarchyStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/Stylables/HierarchyStylable.html#initialize-instance_method" title="Psychgus::Stylables::HierarchyStylable#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
@@ -2684,16 +2688,16 @@
       <pre class="lines">
 
 
-612
 613
 614
 615
 616
 617
-618</pre>
+618
+619</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 612</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 613</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_parse_stream'>parse_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_node'>node</span><span class='op'>|</span>
@@ -2710,7 +2714,7 @@
       <div class="method_details ">
   <h3 class="signature " id="parse_file-class_method">
   
-    .<strong>parse_file</strong>(filename, fallback: false, mode: &#39;r:BOM|UTF-8&#39;, **kargs)  &#x21d2; <tt>Psych::Nodes::Document</tt> 
+    .<strong>parse_file</strong>(filename, fallback: false, mode: &#39;r:BOM|UTF-8&#39;, opt: nil, **kargs)  &#x21d2; <tt>Psych::Nodes::Document</tt> 
   
 
   
@@ -2778,6 +2782,24 @@
         &mdash;
         <div class='inline'>
 <p>the IO open mode to use; example: <tt>&#39;r:BOM|UTF-8&#39;</tt></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>opt</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Hash of keyword args to pass to <tt>File.open()</tt></p>
 </div>
       
     </li>
@@ -2856,19 +2878,23 @@
       <pre class="lines">
 
 
-637
-638
 639
 640
 641
 642
-643</pre>
+643
+644
+645
+646
+647</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 637</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 639</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse_file'>parse_file</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='label'>fallback:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='label'>mode:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r:BOM|UTF-8</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='id identifier rubyid_mode'>mode</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse_file'>parse_file</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='label'>fallback:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='label'>mode:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r:BOM|UTF-8</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='label'>opt:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_opt'>opt</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='lparen'>(</span><span class='id identifier rubyid_opt'>opt</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='id identifier rubyid_mode'>mode</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_opt'>opt</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
     <span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='label'>filename:</span> <span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   
@@ -3081,10 +3107,6 @@ Toppings:
       <pre class="lines">
 
 
-695
-696
-697
-698
 699
 700
 701
@@ -3093,10 +3115,14 @@ Toppings:
 704
 705
 706
-707</pre>
+707
+708
+709
+710
+711</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 695</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 699</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse_stream'>parse_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='label'>filename:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -3260,12 +3286,12 @@ Toppings:
       <pre class="lines">
 
 
-749
-750
-751</pre>
+753
+754
+755</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 749</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 753</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parser'>parser</span><span class='lparen'>(</span><span class='label'>stylers:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Parser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html#initialize-instance_method" title="Psychgus::StyledTreeBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>

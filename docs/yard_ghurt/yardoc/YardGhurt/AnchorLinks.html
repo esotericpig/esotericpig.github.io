@@ -6,7 +6,7 @@
 <title>
   Class: YardGhurt::AnchorLinks
   
-    &mdash; YardGhurt v1.2.0 Doc
+    &mdash; YardGhurt v1.2.1 Doc
   
 </title>
 
@@ -172,7 +172,7 @@
       
         
         <div class='inline'>
-<p>Jonathan Bradley Whited (@esotericpig)</p>
+<p>Jonathan Bradley Whited</p>
 </div>
       
     </li>
@@ -404,7 +404,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#add_anchor-instance_method" title="#add_anchor (instance method)">#<strong>add_anchor</strong>(name)  &#x21d2; self </a>
+      <a href="#add_anchor-instance_method" title="#add_anchor (instance method)">#<strong>add_anchor</strong>(name, yard_id: nil)  &#x21d2; self </a>
     
 
     
@@ -691,15 +691,17 @@
       <pre class="lines">
 
 
-89
-90
-91</pre>
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 77</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_reset'>reset</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_reset'>reset</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -773,12 +775,12 @@
       <pre class="lines">
 
 
-81
-82
-83</pre>
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_anchor_ids'>anchor_ids</span>
   <span class='ivar'>@anchor_ids</span>
@@ -850,12 +852,12 @@
       <pre class="lines">
 
 
-84
-85
-86</pre>
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_yard_anchor_ids'>yard_anchor_ids</span>
   <span class='ivar'>@yard_anchor_ids</span>
@@ -927,12 +929,12 @@
       <pre class="lines">
 
 
-87
-88
-89</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_yard_dup_num'>yard_dup_num</span>
   <span class='ivar'>@yard_dup_num</span>
@@ -1031,13 +1033,13 @@
       <pre class="lines">
 
 
-131
-132
-133
-134</pre>
+123
+124
+125
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 123</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='comment'># URI.escape()/encode() is obsolete
@@ -1066,6 +1068,14 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p><code>yard_id:</code> was added in v1.2.1 for YARD v0.9.25+.</p>
+</div>
+  </div>
+
+
 <p>Convert <code>name</code> (header text) to a GFM and YARDoc anchor ID and add the IDs to the database.</p>
 
 
@@ -1113,12 +1123,12 @@
       <pre class="lines">
 
 
-102
-103
-104</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='op'>&lt;&lt;</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_add_anchor'>add_anchor</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1192,12 +1202,12 @@
       <pre class="lines">
 
 
-168
-169
-170</pre>
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 158</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_github_anchor_id'>github_anchor_id</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_anchor_id'>anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_github_anchor_id'>github_anchor_id</span><span class='rparen'>)</span>
@@ -1287,15 +1297,15 @@
       <pre class="lines">
 
 
-107
-108
-109</pre>
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_github_anchor_id'>github_anchor_id</span><span class='comma'>,</span><span class='id identifier rubyid_yard_anchor_id'>yard_anchor_id</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_store_anchor'>store_anchor</span><span class='lparen'>(</span><span class='id identifier rubyid_github_anchor_id'>github_anchor_id</span><span class='comma'>,</span><span class='id identifier rubyid_yard_anchor_id'>yard_anchor_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_store_anchor'>store_anchor</span><span class='lparen'>(</span><span class='id identifier rubyid_github_anchor_id'>github_anchor_id</span><span class='comma'>,</span><span class='id identifier rubyid_yard_anchor_id'>yard_anchor_id</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1305,7 +1315,7 @@
       <div class="method_details ">
   <h3 class="signature " id="add_anchor-instance_method">
   
-    #<strong>add_anchor</strong>(name)  &#x21d2; <tt>self</tt> 
+    #<strong>add_anchor</strong>(name, yard_id: nil)  &#x21d2; <tt>self</tt> 
   
 
   
@@ -1314,6 +1324,14 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p><code>yard_id:</code> was added in v1.2.1 for YARD v0.9.25+.</p>
+</div>
+  </div>
+
+
 <p>Convert <code>name</code> (header text) to a GFM and YARDoc anchor ID and add the IDs to the database.</p>
 
 
@@ -1377,18 +1395,22 @@
       <pre class="lines">
 
 
-116
-117
-118
-119
-120</pre>
+106
+107
+108
+109
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 106</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_add_anchor'>add_anchor</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_store_anchor'>store_anchor</span><span class='lparen'>(</span><span class='id identifier rubyid_to_github_anchor_id'>to_github_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='comma'>,</span><span class='id identifier rubyid_to_yard_anchor_id'>to_yard_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rparen'>)</span>
-  
+<span class='kw'>def</span> <span class='id identifier rubyid_add_anchor'>add_anchor</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='label'>yard_id:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yard_id'>yard_id</span> <span class='op'>=</span> <span class='id identifier rubyid_to_yard_anchor_id'>to_yard_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_yard_id'>yard_id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_store_anchor'>store_anchor</span><span class='lparen'>(</span><span class='id identifier rubyid_to_github_anchor_id'>to_github_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='comma'>,</span><span class='id identifier rubyid_yard_id'>yard_id</span><span class='rparen'>)</span>
+
   <span class='kw'>return</span> <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1476,12 +1498,12 @@
       <pre class="lines">
 
 
-177
-178
-179</pre>
+167
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_anchor_id'>anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_github_anchor_id'>github_anchor_id</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='ivar'>@anchor_ids</span><span class='lbracket'>[</span><span class='id identifier rubyid_github_anchor_id'>github_anchor_id</span><span class='rbracket'>]</span>
@@ -1553,20 +1575,20 @@
       <pre class="lines">
 
 
-139
-140
-141
-142
-143
-144</pre>
+131
+132
+133
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 131</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge_anchor_ids!'>merge_anchor_ids!</span><span class='lparen'>(</span><span class='id identifier rubyid_anchor_ids'>anchor_ids</span><span class='rparen'>)</span>
   <span class='ivar'>@anchor_ids</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_anchor_ids'>anchor_ids</span><span class='rparen'>)</span>
   <span class='ivar'>@yard_anchor_ids</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_anchor_ids'>anchor_ids</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='rparen'>)</span>
-  
+
   <span class='kw'>return</span> <span class='ivar'>@anchor_ids</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1616,18 +1638,18 @@
       <pre class="lines">
 
 
-95
-96
-97
-98
-99</pre>
+84
+85
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 84</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span>
   <span class='ivar'>@anchor_ids</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='ivar'>@yard_anchor_ids</span> <span class='op'>=</span> <span class='const'>Set</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@yard_anchor_ids</span> <span class='op'>=</span> <span class='const'>Set</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
   <span class='ivar'>@yard_dup_num</span> <span class='op'>=</span> <span class='int'>0</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1731,20 +1753,20 @@
       <pre class="lines">
 
 
-153
-154
-155
-156
-157
-158</pre>
+145
+146
+147
+148
+149
+150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 153</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 145</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_anchor'>store_anchor</span><span class='lparen'>(</span><span class='id identifier rubyid_github_anchor_id'>github_anchor_id</span><span class='comma'>,</span><span class='id identifier rubyid_yard_anchor_id'>yard_anchor_id</span><span class='rparen'>)</span>
   <span class='ivar'>@anchor_ids</span><span class='lbracket'>[</span><span class='id identifier rubyid_github_anchor_id'>github_anchor_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_yard_anchor_id'>yard_anchor_id</span>
   <span class='ivar'>@yard_anchor_ids</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_yard_anchor_id'>yard_anchor_id</span>
-  
+
   <span class='kw'>return</span> <span class='id identifier rubyid_yard_anchor_id'>yard_anchor_id</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1843,6 +1865,16 @@
       <pre class="lines">
 
 
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
 201
 202
 203
@@ -1859,46 +1891,36 @@
 214
 215
 216
-217
-218
-219
-220
-221
-222
-223
-224
-225
-226
-227</pre>
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 201</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 191</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_github_anchor_id'>to_github_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  
-  <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_strip!'>strip!</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+
+  <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_strip!'>strip!</span>
   <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&amp;[^;]+;</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># Remove entities: &amp;...;
 </span>  <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[^\p{Word}\- ]</span><span class='regexp_end'>/u</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_tr!'>tr!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  
+
   <span class='kw'>if</span> <span class='const'>RUBY_VERSION</span> <span class='op'>&gt;=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>2.4</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_downcase!'>downcase!</span><span class='lparen'>(</span><span class='symbol'>:ascii</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_downcase!'>downcase!</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_downcase!'>downcase!</span>
   <span class='kw'>end</span>
-  
+
   <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span> <span class='comment'># For non-English languages
-</span>  
+</span>
   <span class='comment'># Duplicates
 </span>  <span class='id identifier rubyid_dup_num'>dup_num</span> <span class='op'>=</span> <span class='int'>1</span>
-  <span class='id identifier rubyid_orig_id'>orig_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  
+  <span class='id identifier rubyid_orig_id'>orig_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+
   <span class='kw'>while</span> <span class='ivar'>@anchor_ids</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_orig_id'>orig_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dup_num'>dup_num</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_dup_num'>dup_num</span> <span class='op'>+=</span> <span class='int'>1</span>
   <span class='kw'>end</span>
-  
+
   <span class='kw'>return</span> <span class='id identifier rubyid_id'>id</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1966,26 +1988,26 @@
       <pre class="lines">
 
 
-232
-233
-234
-235
-236
-237
-238
-239
-240</pre>
+222
+223
+224
+225
+226
+227
+228
+229
+230</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 232</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 222</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_s'>s</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  
-  <span class='ivar'>@anchor_ids</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='id identifier rubyid_s'>s</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+
+  <span class='ivar'>@anchor_ids</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span>
     <span class='id identifier rubyid_s'>s</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>] =&gt; &#39;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@anchor_ids</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;\n</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
-  
+
   <span class='kw'>return</span> <span class='id identifier rubyid_s'>s</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2017,7 +2039,7 @@
 
 <p>If the converted ID already exists in the database, then the ID will be updated according to YARDoc rules, which requires incrementing a common number variable.</p>
 
-<p>The logic for this is pulled from <tt>doc/app.js#generateTOC()</tt>, which you can generate using <tt>rake yard</tt> or <code>yardoc</code> on the command line.</p>
+<p>The logic for this is pulled from <tt>doc/app.js#generateTOC()</tt> (or <code>doc/js/app.js</code>), which you can generate using <tt>rake yard</tt> or <code>yardoc</code> on the command line.</p>
 
 
   </div>
@@ -2085,6 +2107,15 @@
       <pre class="lines">
 
 
+248
+249
+250
+251
+252
+253
+254
+255
+256
 257
 258
 259
@@ -2093,36 +2124,27 @@
 262
 263
 264
-265
-266
-267
-268
-269
-270
-271
-272
-273
-274</pre>
+265</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 257</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 248</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_yard_anchor_id'>to_yard_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  
-  <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_strip!'>strip!</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+
+  <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_strip!'>strip!</span>
   <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&amp;[^;]+;</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># Replace entities: &amp;...;
 </span>  <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[^a-z0-9-]</span><span class='regexp_end'>/i</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span> <span class='comment'># For non-English languages
-</span>  
+</span>
   <span class='comment'># Duplicates
-</span>  <span class='id identifier rubyid_orig_id'>orig_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  
+</span>  <span class='id identifier rubyid_orig_id'>orig_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+
   <span class='kw'>while</span> <span class='ivar'>@yard_anchor_ids</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_orig_id'>orig_id</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='ivar'>@yard_dup_num</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='ivar'>@yard_dup_num</span> <span class='op'>+=</span> <span class='int'>1</span>
   <span class='kw'>end</span>
-  
+
   <span class='kw'>return</span> <span class='id identifier rubyid_id'>id</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2210,12 +2232,12 @@
       <pre class="lines">
 
 
-186
-187
-188</pre>
+176
+177
+178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/anchor_links.rb', line 176</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_yard_anchor_id?'>yard_anchor_id?</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='ivar'>@yard_anchor_ids</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>

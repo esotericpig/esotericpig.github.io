@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; YardGhurt v1.2.0 Doc
+    &mdash; YardGhurt v1.2.1 Doc
   
 </title>
 
@@ -60,7 +60,7 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'><h1>YardGhurt</h1>
+      <div id="content"><div id='filecontents'><h1 id="yardghurt">YardGhurt</h1>
 
 <p><a href="https://badge.fury.io/rb/yard_ghurt"><img src="https://badge.fury.io/rb/yard_ghurt.svg" alt="Gem Version"></a></p>
 
@@ -76,29 +76,29 @@
 <li>Sync YARDoc to a local GitHub Pages repo.</li>
 </ul>
 
-<h2>Contents</h2>
+<h2 id="contents">Contents</h2>
 
 <ul>
-<li><a href="#Setup">Setup</a></li>
-<li><a href="#Using">Using</a>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#using">Using</a>
 
 <ul>
-<li><a href="#GFMFixTask">GFMFixTask</a></li>
-<li><a href="#GHPSyncTask">GHPSyncTask</a></li>
-<li><a href="#Util___YardGhurt">Util / YardGhurt</a></li>
-<li><a href="#AnchorLinks">AnchorLinks</a></li>
+<li><a href="#gfmfixtask">GFMFixTask</a></li>
+<li><a href="#ghpsynctask">GHPSyncTask</a></li>
+<li><a href="#util-yardghurt">Util / YardGhurt</a></li>
+<li><a href="#anchorlinks">AnchorLinks</a></li>
 </ul></li>
-<li><a href="#CLI_App">CLI App</a></li>
-<li><a href="#Hacking">Hacking</a>
+<li><a href="#cli-app">CLI App</a></li>
+<li><a href="#hacking">Hacking</a>
 
 <ul>
-<li><a href="#Testing">Testing</a></li>
+<li><a href="#testing">Testing</a></li>
 </ul></li>
-<li><a href="#Tests">Tests</a></li>
-<li><a href="#License">License</a></li>
+<li><a href="#tests">Tests</a></li>
+<li><a href="#license">License</a></li>
 </ul>
 
-<h2><a href="#Contents">Setup</a></h2>
+<h2 id="setup"><a href="#contents">Setup</a></h2>
 
 <p>Pick your poison...</p>
 
@@ -127,7 +127,7 @@ $ bundle install
 $ bundle exec rake install:local
 </code></pre>
 
-<h2><a href="#Contents">Using</a></h2>
+<h2 id="using"><a href="#contents">Using</a></h2>
 
 <p>Currently, you can&#39;t use this project as a YARDoc Plugin, but planning on it for v2.0. Read the <a href="file.TODO.html">TODO</a> for more info.</p>
 
@@ -140,11 +140,11 @@ $ bundle exec rake install:local
 </tr>
 </thead><tbody>
 <tr>
-<td><a href="#GFMFixTask">GFMFixTask</a></td>
+<td><a href="#gfmfixtask">GFMFixTask</a></td>
 <td>Fix GitHub Flavored Markdown files</td>
 </tr>
 <tr>
-<td><a href="#GHPSyncTask">GHPSyncTask</a></td>
+<td><a href="#ghpsynctask">GHPSyncTask</a></td>
 <td>Sync YARDoc to a local GitHub Pages repo.</td>
 </tr>
 </tbody></table>
@@ -158,16 +158,16 @@ $ bundle exec rake install:local
 </tr>
 </thead><tbody>
 <tr>
-<td><a href="#Util___YardGhurt">Util / YardGhurt</a></td>
+<td><a href="#util-yardghurt">Util / YardGhurt</a></td>
 <td>Utility methods for tasks</td>
 </tr>
 <tr>
-<td><a href="#AnchorLinks">AnchorLinks</a></td>
+<td><a href="#anchorlinks">AnchorLinks</a></td>
 <td>A “database” of anchor links</td>
 </tr>
 </tbody></table>
 
-<h3><a href="#Using">GFMFixTask</a></h3>
+<h3 id="gfmfixtask"><a href="#using">GFMFixTask</a></h3>
 
 <p>Fix (find &amp; replace) text in the GitHub Flavored Markdown (GFM) files in the YARDoc directory, for differences between the two formats.</p>
 
@@ -192,15 +192,15 @@ $ bundle exec rake install:local
   task.fix_code_langs = true
   task.md_files = [&#39;index.html&#39;]
 
-  task.before = Proc.new() do |task,args|
+  task.before = Proc.new() do |t2,args|
     # Delete this file as it&#39;s never used (index.html is an exact copy)
-    YardGhurt.rm_exist(File.join(task.doc_dir,&#39;file.README.html&#39;))
+    YardGhurt.rm_exist(File.join(t2.doc_dir,&#39;file.README.html&#39;))
 
     # Root dir of my GitHub Page for CSS/JS
-    GHP_ROOT_DIR = YardGhurt.to_bool(args.dev) ? &#39;../../esotericpig.github.io&#39; : &#39;../../..&#39;
+    ghp_root_dir = YardGhurt.to_bool(args.dev) ? &#39;../../esotericpig.github.io&#39; : &#39;../../..&#39;
 
-    task.css_styles &lt;&lt; %Q(&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;#{GHP_ROOT_DIR}/css/prism.css&quot; /&gt;)
-    task.js_scripts &lt;&lt; %Q(&lt;script src=&quot;#{GHP_ROOT_DIR}/js/prism.js&quot;&gt;&lt;/script&gt;)
+    t2.css_styles &lt;&lt; %Q(&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;#{ghp_root_dir}/css/prism.css&quot; /&gt;)
+    t2.js_scripts &lt;&lt; %Q(&lt;script src=&quot;#{ghp_root_dir}/js/prism.js&quot;&gt;&lt;/script&gt;)
   end
 end
 </code></pre>
@@ -233,7 +233,7 @@ end
 end
 </code></pre>
 
-<h3><a href="#Using">GHPSyncTask</a></h3>
+<h3 id="ghpsynctask"><a href="#using">GHPSyncTask</a></h3>
 
 <p>Sync YARDoc to a local GitHub Pages repo (uses <code>rsync</code> by default).</p>
 
@@ -263,7 +263,7 @@ YardGhurt::GHPSyncTask.new(:ghp_doc) do |task|
 end
 </code></pre>
 
-<h3><a href="#Using">Util / YardGhurt</a></h3>
+<h3 id="util-yardghurt"><a href="#using">Util / YardGhurt</a></h3>
 
 <p>Utility methods for tasks.</p>
 
@@ -288,7 +288,7 @@ YardGhurt.rm_exist(&#39;doc/file.README.html&#39;)
 puts YardGhurt.to_bool(&#39;true&#39;)
 </code></pre>
 
-<h3><a href="#Using">AnchorLinks</a></h3>
+<h3 id="anchorlinks"><a href="#using">AnchorLinks</a></h3>
 
 <p>A “database” of anchor links specific to GitHub Flavored Markdown (GFM) and YARDoc.</p>
 
@@ -340,7 +340,7 @@ puts al.to_github_anchor_id(name) # this-is-another-test-1
 puts al.to_github_anchor_id(name) # this-is-another-test-1
 </code></pre>
 
-<h2><a href="#Contents">CLI App</a></h2>
+<h2 id="cli-app"><a href="#contents">CLI App</a></h2>
 
 <p>A CLI app has been added for convenience for when writing your own README.</p>
 
@@ -368,7 +368,7 @@ $ yard_ghurt -a &quot;What&#39;s this ID?&quot;
     -v, --version                    Print the version
 </code></pre>
 
-<h2><a href="#Contents">Hacking</a></h2>
+<h2 id="hacking"><a href="#contents">Hacking</a></h2>
 
 <pre class="code ruby"><code class="ruby">$ git clone &#39;https://github.com/esotericpig/yard_ghurt.git&#39;
 $ cd yard_ghurt
@@ -376,7 +376,7 @@ $ bundle install
 $ bundle exec rake -T
 </code></pre>
 
-<h3><a href="#Hacking">Testing</a></h3>
+<h3 id="testing"><a href="#hacking">Testing</a></h3>
 
 <p>First, execute this:</p>
 
@@ -394,51 +394,51 @@ $ bundle exec rake -T
 = Nothing written (up-to-date)
 </code></pre>
 
-<p>Then open up <strong>doc/index.html</strong> and check all of  the <a href="#Tests">anchor links</a>, <a href="#License">local file links</a>, etc.</p>
+<p>Then open up <strong>doc/index.html</strong> and check all of  the <a href="#tests">anchor links</a>, <a href="#license">local file links</a>, etc.</p>
 
 <p>Lastly, the 2 files should be almost identical, except for 1 line:</p>
 
 <p><code>$ diff doc/index.html doc/file.README.html</code></p>
 
-<h2><a href="#Contents">Tests</a></h2>
+<h2 id="tests"><a href="#contents">Tests</a></h2>
 
 <p>These are actual tests for this gem.</p>
 
 <ul>
-<li><a href="#This_is_Test__1">This is Test #1</a></li>
-<li><a href="#This-is-Test-_2">This-is-Test-#2</a></li>
-<li><a href="#This_is_Test__3">This_is_Test_#3</a></li>
-<li><a href="#_This_is_Test__4_">&quot;This is Test #4&quot;</a></li>
-<li><a href="#_This_is_Test__4_0">&quot;This is Test #4&quot;</a></li>
-<li><a href="#this_is_test__5">this is test #5</a></li>
-<li><a href="#THIS_IS_TEST__6">THIS IS TEST #6</a></li>
-<li><a href="#____">日本語？</a></li>
-<li><a href="#____1">テスト？</a></li>
-<li><a href="#___">中文？</a></li>
-<li><a href="#___2">汉语？</a></li>
+<li><a href="#this-is-test-1">This is Test #1</a></li>
+<li><a href="#this-is-test-2">This-is-Test-#2</a></li>
+<li><a href="#this_is_test_-3">This_is_Test_#3</a></li>
+<li><a href="#this-is-test-4">&quot;This is Test #4&quot;</a></li>
+<li><a href="#this-is-test-4">&quot;This is Test #4&quot;</a></li>
+<li><a href="#this-is-test-5">this is test #5</a></li>
+<li><a href="#this-is-test-6">THIS IS TEST #6</a></li>
+<li><a href="#part-ed5128ebae5b7a90">日本語？</a></li>
+<li><a href="#part-edb592b4596ebf28">テスト？</a></li>
+<li><a href="#part-b5c2f1bd3df9ec9c">中文？</a></li>
+<li><a href="#part-de61a7da3f08b994">汉语？</a></li>
 </ul>
 
-<h3><a href="#Tests">This is Test #1</a></h3>
+<h3 id="this-is-test-1"><a href="#tests">This is Test #1</a></h3>
 
-<h3><a href="#Tests">This-is-Test-#2</a></h3>
+<h3 id="this-is-test-2"><a href="#tests">This-is-Test-#2</a></h3>
 
-<h3><a href="#Tests">This_is_Test_#3</a></h3>
+<h3 id="this_is_test_-3"><a href="#tests">This_is_Test_#3</a></h3>
 
-<h3><a href="#Tests">&quot;This is Test #4&quot;</a></h3>
+<h3 id="this-is-test-4"><a href="#tests">&quot;This is Test #4&quot;</a></h3>
 
-<h3><a href="#Tests">&quot;This is Test #4&quot;</a></h3>
+<h3 id="this-is-test-4"><a href="#tests">&quot;This is Test #4&quot;</a></h3>
 
-<h3><a href="#Tests">this is test #5</a></h3>
+<h3 id="this-is-test-5"><a href="#tests">this is test #5</a></h3>
 
-<h3><a href="#Tests">THIS IS TEST #6</a></h3>
+<h3 id="this-is-test-6"><a href="#tests">THIS IS TEST #6</a></h3>
 
-<h3><a href="#Tests">日本語？</a></h3>
+<h3 id="part-ed5128ebae5b7a90"><a href="#tests">日本語？</a></h3>
 
-<h3><a href="#Tests">テスト？</a></h3>
+<h3 id="part-edb592b4596ebf28"><a href="#tests">テスト？</a></h3>
 
-<h3><a href="#Tests">中文？</a></h3>
+<h3 id="part-b5c2f1bd3df9ec9c"><a href="#tests">中文？</a></h3>
 
-<h3><a href="#Tests">汉语？</a></h3>
+<h3 id="part-de61a7da3f08b994"><a href="#tests">汉语？</a></h3>
 
 <pre class="code ruby"><code class="ruby"><span class='const'>Newline</span>
 <span class='const'>Newline</span>
@@ -453,13 +453,13 @@ $ bundle exec rake -T
 <span class='const'>Newline</span>
 </code></pre>
 
-<h2><a href="#Contents">License</a></h2>
+<h2 id="license"><a href="#contents">License</a></h2>
 
 <p><a href="file.LICENSE.html">GNU LGPL v3+</a></p>
 
 <blockquote>
 <p>YardGhurt (<a href="https://github.com/esotericpig/yard_ghurt">https://github.com/esotericpig/yard_ghurt</a>)<br>
-Copyright (c) 2019-2020 Jonathan Bradley Whited (@esotericpig)  </p>
+Copyright (c) 2019-2021 Jonathan Bradley Whited  </p>
 
 <p>YardGhurt is free software: you can redistribute it and/or modify<br>
 it under the terms of the GNU Lesser General Public License as published by<br>

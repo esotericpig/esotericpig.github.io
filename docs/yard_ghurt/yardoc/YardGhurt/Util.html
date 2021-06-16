@@ -6,7 +6,7 @@
 <title>
   Module: YardGhurt::Util
   
-    &mdash; YardGhurt v1.2.0 Doc
+    &mdash; YardGhurt v1.2.1 Doc
   
 </title>
 
@@ -125,7 +125,7 @@
       
         
         <div class='inline'>
-<p>Jonathan Bradley Whited (@esotericpig)</p>
+<p>Jonathan Bradley Whited</p>
 </div>
       
     </li>
@@ -215,7 +215,57 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>on</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>t</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>true</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>y</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yes</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span><span class='lparen'>(</span><span class='rparen'>)</span></pre></dd>
+        <dd><pre class="code"><span class='qwords_beg'>%w[</span><span class='words_sep'> </span><span class='tstring_content'>1</span><span class='words_sep'> </span><span class='tstring_content'>on</span><span class='words_sep'> </span><span class='tstring_content'>t</span><span class='words_sep'> </span><span class='tstring_content'>true</span><span class='words_sep'> </span><span class='tstring_content'>y</span><span class='words_sep'> </span><span class='tstring_content'>yes</span><span class='words_sep'> </span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SEM_VER_REGEX-constant" class="">SEM_VER_REGEX =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a very flexible (non-strict) Semantic Versioning regex, ignoring pre-release/build-metadata.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>a very flexible (non-strict) Semantic Versioning regex, ignoring pre-release/build-metadata</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.2.1</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(?&lt;major&gt;\d+)(?:\.(?&lt;minor&gt;\d+))?(?:\.(?&lt;patch&gt;\d+))?</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
     </dl>
   
@@ -271,7 +321,7 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Util/ClassMethods.html" title="YardGhurt::Util::ClassMethods (module)">ClassMethods</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Util/ClassMethods.html#rm_exist-instance_method" title="YardGhurt::Util::ClassMethods#rm_exist (method)">rm_exist</a></span>, <span class='object_link'><a href="Util/ClassMethods.html#to_bool-instance_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">to_bool</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Util/ClassMethods.html#parse_sem_ver-instance_method" title="YardGhurt::Util::ClassMethods#parse_sem_ver (method)">parse_sem_ver</a></span>, <span class='object_link'><a href="Util/ClassMethods.html#rm_exist-instance_method" title="YardGhurt::Util::ClassMethods#rm_exist (method)">rm_exist</a></span>, <span class='object_link'><a href="Util/ClassMethods.html#to_bool-instance_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">to_bool</a></span>, <span class='object_link'><a href="Util/ClassMethods.html#yard_sem_ver-instance_method" title="YardGhurt::Util::ClassMethods#yard_sem_ver (method)">yard_sem_ver</a></span></p>
 
 
   <div id="class_method_details" class="method_details_list">
@@ -340,12 +390,12 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/util.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/util.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_included'>included</span><span class='lparen'>(</span><span class='id identifier rubyid_mod'>mod</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_mod'>mod</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="Util/ClassMethods.html" title="YardGhurt::Util::ClassMethods (module)">ClassMethods</a></span></span>

@@ -21,7 +21,7 @@ body {
 div#content {
   display: inline-block;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 0 20em 0;
   text-align: left;
 }
 
@@ -92,7 +92,7 @@ tr:nth-child(odd) {
   div#content {
     width: 95%;
   }
-  
+
   div#content-container {
     width: 100%;
   }

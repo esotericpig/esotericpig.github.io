@@ -1,3 +1,11 @@
+body {
+  background-color: #fff5ee;
+  color: #343434;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
 a:link {
   color: #004953;
 }
@@ -8,14 +16,6 @@ a:visited {
 
 a:active,a:hover {
   color: #e0115f;
-}
-
-body {
-  background-color: #fff5ee;
-  color: #343434;
-  margin: 0;
-  padding: 0;
-  text-align: center;
 }
 
 div#content {
@@ -41,6 +41,11 @@ span.ruby-lang {
 
 table {
   border-collapse: collapse;
+  width: 33rem;
+}
+
+tr:nth-child(odd) {
+  background-color: #ffc99f;
 }
 
 td,th {
@@ -58,34 +63,25 @@ td a,td span,th span {
   width: 100%;
 }
 
+td.repo,th.repo {
+  width: 11rem;
+}
+
+td.lang,th.lang {
+  font-weight: bold;
+  width: 7rem;
+}
+
 td.docs,th.docs {
-  width: 11em;
+  width: 14rem;
 }
 
 td.docs a {
   display: inline;
 }
 
-td.lang,th.lang {
-  font-weight: bold;
-  width: 5em;
-}
-
-td.repo,th.repo {
-  width: 11em;
-}
-
 td.show,th.show {
-  width: 21em;
-}
-
-td.vers,th.vers {
-  font-weight: bold;
-  width: 5em;
-}
-
-tr:nth-child(odd) {
-  background-color: #ffc99f;
+  width: 21rem;
 }
 
 @media screen and (max-width: 800px) {

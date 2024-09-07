@@ -6,7 +6,7 @@
 <title>
   Class: Psychgus::SuperSniffer::Parent
   
-    &mdash; Psychgus v1.3.2 Doc
+    &mdash; Psychgus
   
 </title>
 
@@ -69,12 +69,12 @@
   <dl>
     <dt>Inherits:</dt>
     <dd>
-      <span class="inheritName">Delegator</span>
+      <span class="inheritName">SimpleDelegator</span>
       
         <ul class="fullTree">
           <li>Object</li>
           
-            <li class="next">Delegator</li>
+            <li class="next">SimpleDelegator</li>
           
             <li class="next">Psychgus::SuperSniffer::Parent</li>
           
@@ -140,38 +140,6 @@
       <li><span class='object_link'><a href="../Styler.html" title="Psychgus::Styler (module)">Psychgus::Styler</a></span></li>
     
   </ul>
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Jonathan Bradley Whited (@esotericpig)</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -686,29 +654,13 @@
       
         &mdash;
         <div class='inline'>
-<p>the next child&#39;s Mapping type, if <code>node</code> is a Mapping</p>
+<p>the next child’s Mapping type, if <code>node</code> is a Mapping</p>
 </div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -716,19 +668,23 @@
       <pre class="lines">
 
 
-74
-75
-76
-77
-78
-79
-80
-81</pre>
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='comma'>,</span><span class='label'>debug_tag:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>child_type:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
+
   <span class='ivar'>@child_position</span> <span class='op'>=</span> <span class='int'>1</span>
   <span class='ivar'>@child_type</span> <span class='op'>=</span> <span class='id identifier rubyid_child_type'>child_type</span>
   <span class='ivar'>@debug_tag</span> <span class='op'>=</span> <span class='id identifier rubyid_debug_tag'>debug_tag</span>
@@ -779,23 +735,7 @@
       
         &mdash;
         <div class='inline'>
-<p>the next child&#39;s position</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
+<p>the next child’s position</p>
 </div>
       
     </li>
@@ -808,12 +748,12 @@
       <pre class="lines">
 
 
-54
-55
-56</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_child_position'>child_position</span>
   <span class='ivar'>@child_position</span>
@@ -856,23 +796,7 @@
       
         &mdash;
         <div class='inline'>
-<p>the next child&#39;s Mapping type, if <span class='object_link'><a href="#node-instance_method" title="Psychgus::SuperSniffer::Parent#node (method)">#node</a></span> is a Mapping</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
+<p>the next child’s Mapping type, if <span class='object_link'><a href="#node-instance_method" title="Psychgus::SuperSniffer::Parent#node (method)">#node</a></span> is a Mapping</p>
 </div>
       
     </li>
@@ -885,12 +809,12 @@
       <pre class="lines">
 
 
-59
-60
-61</pre>
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_child_type'>child_type</span>
   <span class='ivar'>@child_type</span>
@@ -939,22 +863,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -962,12 +870,12 @@
       <pre class="lines">
 
 
-62
-63
-64</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_debug_tag'>debug_tag</span>
   <span class='ivar'>@debug_tag</span>
@@ -1016,22 +924,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1039,12 +931,12 @@
       <pre class="lines">
 
 
-64
-65
-66</pre>
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_level'>level</span>
   <span class='ivar'>@level</span>
@@ -1093,22 +985,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1116,12 +992,12 @@
       <pre class="lines">
 
 
-65
-66
-67</pre>
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_node'>node</span>
   <span class='ivar'>@node</span>
@@ -1170,22 +1046,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1193,12 +1053,12 @@
       <pre class="lines">
 
 
-66
-67
-68</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_position'>position</span>
   <span class='ivar'>@position</span>
@@ -1236,22 +1096,6 @@
 </div>
 <div class="tags">
   
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1259,12 +1103,12 @@
       <pre class="lines">
 
 
-84
-85
-86</pre>
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___getobj__'>__getobj__</span>
   <span class='kw'>return</span> <span class='ivar'>@node</span>
@@ -1311,22 +1155,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.2.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1334,14 +1162,14 @@
       <pre class="lines">
 
 
-93
-94
-95</pre>
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 80</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_child_key?'>child_key?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_child_key?'>child_key?</span>
   <span class='kw'>return</span> <span class='ivar'>@child_type</span> <span class='op'>==</span> <span class='symbol'>:key</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1386,22 +1214,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.2.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1409,14 +1221,14 @@
       <pre class="lines">
 
 
-102
-103
-104</pre>
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 87</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_child_value?'>child_value?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_child_value?'>child_value?</span>
   <span class='kw'>return</span> <span class='ivar'>@child_type</span> <span class='op'>==</span> <span class='symbol'>:value</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1465,22 +1277,6 @@
       <li>Psych::Nodes::Sequence#implicit</li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1488,14 +1284,14 @@
       <pre class="lines">
 
 
-109
-110
-111</pre>
+94
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 94</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_implicit?'>implicit?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_implicit?'>implicit?</span>
   <span class='kw'>return</span> <span class='ivar'>@node</span><span class='period'>.</span><span class='id identifier rubyid_implicit'>implicit</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1540,22 +1336,6 @@
       <li>Psych::Nodes::Document#implicit_end</li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1563,14 +1343,14 @@
       <pre class="lines">
 
 
-114
-115
-116</pre>
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 99</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_implicit_end?'>implicit_end?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_implicit_end?'>implicit_end?</span>
   <span class='kw'>return</span> <span class='ivar'>@node</span><span class='period'>.</span><span class='id identifier rubyid_implicit_end'>implicit_end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1608,7 +1388,7 @@
 <div class="tags">
   
   <div class="examples">
-    <p class="tag_title">Examples:</p>
+    <h4 class="tag_title">Examples:</h4>
     
       
       <pre class="example code"><code><span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_node_of?'>node_of?</span><span class='lparen'>(</span><span class='symbol'>:alias</span><span class='rparen'>)</span>
@@ -1665,22 +1445,6 @@
       <li><span class='object_link'><a href="../../Psychgus.html#node_class-class_method" title="Psychgus.node_class (method)">Psychgus.node_class</a></span></li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1688,12 +1452,12 @@
       <pre class="lines">
 
 
-119
-120
-121</pre>
+104
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_node_of?'>node_of?</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_names'>names</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='ivar'>@node</span><span class='period'>.</span><span class='id identifier rubyid_node_of?'>node_of?</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_names'>names</span><span class='rparen'>)</span>
@@ -1740,22 +1504,6 @@
       <li>Psych::Nodes::Scalar#plain</li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1763,14 +1511,14 @@
       <pre class="lines">
 
 
-124
-125
-126</pre>
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 109</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_plain?'>plain?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_plain?'>plain?</span>
   <span class='kw'>return</span> <span class='ivar'>@node</span><span class='period'>.</span><span class='id identifier rubyid_plain'>plain</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1815,22 +1563,6 @@
       <li>Psych::Nodes::Scalar#quoted</li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1838,14 +1570,14 @@
       <pre class="lines">
 
 
-129
-130
-131</pre>
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 114</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_quoted?'>quoted?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_quoted?'>quoted?</span>
   <span class='kw'>return</span> <span class='ivar'>@node</span><span class='period'>.</span><span class='id identifier rubyid_quoted'>quoted</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1898,22 +1630,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1921,14 +1637,14 @@
       <pre class="lines">
 
 
-136
-137
-138</pre>
+121
+122
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 136</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/super_sniffer/parent.rb', line 121</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@debug_tag</span><span class='embexpr_end'>}</span><span class='tstring_content'>:(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@level</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='ivar'>@position</span><span class='embexpr_end'>}</span><span class='tstring_content'>):</span><span class='embexpr_beg'>#{</span><span class='ivar'>@child_type</span><span class='embexpr_end'>}</span><span class='tstring_content'>:(:</span><span class='embexpr_beg'>#{</span><span class='ivar'>@child_position</span><span class='embexpr_end'>}</span><span class='tstring_content'>)&gt;</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>

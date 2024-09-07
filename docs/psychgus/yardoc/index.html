@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Psychgus v1.3.2 Doc
+    &mdash; Psychgus
   
 </title>
 
@@ -60,10 +60,10 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'><h1>Psychgus</h1>
+      <div id="content"><div id='filecontents'><h1 id="psychgus">Psychgus</h1>
 
 <p><a href="https://badge.fury.io/rb/psychgus"><img src="https://badge.fury.io/rb/psychgus.svg" alt="Gem Version"></a>
-<a href="https://travis-ci.org/esotericpig/psychgus"><img src="https://travis-ci.org/esotericpig/psychgus.svg?branch=master" alt="Build Status"></a>
+<a href="https://github.com/esotericpig/psychgus/actions/workflows/ci.yml"><img src="https://github.com/esotericpig/psychgus/actions/workflows/ci.yml/badge.svg" alt="CI Status"></a>
 <a href="https://inch-ci.org/github/esotericpig/psychgus"><img src="http://inch-ci.org/github/esotericpig/psychgus.svg?branch=master" alt="Doc Coverage"></a></p>
 
 <p><a href="https://esotericpig.github.io/docs/psychgus/yardoc/index.html"><img src="https://img.shields.io/badge/doc-yard-%23A0522D.svg" alt="Documentation"></a>
@@ -100,37 +100,37 @@ Psych Gus:
   Skills: [The Blueberry, The Super Sniffer, Positive Work Attitude]
 </code></pre>
 
-<p>Thank you to the people that worked and continue to work hard on the Psych project.</p>
+<p>Thank you to the people that work hard on the Psych project.</p>
 
 <p>The Psychgus name comes from the well-styled character Gus from the TV show Psych.</p>
 
-<h2>Contents</h2>
+<h2 id="contents">Contents</h2>
 
 <ul>
-<li><a href="#Setup">Setup</a></li>
-<li><a href="#Using">Using</a>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#using">Using</a>
 
 <ul>
-<li><a href="#Simple_Example">Simple Example</a></li>
-<li><a href="#Hash_Example">Hash Example</a></li>
-<li><a href="#Class_Example">Class Example</a></li>
-<li><a href="#Advanced_Usage">Advanced Usage</a></li>
-<li><a href="#Common_Stylers">Common Stylers</a>
+<li><a href="#simple-example">Simple Example</a></li>
+<li><a href="#hash-example">Hash Example</a></li>
+<li><a href="#class-example">Class Example</a></li>
+<li><a href="#advanced-usage">Advanced Usage</a></li>
+<li><a href="#common-stylers">Common Stylers</a>
 
 <ul>
-<li><a href="#Stylers_Example">Stylers Example</a></li>
+<li><a href="#stylers-example">Stylers Example</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#Hacking">Hacking</a>
+<li><a href="#hacking">Hacking</a>
 
 <ul>
-<li><a href="#Testing">Testing</a></li>
-<li><a href="#Generating_Doc">Generating Doc</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#generating-doc">Generating Doc</a></li>
 </ul></li>
-<li><a href="#License">License</a></li>
+<li><a href="#license">License</a></li>
 </ul>
 
-<h2><a href="#Contents">Setup</a></h2>
+<h2 id="setup">Setup</h2>
 
 <p>Pick your poison...</p>
 
@@ -141,7 +141,7 @@ Psych Gus:
 <p>In your <em>Gemspec</em> (<em>&lt;project&gt;.gemspec</em>):</p>
 
 <pre class="code Ruby"><code class="language-ruby"># Pick one...
-spec.add_runtime_dependency &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;
+spec.add_dependency &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;
 spec.add_development_dependency &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;
 </code></pre>
 
@@ -161,7 +161,7 @@ $ bundle install
 $ bundle exec rake install:local
 </code></pre>
 
-<h2><a href="#Contents">Using</a></h2>
+<h2 id="using">Using</h2>
 
 <p>Documentation (YARDoc) is available on my <a href="https://esotericpig.github.io/docs/psychgus/yardoc/index.html">GitHub Page</a> and on <a href="https://www.rubydoc.info/gems/psychgus">RubyDoc.info</a>.</p>
 
@@ -169,17 +169,17 @@ $ bundle exec rake install:local
 
 <p>For classes, you can optionally include <code>Psychgus::Blueberry</code> and return the styler(s) for the class by defining the <code>psychgus_stylers(sniffer)</code> method.</p>
 
-<p>Instead of making your own styler, you can also use one of the <a href="#Common_Stylers">pre-defined stylers</a>.</p>
+<p>Instead of making your own styler, you can also use one of the <a href="#common-stylers">pre-defined stylers</a>.</p>
 
-<h3>Contents | Using</h3>
+<h3 id="contents-using">Contents | Using</h3>
 
-<p><a href="#Simple_Example">Simple Example</a>
-| <a href="#Hash_Example">Hash Example</a>
-| <a href="#Class_Example">Class Example</a>
-| <a href="#Advanced_Usage">Advanced Usage</a>
-| <a href="#Common_Stylers">Common Stylers</a></p>
+<p><a href="#simple-example">Simple Example</a>
+| <a href="#hash-example">Hash Example</a>
+| <a href="#class-example">Class Example</a>
+| <a href="#advanced-usage">Advanced Usage</a>
+| <a href="#common-stylers">Common Stylers</a></p>
 
-<h3><a href="#Using">Simple Example</a></h3>
+<h3 id="simple-example">Simple Example</h3>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
@@ -224,7 +224,7 @@ puts Coffee.new.to_yaml
 # style: [Cappuccino, Espresso, Latte, Mocha]
 </code></pre>
 
-<h3><a href="#Using">Hash Example</a></h3>
+<h3 id="hash-example">Hash Example</h3>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
@@ -318,7 +318,7 @@ puts burgers.to_yaml({:indent =&gt; 3,:stylers =&gt; BurgerStyler.new,:deref_ali
 #    Bun: Kaiser
 </code></pre>
 
-<h3><a href="#Using">Class Example</a></h3>
+<h3 id="class-example">Class Example</h3>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
@@ -488,7 +488,7 @@ puts burgers.to_yaml({:indent =&gt; 3,:deref_aliases =&gt; true})
 #    Sauce: &#39;Honey BBQ&#39;
 </code></pre>
 
-<h3><a href="#Using">Advanced Usage</a></h3>
+<h3 id="advanced-usage">Advanced Usage</h3>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
@@ -578,7 +578,7 @@ puts parser.handler.root.to_ruby
 puts
 </code></pre>
 
-<h3><a href="#Using">Common Stylers</a></h3>
+<h3 id="common-stylers">Common Stylers</h3>
 
 <p>A collection of commonly-used <a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers.html">Stylers</a> and <a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylables.html">Stylables</a> are included with Psychgus.</p>
 
@@ -614,7 +614,7 @@ puts
 </tr>
 </tbody></table>
 
-<h4><a href="#Common_Stylers">Stylers Example</a></h4>
+<h4 id="stylers-example">Stylers Example</h4>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
@@ -657,7 +657,7 @@ puts EggCarton.new.to_yaml
 #     - green
 </code></pre>
 
-<h2><a href="#Contents">Hacking</a></h2>
+<h2 id="hacking">Hacking</h2>
 
 <pre class="code ruby"><code class="ruby">$ git clone &#39;https://github.com/esotericpig/psychgus.git&#39;
 $ cd psychgus
@@ -665,17 +665,13 @@ $ bundle install
 $ bundle exec rake -T
 </code></pre>
 
-<h3><a href="#Hacking">Testing</a></h3>
+<h3 id="testing">Testing</h3>
 
-<p>Run tests, excluding tests that create temp files:</p>
+<p>Run tests:</p>
 
 <p><code>$ bundle exec rake test</code></p>
 
-<p>Run all tests:</p>
-
-<p><code>$ bundle exec rake test_all</code></p>
-
-<h3><a href="#Hacking">Generating Doc</a></h3>
+<h3 id="generating-doc">Generating Doc</h3>
 
 <p>Generate doc:</p>
 
@@ -685,13 +681,13 @@ $ bundle exec rake -T
 
 <p><code>$ bundle exec rake clobber doc</code></p>
 
-<h2><a href="#Contents">License</a></h2>
+<h2 id="license">License</h2>
 
 <p><a href="file.LICENSE.html">GNU LGPL v3+</a></p>
 
 <blockquote>
 <p>Psychgus (<a href="https://github.com/esotericpig/psychgus">https://github.com/esotericpig/psychgus</a>)<br>
-Copyright (c) 2017-2020 Jonathan Bradley Whited (@esotericpig)  </p>
+Copyright (c) 2017-2024 Bradley Whited  </p>
 
 <p>Psychgus is free software: you can redistribute it and/or modify<br>
 it under the terms of the GNU Lesser General Public License as published by<br>

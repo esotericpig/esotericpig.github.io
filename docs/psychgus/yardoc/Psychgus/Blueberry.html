@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus::Blueberry
   
-    &mdash; Psychgus v1.3.2 Doc
+    &mdash; Psychgus
   
 </title>
 
@@ -88,7 +88,7 @@
     
 <p>This is the OOP way to style your classes/modules/etc.</p>
 
-<p>Even though it&#39;s unnecessary to mix in (include) this module, it&#39;s recommended because new methods may be added in the future, so this pseudo-guarantees your class won&#39;t break in a new version.</p>
+<p>Even though it’s unnecessary to mix in (include) this module, it’s recommended because new methods may be added in the future, so this pseudo-guarantees your class won’t break in a new version.</p>
 
 <p>A complete example:</p>
 
@@ -146,11 +146,11 @@
 <span class='kw'>end</span>
 </code></pre>
 
-<p>However, it&#39;s best to put the styling logic inside of a separate class (or inner class) away from the main logic. This also prevents extra helper vars, like @level, from showing up in the output.</p>
+<p>However, it’s best to put the styling logic inside of a separate class (or inner class) away from the main logic. This also prevents extra helper vars, like @level, from showing up in the output.</p>
 
 <p>After your class and its children have been processed, the styler(s) will be removed from the logic for the next sibling object(s). Therefore, you can safely do class-specific checks on level, etc. without it affecting the sibling object(s). See <span class='object_link'><a href="Ext/YAMLTreeExt.html" title="Psychgus::Ext::YAMLTreeExt (module)">Ext::YAMLTreeExt</a></span> and <span class='object_link'><a href="Ext/YAMLTreeExt.html#accept-instance_method" title="Psychgus::Ext::YAMLTreeExt#accept (method)">Ext::YAMLTreeExt#accept</a></span> for details.</p>
 
-<p>“The Blueberry” is the name of Gus&#39;s car from the TV show Psych.</p>
+<p>“The Blueberry” is the name of Gus’s car from the TV show Psych.</p>
 
 
   </div>
@@ -166,38 +166,6 @@
       <li><span class='object_link'><a href="Ext/YAMLTreeExt.html#accept-instance_method" title="Psychgus::Ext::YAMLTreeExt#accept (method)">Ext::YAMLTreeExt#accept</a></span></li>
     
   </ul>
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Jonathan Bradley Whited (@esotericpig)</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -304,22 +272,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -327,12 +279,12 @@
       <pre class="lines">
 
 
-106
-107
-108</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/blueberry.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/blueberry.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_psychgus_stylers'>psychgus_stylers</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span>

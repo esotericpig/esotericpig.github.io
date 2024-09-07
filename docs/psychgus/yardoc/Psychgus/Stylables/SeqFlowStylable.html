@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus::Stylables::SeqFlowStylable
   
-    &mdash; Psychgus v1.3.2 Doc
+    &mdash; Psychgus
   
 </title>
 
@@ -112,22 +112,6 @@
       <li><span class='object_link'><a href="" title="Psychgus::Stylables::SeqFlowStylable (module)">SeqFlowStylable</a></span></li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.2.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -173,7 +157,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p><code>max_level</code> is not defined because a parent&#39;s style will override all of its children.</p>
+<p><code>max_level</code> is not defined because a parent’s style will override all of its children.</p>
 </div></span>
   
 </li>
@@ -246,7 +230,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p><code>max_level</code> is not defined because a parent&#39;s style will override all of its children.</p>
+<p><code>max_level</code> is not defined because a parent’s style will override all of its children.</p>
 
 <p>If <code>new_style</code> is nil (the default), then <span class='object_link'><a href="../../Psychgus.html#SEQUENCE_FLOW-constant" title="Psychgus::SEQUENCE_FLOW (constant)">Psychgus::SEQUENCE_FLOW</a></span> will be used.</p>
 
@@ -311,22 +295,6 @@
   
 </ul>
 
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.2.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -334,19 +302,19 @@
       <pre class="lines">
 
 
-257
-258
-259
-260
-261</pre>
+242
+243
+244
+245
+246</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 257</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 242</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='rparen'>)</span>
   <span class='kw'>super</span>
-  
-  <span class='ivar'>@new_style</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Psychgus.html#SEQUENCE_FLOW-constant" title="Psychgus::SEQUENCE_FLOW (constant)">SEQUENCE_FLOW</a></span></span> <span class='kw'>if</span> <span class='ivar'>@new_style</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@new_style</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Psychgus.html#SEQUENCE_FLOW-constant" title="Psychgus::SEQUENCE_FLOW (constant)">SEQUENCE_FLOW</a></span></span> <span class='kw'>if</span> <span class='ivar'>@new_style</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -381,22 +349,6 @@
       <li><span class='object_link'><a href="../Styler.html#style_sequence-instance_method" title="Psychgus::Styler#style_sequence (method)">Psychgus::Styler#style_sequence</a></span></li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.2.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -404,12 +356,12 @@
       <pre class="lines">
 
 
-268
-269
-270</pre>
+253
+254
+255</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 268</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 253</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_style_sequence'>style_sequence</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_change_style'>change_style</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>

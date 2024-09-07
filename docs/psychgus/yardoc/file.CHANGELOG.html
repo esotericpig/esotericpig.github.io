@@ -6,7 +6,7 @@
 <title>
   File: CHANGELOG
   
-    &mdash; Psychgus v1.3.2 Doc
+    &mdash; Psychgus
   
 </title>
 
@@ -57,15 +57,67 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'><h1>Changelog | Psychgus</h1>
+      <div id="content"><div id='filecontents'><h1 id="changelog-psychgus">Changelog | Psychgus</h1>
 
-<p>Format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>.</p>
+<p>All notable changes to this project will be documented in this file.</p>
 
-<h2><a href="https://github.com/esotericpig/psychgus/compare/v1.3.2...master">[Unreleased]</a></h2>
+<p>Format is based on <a href="https://keepachangelog.com/en/1.0.0">Keep a Changelog v1.0.0</a>,
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning v2.0.0</a>.</p>
 
-<h2>[v1.3.2] - 2020-04-23</h2>
+<h2 id="unreleased"><a href="https://github.com/esotericpig/psychgus/compare/v1.3.5...HEAD">[Unreleased]</a></h2>
 
-<h3>Changed</h3>
+<h2 id="v1-3-5-2024-09-06">[v1.3.5] - 2024-09-06</h2>
+
+<h3 id="fixed">Fixed</h3>
+
+<ul>
+<li>Fixed to_yaml() to work with older-style gems.
+
+<ul>
+<li>Example Gem: moneta</li>
+</ul></li>
+<li>Fixed deref aliases to work with Psych v5.1.2.</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+
+<ul>
+<li>Updated min Ruby to v2.2.</li>
+<li>Updated Gems.</li>
+</ul>
+
+<h2 id="v1-3-4-2021-06-20">[v1.3.4] - 2021-06-20</h2>
+
+<h3 id="fixed">Fixed</h3>
+
+<ul>
+<li>Fixed test file to use <code>unsafe_load()</code> for Psych v4+.</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+
+<ul>
+<li>Changed <code>SuperSniffer::Parent</code> to use <code>SimpleDelegator</code>.</li>
+<li>Updated Gems.</li>
+<li>Formatted files with RuboCop.</li>
+</ul>
+
+<h2 id="v1-3-3-2020-04-25">[v1.3.3] - 2020-04-25</h2>
+
+<h3 id="fixed">Fixed</h3>
+
+<ul>
+<li>SuperSniffer::Parent
+
+<ul>
+<li>Added require of <code>delegate</code> for Delegator</li>
+<li>Rake test task didn&#39;t catch this (must already include it)</li>
+</ul></li>
+</ul>
+
+<h2 id="v1-3-2-2020-04-23">[v1.3.2] - 2020-04-23</h2>
+
+<h3 id="changed">Changed</h3>
 
 <ul>
 <li>SuperSniffer::Parent
@@ -80,15 +132,15 @@
 </ul></li>
 </ul>
 
-<h3>Fixed</h3>
+<h3 id="fixed">Fixed</h3>
 
 <ul>
 <li>Fixed some Ruby 2.7 warnings in tests</li>
 </ul>
 
-<h2>[v1.2.2] - 2020-03-15</h2>
+<h2 id="v1-2-2-2020-03-15">[v1.2.2] - 2020-03-15</h2>
 
-<h3>Fixed</h3>
+<h3 id="fixed">Fixed</h3>
 
 <ul>
 <li>Fixed Psych version to be &gt;= 3.0 for <code>to_yaml/encode_with</code> warnings
@@ -100,15 +152,15 @@
 </ul></li>
 </ul>
 
-<h2>[v1.2.1] - 2019-12-18</h2>
+<h2 id="v1-2-1-2019-12-18">[v1.2.1] - 2019-12-18</h2>
 
-<h3>Added</h3>
+<h3 id="added">Added</h3>
 
 <ul>
 <li>Use of YardGhurt gem for Rakefile tasks</li>
 </ul>
 
-<h3>Changed</h3>
+<h3 id="changed">Changed</h3>
 
 <ul>
 <li>Some comments/doc in SuperSniffer, README</li>
@@ -117,15 +169,15 @@
 <li>Summary &amp; files in Gemspec</li>
 </ul>
 
-<h3>Fixed</h3>
+<h3 id="fixed">Fixed</h3>
 
 <ul>
 <li>Updated gems</li>
 </ul>
 
-<h2>[v1.2.0] - 2019-07-11</h2>
+<h2 id="v1-2-0-2019-07-11">[v1.2.0] - 2019-07-11</h2>
 
-<h3>Added</h3>
+<h3 id="added">Added</h3>
 
 <ul>
 <li>Commonly-used Stylers and Stylables</li>
@@ -134,7 +186,7 @@
 <li>SuperSniffer::Parent#child_key?() &amp; #child_value?()</li>
 </ul>
 
-<h3>Changed</h3>
+<h3 id="changed">Changed</h3>
 
 <ul>
 <li>SuperSniffer&#39;s parent will never be nil, so don&#39;t have to check for nil in Stylers</li>
@@ -142,25 +194,25 @@
 <li>Gemspec&#39;s included files to be more specific (to prevent accidentally adding non-gem-related files)</li>
 </ul>
 
-<h3>Fixed</h3>
+<h3 id="fixed">Fixed</h3>
 
 <ul>
 <li>Psychgus.dump_stream() if you only pass in a Hash w/ symbols as keys (options would be set to it, instead of objects)</li>
 </ul>
 
-<h2>[v1.0.0] - 2019-07-03</h2>
+<h2 id="v1-0-0-2019-07-03">[v1.0.0] - 2019-07-03</h2>
 
-<h3>Added</h3>
+<h3 id="added">Added</h3>
 
-<h3>Changed</h3>
+<h3 id="changed">Changed</h3>
 
-<h3>Deprecated</h3>
+<h3 id="deprecated">Deprecated</h3>
 
-<h3>Removed</h3>
+<h3 id="removed">Removed</h3>
 
-<h3>Fixed</h3>
+<h3 id="fixed">Fixed</h3>
 
-<h3>Security</h3>
+<h3 id="security">Security</h3>
 </div></div>
 
       

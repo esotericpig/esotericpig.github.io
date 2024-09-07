@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus::Ext::RegistrarExt
   
-    &mdash; Psychgus v1.3.2 Doc
+    &mdash; Psychgus
   
 </title>
 
@@ -93,38 +93,6 @@
 </div>
 <div class="tags">
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Jonathan Bradley Whited (@esotericpig)</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -144,7 +112,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#remove_alias-instance_method" title="#remove_alias (instance method)">#<strong>remove_alias</strong>(target)  &#x21d2; Object </a>
+      <a href="#psychgus_unregister-instance_method" title="#psychgus_unregister (instance method)">#<strong>psychgus_unregister</strong>(target)  &#x21d2; Object </a>
     
 
     
@@ -175,9 +143,9 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="remove_alias-instance_method">
+  <h3 class="signature first" id="psychgus_unregister-instance_method">
   
-    #<strong>remove_alias</strong>(target)  &#x21d2; <tt>Object</tt> 
+    #<strong>psychgus_unregister</strong>(target)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -213,22 +181,6 @@
   
 </ul>
 
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -236,15 +188,33 @@
       <pre class="lines">
 
 
-39
-40
-41</pre>
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/ext/yaml_tree_ext.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/ext/yaml_tree_ext.rb', line 28</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_remove_alias'>remove_alias</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
-  <span class='ivar'>@obj_to_node</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_psychgus_unregister'>psychgus_unregister</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../Ext.html#PSYCHGUS_PSYCH_VERSION-constant" title="Psychgus::Ext::PSYCHGUS_PSYCH_VERSION (constant)">PSYCHGUS_PSYCH_VERSION</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../Ext.html#PSYCHGUS_PSYCH_VERSION_5_1_2-constant" title="Psychgus::Ext::PSYCHGUS_PSYCH_VERSION_5_1_2 (constant)">PSYCHGUS_PSYCH_VERSION_5_1_2</a></span></span>
+    <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:object_id</span><span class='rparen'>)</span>
+
+    <span class='ivar'>@obj_to_node</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='rparen'>)</span>
+  <span class='kw'>else</span> <span class='comment'># 5.1.2+
+</span>    <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
+
+    <span class='ivar'>@targets</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
+    <span class='ivar'>@obj_to_node</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

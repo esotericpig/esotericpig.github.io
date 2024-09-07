@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus::Stylables::StyleStylable
   
-    &mdash; Psychgus v1.3.2 Doc
+    &mdash; Psychgus
   
 </title>
 
@@ -96,31 +96,15 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>A helper mixin for Stylables that change a node&#39;s style.</p>
+<p>A helper mixin for Stylables that change a node’s style.</p>
 
-<p>There is no max level, because a parent&#39;s style will override all of its children.</p>
+<p>There is no max level, because a parent’s style will override all of its children.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.2.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -244,7 +228,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p><code>max_level</code> is not defined because a parent&#39;s style will override all of its children.</p>
+<p><code>max_level</code> is not defined because a parent’s style will override all of its children.</p>
 </div></span>
   
 </li>
@@ -307,22 +291,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.2.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -330,12 +298,12 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_min_level'>min_level</span>
   <span class='ivar'>@min_level</span>
@@ -384,22 +352,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.2.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -407,12 +359,12 @@
       <pre class="lines">
 
 
-49
-50
-51</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new_style'>new_style</span>
   <span class='ivar'>@new_style</span>
@@ -448,22 +400,6 @@
 </div>
 <div class="tags">
   
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.2.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -471,18 +407,18 @@
       <pre class="lines">
 
 
-62
-63
-64
-65
-66</pre>
+47
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_change_style'>change_style</span><span class='lparen'>(</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='comma'>,</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:style=</span><span class='rparen'>)</span>
-  
+
   <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_style'>style</span> <span class='op'>=</span> <span class='ivar'>@new_style</span> <span class='kw'>if</span> <span class='id identifier rubyid_sniffer'>sniffer</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='op'>&gt;=</span> <span class='ivar'>@min_level</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -502,7 +438,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p><code>max_level</code> is not defined because a parent&#39;s style will override all of its children.</p>
+<p><code>max_level</code> is not defined because a parent’s style will override all of its children.</p>
 
 
   </div>
@@ -565,22 +501,6 @@
   
 </ul>
 
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.2.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -588,13 +508,13 @@
       <pre class="lines">
 
 
-56
-57
-58
-59</pre>
+41
+42
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/stylables.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_min_level'>min_level</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span><span class='label'>new_style:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='ivar'>@min_level</span> <span class='op'>=</span> <span class='id identifier rubyid_min_level'>min_level</span>

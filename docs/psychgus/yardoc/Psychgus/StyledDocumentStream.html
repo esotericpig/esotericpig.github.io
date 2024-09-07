@@ -6,7 +6,7 @@
 <title>
   Class: Psychgus::StyledDocumentStream
   
-    &mdash; Psychgus v1.3.2 Doc
+    &mdash; Psychgus
   
 </title>
 
@@ -122,38 +122,6 @@
       <li>Psych::Handlers::DocumentStream</li>
     
   </ul>
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Jonathan Bradley Whited (@esotericpig)</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -178,7 +146,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#end_document-instance_method" title="#end_document (instance method)">#<strong>end_document</strong>(implicit_end = !streaming?()))  &#x21d2; Object </a>
+      <a href="#end_document-instance_method" title="#end_document (instance method)">#<strong>end_document</strong>(implicit_end = !streaming?))  &#x21d2; Object </a>
     
 
     
@@ -340,22 +308,6 @@
   
 </ul>
 
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -363,18 +315,18 @@
       <pre class="lines">
 
 
-44
-45
-46
-47
-48</pre>
+29
+30
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/styled_document_stream.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/styled_document_stream.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
-  
+
   <span class='ivar'>@block</span> <span class='op'>=</span> <span class='id identifier rubyid_block'>block</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -392,7 +344,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="end_document-instance_method">
   
-    #<strong>end_document</strong>(implicit_end = !streaming?()))  &#x21d2; <tt>Object</tt> 
+    #<strong>end_document</strong>(implicit_end = !streaming?))  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -415,22 +367,6 @@
       <li>Psych::Handlers::DocumentStream#end_document</li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -438,15 +374,15 @@
       <pre class="lines">
 
 
-53
-54
-55
-56</pre>
+38
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/styled_document_stream.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/styled_document_stream.rb', line 38</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_end_document'>end_document</span><span class='lparen'>(</span><span class='id identifier rubyid_implicit_end'>implicit_end</span><span class='op'>=</span><span class='op'>!</span><span class='id identifier rubyid_streaming?'>streaming?</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_end_document'>end_document</span><span class='lparen'>(</span><span class='id identifier rubyid_implicit_end'>implicit_end</span><span class='op'>=</span><span class='op'>!</span><span class='id identifier rubyid_streaming?'>streaming?</span><span class='rparen'>)</span>
   <span class='ivar'>@last</span><span class='period'>.</span><span class='id identifier rubyid_implicit_end'>implicit_end</span> <span class='op'>=</span> <span class='id identifier rubyid_implicit_end'>implicit_end</span>
   <span class='ivar'>@block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_pop'>pop</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -481,22 +417,6 @@
       <li>Psych::Handlers::DocumentStream#start_document</li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -504,13 +424,13 @@
       <pre class="lines">
 
 
-61
-62
-63
-64</pre>
+46
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/styled_document_stream.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/styled_document_stream.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_document'>start_document</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='comma'>,</span><span class='id identifier rubyid_tag_directives'>tag_directives</span><span class='comma'>,</span><span class='id identifier rubyid_implicit'>implicit</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Nodes</span><span class='op'>::</span><span class='const'>Document</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='comma'>,</span><span class='id identifier rubyid_tag_directives'>tag_directives</span><span class='comma'>,</span><span class='id identifier rubyid_implicit'>implicit</span><span class='rparen'>)</span>

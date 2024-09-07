@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus::Ext::NodeExt
   
-    &mdash; Psychgus v1.3.2 Doc
+    &mdash; Psychgus
   
 </title>
 
@@ -93,38 +93,6 @@
 </div>
 <div class="tags">
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Jonathan Bradley Whited (@esotericpig)</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -204,7 +172,7 @@
 <div class="tags">
   
   <div class="examples">
-    <p class="tag_title">Examples:</p>
+    <h4 class="tag_title">Examples:</h4>
     
       
       <pre class="example code"><code><span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_node_of?'>node_of?</span><span class='lparen'>(</span><span class='symbol'>:alias</span><span class='rparen'>)</span>
@@ -261,22 +229,6 @@
       <li><span class='object_link'><a href="../../Psychgus.html#node_class-class_method" title="Psychgus.node_class (method)">Psychgus.node_class</a></span></li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -284,22 +236,22 @@
       <pre class="lines">
 
 
-57
-58
-59
-60
-61
-62
-63</pre>
+42
+43
+44
+45
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/ext/node_ext.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/ext/node_ext.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_node_of?'>node_of?</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_names'>names</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_names'>names</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
     <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='period'>.</span><span class='id identifier rubyid_node_class'><span class='object_link'><a href="../../Psychgus.html#node_class-class_method" title="Psychgus.node_class (method)">node_class</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  
+
   <span class='kw'>return</span> <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>

@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus::Ext::YAMLTreeExt
   
-    &mdash; Psychgus v1.3.2 Doc
+    &mdash; Psychgus
   
 </title>
 
@@ -93,38 +93,6 @@
 </div>
 <div class="tags">
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Jonathan Bradley Whited (@esotericpig)</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -261,22 +229,6 @@
       <li><span class='object_link'><a href="../StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></li>
     
   </ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>1.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -284,6 +236,11 @@
       <pre class="lines">
 
 
+66
+67
+68
+69
+70
 71
 72
 73
@@ -303,43 +260,34 @@
 87
 88
 89
-90
-91
-92
-93
-94
-95
-96
-97</pre>
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus/ext/yaml_tree_ext.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus/ext/yaml_tree_ext.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_styler_count'>styler_count</span> <span class='op'>=</span> <span class='int'>0</span>
-  
-  <span class='kw'>if</span> <span class='ivar'>@emitter</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></span><span class='rparen'>)</span>    <span class='comment'># Blueberry?
-</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:psychgus_stylers</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@emitter</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></span><span class='rparen'>)</span>
+    <span class='comment'># Blueberry?
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:psychgus_stylers</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_stylers'>stylers</span> <span class='op'>=</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_psychgus_stylers'>psychgus_stylers</span><span class='lparen'>(</span><span class='ivar'>@emitter</span><span class='period'>.</span><span class='id identifier rubyid_sniffer'>sniffer</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_stylers_old_len'>stylers_old_len</span> <span class='op'>=</span> <span class='ivar'>@emitter</span><span class='period'>.</span><span class='id identifier rubyid_stylers'>stylers</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
-      
+
       <span class='ivar'>@emitter</span><span class='period'>.</span><span class='id identifier rubyid_add_styler'>add_styler</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='rparen'>)</span>
-      
+
       <span class='id identifier rubyid_styler_count'>styler_count</span> <span class='op'>=</span> <span class='ivar'>@emitter</span><span class='period'>.</span><span class='id identifier rubyid_stylers'>stylers</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>-</span> <span class='id identifier rubyid_stylers_old_len'>stylers_old_len</span>
     <span class='kw'>end</span>
-    
+
     <span class='comment'># Dereference aliases?
-</span>    <span class='kw'>if</span> <span class='ivar'>@emitter</span><span class='period'>.</span><span class='id identifier rubyid_deref_aliases?'>deref_aliases?</span><span class='lparen'>(</span><span class='rparen'>)</span>
-      <span class='ivar'>@st</span><span class='period'>.</span><span class='id identifier rubyid_remove_alias'>remove_alias</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:object_id</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@st</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
+</span>    <span class='ivar'>@st</span><span class='period'>.</span><span class='id identifier rubyid_psychgus_unregister'>psychgus_unregister</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@emitter</span><span class='period'>.</span><span class='id identifier rubyid_deref_aliases?'>deref_aliases?</span>
   <span class='kw'>end</span>
-  
+
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
-  
+
   <span class='comment'># Check styler_count because @emitter may not be a StyledTreeBuilder and target may not be a Blueberry
 </span>  <span class='ivar'>@emitter</span><span class='period'>.</span><span class='id identifier rubyid_pop_styler'>pop_styler</span><span class='lparen'>(</span><span class='id identifier rubyid_styler_count'>styler_count</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_styler_count'>styler_count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
-  
+
   <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
 <span class='kw'>end</span></pre>
     </td>

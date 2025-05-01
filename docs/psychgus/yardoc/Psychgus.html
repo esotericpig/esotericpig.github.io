@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus
   
-    &mdash; Psychgus
+    &mdash; Psychgus v1.3.6
   
 </title>
 
@@ -263,7 +263,7 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1.3.5</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1.3.6</span><span class='tstring_end'>&#39;</span></span></pre></dd>
       
     </dl>
   
@@ -405,7 +405,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#node_const-class_method" title="node_const (class method)">.<strong>node_const</strong>(class_name, const_name, lenient = true)  &#x21d2; Integer, Object </a>
+      <a href="#node_const-class_method" title="node_const (class method)">.<strong>node_const</strong>(class_name, const_name, lenient: true)  &#x21d2; Integer, Object </a>
     
 
     
@@ -663,14 +663,14 @@
       <pre class="lines">
 
 
-381
-382
-383</pre>
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 381</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 119</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span><span class='id identifier rubyid_io'>io</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span><span class='id identifier rubyid_io'>io</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_dump_stream'>dump_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span><span class='label'>io:</span> <span class='id identifier rubyid_io'>io</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -755,10 +755,10 @@
         &mdash;
         <div class='inline'>
 <p>the IO open mode to use; examples:</p>
-<dl class="rdoc-list label-list"><dt><tt>‘w:UTF-8’</tt>
+<dl class="rdoc-list label-list"><dt><tt>‘w:UTF-8’</tt></dt>
 <dd>
 <p>create a new file or truncate an existing file and use UTF-8 encoding;</p>
-</dd><dt><tt>‘a:UTF-16’</tt>
+</dd><dt><tt>‘a:UTF-16’</tt></dt>
 <dd>
 <p>create a new file or append to an existing file and use UTF-16 encoding</p>
 </dd></dl>
@@ -840,16 +840,16 @@
       <pre class="lines">
 
 
-407
-408
-409
-410
-411
-412
-413</pre>
+145
+146
+147
+148
+149
+150
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 407</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 145</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dump_file'>dump_file</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='op'>*</span><span class='id identifier rubyid_objects'>objects</span><span class='comma'>,</span><span class='label'>mode:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='label'>perm:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>opt:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_opt'>opt</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='lparen'>(</span><span class='id identifier rubyid_opt'>opt</span><span class='rparen'>)</span>
@@ -968,22 +968,22 @@
         &mdash;
         <div class='inline'>
 <p>the options (or keyword args) to use when converting to YAML:</p>
-<dl class="rdoc-list label-list"><dt><code>:indent</code>
+<dl class="rdoc-list label-list"><dt><code>:indent</code></dt>
 <dd>
 <p>Alias for <code>:indentation</code>. <code>:indentation</code> will override this.</p>
-</dd><dt><code>:indentation</code>
+</dd><dt><code>:indentation</code></dt>
 <dd>
 <p>Default: <code>2</code>. Number of space characters used to indent. Acceptable value should be in <code>0..9</code> range, else ignored.</p>
-</dd><dt><code>:line_width</code>
+</dd><dt><code>:line_width</code></dt>
 <dd>
 <p>Default: <code>0</code> (meaning “wrap at 81”). Max character to wrap line at.</p>
-</dd><dt><code>:canon</code>
+</dd><dt><code>:canon</code></dt>
 <dd>
 <p>Alias for <code>:canonical</code>. <code>:canonical</code> will override this.</p>
-</dd><dt><code>:canonical</code>
+</dd><dt><code>:canonical</code></dt>
 <dd>
 <p>Default: <code>false</code>. Write “canonical” YAML form (very verbose, yet strictly formal).</p>
-</dd><dt><code>:header</code>
+</dd><dt><code>:header</code></dt>
 <dd>
 <p>Default: <code>false</code>. Write <tt>%YAML [version]</tt> at the beginning of document.</p>
 </dd></dl>
@@ -1027,63 +1027,65 @@
       <pre class="lines">
 
 
-441
-442
-443
-444
-445
-446
-447
-448
-449
-450
-451
-452
-453
-454
-455
-456
-457
-458
-459
-460
-461
-462
-463
-464
-465
-466
-467
-468
-469
-470
-471
-472
-473
-474
-475
-476
-477
-478
-479
-480
-481
-482
-483
-484
-485
-486
-487</pre>
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 441</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dump_stream'>dump_stream</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_objects'>objects</span><span class='comma'>,</span><span class='label'>io:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='comment'># If you call this method with only a Hash that uses symbols as keys,
 </span>  <span class='comment'># then options will be set to the Hash, instead of objects.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># For example, the below will be stored in options, not objects:
-</span>  <span class='comment'># - dump_stream({:coffee =&gt; {:roast =&gt; [],:style =&gt; []}})
+</span>  <span class='comment'># - dump_stream({coffee: {roast: [],style: []}})
 </span>  <span class='comment'>#
 </span>  <span class='comment'># This if-statement is guaranteed because dump_stream([]) and dump_stream(nil)
 </span>  <span class='comment'># will produce [[]] and [nil], which are not empty.
@@ -1107,13 +1109,15 @@
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>=</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Visitors</span><span class='op'>::</span><span class='const'>YAMLTree</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html#initialize-instance_method" title="Psychgus::StyledTreeBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span>
-    <span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>=</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Visitors</span><span class='op'>::</span><span class='const'>YAMLTree</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_options'>options</span><span class='comma'>,</span>
+    <span class='const'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html#initialize-instance_method" title="Psychgus::StyledTreeBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='rparen'>)</span>
+  <span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_objects'>objects</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
     <span class='comment'># Else, will throw a cryptic NoMethodError:
-</span>    <span class='comment'># - &quot;psych/tree_builder.rb:in `set_end_location&#39;:
-</span>    <span class='comment'>#    undefined method `end_line=&#39; for nil:NilClass (NoMethodError)&quot;
+</span>    <span class='comment'>#   psych/tree_builder.rb:in `set_end_location&#39;:
+</span>    <span class='comment'>#   undefined method `end_line=&#39; for nil:NilClass (NoMethodError)
 </span>    <span class='comment'>#
 </span>    <span class='comment'># This should never occur because of the if-statement at the top of this method.
 </span>    <span class='id identifier rubyid_visitor'>visitor</span> <span class='op'>&lt;&lt;</span> <span class='kw'>nil</span>
@@ -1158,21 +1162,21 @@
       <pre class="example code"><code><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>psychgus</span><span class='tstring_end'>&#39;</span></span>
 
 <span class='id identifier rubyid_burgers'>burgers</span> <span class='op'>=</span> <span class='lbrace'>{</span>
-  <span class='symbol'>:burgers</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
-    <span class='symbol'>:classic</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:sauce</span>  <span class='op'>=&gt;</span> <span class='qwords_beg'>%w(</span><span class='tstring_content'>Ketchup</span><span class='words_sep'> </span><span class='tstring_content'>Mustard</span><span class='tstring_end'>)</span></span><span class='comma'>,</span>
-                 <span class='symbol'>:cheese</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>American</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-                 <span class='symbol'>:bun</span>    <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sesame Seed</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='comma'>,</span>
-    <span class='symbol'>:bbq</span>     <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:sauce</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Honey BBQ</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-                 <span class='symbol'>:cheese</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cheddar</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-                 <span class='symbol'>:bun</span>    <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Kaiser</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='comma'>,</span>
-    <span class='symbol'>:fancy</span>   <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:sauce</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Spicy Wasabi</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-                 <span class='symbol'>:cheese</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Smoked Gouda</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-                 <span class='symbol'>:bun</span>    <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hawaiian</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
+  <span class='label'>burgers:</span> <span class='lbrace'>{</span>
+    <span class='label'>classic:</span> <span class='lbrace'>{</span><span class='label'>sauce:</span>  <span class='qwords_beg'>%w[</span><span class='tstring_content'>Ketchup</span><span class='words_sep'> </span><span class='tstring_content'>Mustard</span><span class='tstring_end'>]</span></span><span class='comma'>,</span>
+              <span class='label'>cheese:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>American</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+              <span class='label'>bun:</span>    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sesame Seed</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>bbq:</span>     <span class='lbrace'>{</span><span class='label'>sauce:</span>  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Honey BBQ</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+              <span class='label'>cheese:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cheddar</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+              <span class='label'>bun:</span>    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Kaiser</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>fancy:</span>   <span class='lbrace'>{</span><span class='label'>sauce:</span>  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Spicy Wasabi</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+              <span class='label'>cheese:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Smoked Gouda</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+              <span class='label'>bun:</span>    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hawaiian</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='comma'>,</span>
   <span class='rbrace'>}</span><span class='comma'>,</span>
-  <span class='symbol'>:toppings</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
+  <span class='label'>toppings:</span> <span class='lbracket'>[</span>
     <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mushrooms</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='qwords_beg'>%w(</span><span class='tstring_content'>Lettuce</span><span class='words_sep'> </span><span class='tstring_content'>Onions</span><span class='words_sep'> </span><span class='tstring_content'>Pickles</span><span class='words_sep'> </span><span class='tstring_content'>Tomatoes</span><span class='tstring_end'>)</span></span><span class='comma'>,</span>
-    <span class='lbracket'>[</span><span class='qwords_beg'>%w(</span><span class='tstring_content'>Ketchup</span><span class='words_sep'> </span><span class='tstring_content'>Mustard</span><span class='tstring_end'>)</span></span><span class='comma'>,</span> <span class='qwords_beg'>%w(</span><span class='tstring_content'>Salt</span><span class='words_sep'> </span><span class='tstring_content'>Pepper</span><span class='tstring_end'>)</span></span><span class='rbracket'>]</span>
+    <span class='qwords_beg'>%w[</span><span class='tstring_content'>Lettuce</span><span class='words_sep'> </span><span class='tstring_content'>Onions</span><span class='words_sep'> </span><span class='tstring_content'>Pickles</span><span class='words_sep'> </span><span class='tstring_content'>Tomatoes</span><span class='tstring_end'>]</span></span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='qwords_beg'>%w[</span><span class='tstring_content'>Ketchup</span><span class='words_sep'> </span><span class='tstring_content'>Mustard</span><span class='tstring_end'>]</span></span><span class='comma'>,</span> <span class='qwords_beg'>%w[</span><span class='tstring_content'>Salt</span><span class='words_sep'> </span><span class='tstring_content'>Pepper</span><span class='tstring_end'>]</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
   <span class='rbracket'>]</span>
 <span class='rbrace'>}</span>
 
@@ -1301,16 +1305,16 @@
       <pre class="lines">
 
 
-575
-576
-577
-578
-579
-580
-581</pre>
+315
+316
+317
+318
+319
+320
+321</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 575</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 315</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_hierarchy'>hierarchy</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_objects'>objects</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_styler'>styler</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Psychgus/Stylers.html" title="Psychgus::Stylers (module)">Stylers</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Psychgus/Stylers/HierarchyStyler.html" title="Psychgus::Stylers::HierarchyStyler (class)">HierarchyStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/Stylables/HierarchyStylable.html#initialize-instance_method" title="Psychgus::Stylables::HierarchyStylable#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
@@ -1404,17 +1408,17 @@
       <pre class="lines">
 
 
-317
-318
-319
-320
-321
-322
-323
-324</pre>
+55
+56
+57
+58
+59
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 317</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_node_class'>node_class</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='period'>.</span><span class='id identifier rubyid_capitalize'>capitalize</span>
@@ -1432,7 +1436,7 @@
       <div class="method_details ">
   <h3 class="signature " id="node_const-class_method">
   
-    .<strong>node_const</strong>(class_name, const_name, lenient = true)  &#x21d2; <tt>Integer</tt>, <tt>Object</tt> 
+    .<strong>node_const</strong>(class_name, const_name, lenient: true)  &#x21d2; <tt>Integer</tt>, <tt>Object</tt> 
   
 
   
@@ -1534,18 +1538,18 @@
       <pre class="lines">
 
 
-335
-336
-337
-338
-339
-340
-341</pre>
+73
+74
+75
+76
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 335</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 73</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='id identifier rubyid_class_name'>class_name</span><span class='comma'>,</span><span class='id identifier rubyid_const_name'>const_name</span><span class='comma'>,</span><span class='id identifier rubyid_lenient'>lenient</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_node_const'>node_const</span><span class='lparen'>(</span><span class='id identifier rubyid_class_name'>class_name</span><span class='comma'>,</span><span class='id identifier rubyid_const_name'>const_name</span><span class='comma'>,</span><span class='label'>lenient:</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_node_class'>node_class</span> <span class='op'>=</span> <span class='id identifier rubyid_node_class'>node_class</span><span class='lparen'>(</span><span class='id identifier rubyid_class_name'>class_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_const_name'>const_name</span> <span class='op'>=</span> <span class='id identifier rubyid_const_name'>const_name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
 
@@ -1650,16 +1654,16 @@
       <pre class="lines">
 
 
-596
-597
-598
-599
-600
-601
-602</pre>
+336
+337
+338
+339
+340
+341
+342</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 596</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 336</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_parse_stream'>parse_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_node'>node</span><span class='op'>|</span>
@@ -1824,18 +1828,18 @@
       <pre class="lines">
 
 
-622
-623
-624
-625
-626
-627
-628
-629
-630</pre>
+362
+363
+364
+365
+366
+367
+368
+369
+370</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 622</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 362</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse_file'>parse_file</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='label'>fallback:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='label'>mode:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r:BOM|UTF-8</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='label'>opt:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_kargs'>kargs</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_opt'>opt</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='lparen'>(</span><span class='id identifier rubyid_opt'>opt</span><span class='rparen'>)</span>
@@ -1876,17 +1880,17 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_burgers'>burgers</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;EOY</span>
-<span class='tstring_content'>---
-Burgers:
-  Classic:
-    BBQ: {Sauce: Honey BBQ, Cheese: Cheddar, Bun: Kaiser}
----
-Toppings:
-- [Mushrooms, Mustard]
-- [Salt, Pepper, Pickles]
----
-`Invalid`
+      <pre class="example code"><code><span class='id identifier rubyid_burgers'>burgers</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~EOY</span>
+<span class='tstring_content'>  ---
+</span><span class='tstring_content'>  Burgers:
+</span><span class='tstring_content'>    Classic:
+</span><span class='tstring_content'>      BBQ: {Sauce: Honey BBQ, Cheese: Cheddar, Bun: Kaiser}
+</span><span class='tstring_content'>  ---
+</span><span class='tstring_content'>  Toppings:
+</span><span class='tstring_content'>  - [Mushrooms, Mustard]
+</span><span class='tstring_content'>  - [Salt, Pepper, Pickles]
+</span><span class='tstring_content'>  ---
+</span><span class='tstring_content'>  `Invalid`
 </span><span class='heredoc_end'>EOY
 </span>
 <span class='id identifier rubyid_i'>i</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -2037,27 +2041,29 @@ Toppings:
       <pre class="lines">
 
 
-682
-683
-684
-685
-686
-687
-688
-689
-690
-691
-692
-693
-694</pre>
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 682</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 422</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse_stream'>parse_stream</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='label'>filename:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>stylers:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
-    <span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Parser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Psychgus/StyledDocumentStream.html" title="Psychgus::StyledDocumentStream (class)">StyledDocumentStream</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledDocumentStream.html#initialize-instance_method" title="Psychgus::StyledDocumentStream#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span>
-      <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Parser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='const'><span class='object_link'><a href="Psychgus/StyledDocumentStream.html" title="Psychgus::StyledDocumentStream (class)">StyledDocumentStream</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledDocumentStream.html#initialize-instance_method" title="Psychgus::StyledDocumentStream#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='rparen'>)</span>
 
     <span class='kw'>return</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml'>yaml</span><span class='comma'>,</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
@@ -2103,16 +2109,16 @@ Toppings:
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 
-<span class='id identifier rubyid_coffee'>coffee</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;EOY</span>
-<span class='tstring_content'>Coffee:
-  Roast:
-    - Light
-    - Medium
-    - Dark
-  Style:
-    - Cappuccino
-    - Latte
-    - Mocha
+<span class='id identifier rubyid_coffee'>coffee</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~EOY</span>
+<span class='tstring_content'>  Coffee:
+</span><span class='tstring_content'>    Roast:
+</span><span class='tstring_content'>      - Light
+</span><span class='tstring_content'>      - Medium
+</span><span class='tstring_content'>      - Dark
+</span><span class='tstring_content'>    Style:
+</span><span class='tstring_content'>      - Cappuccino
+</span><span class='tstring_content'>      - Latte
+</span><span class='tstring_content'>      - Mocha
 </span><span class='heredoc_end'>EOY
 </span>
 <span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Psychgus (module)">Psychgus</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parser'>parser</span><span class='lparen'>(</span><span class='label'>stylers:</span> <span class='const'>CoffeeStyler</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
@@ -2200,12 +2206,12 @@ Toppings:
       <pre class="lines">
 
 
-736
-737
-738</pre>
+477
+478
+479</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 736</span>
+      <pre class="code"><span class="info file"># File 'lib/psychgus.rb', line 477</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parser'>parser</span><span class='lparen'>(</span><span class='label'>stylers:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='kw'>false</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='const'>Psych</span><span class='op'>::</span><span class='const'>Parser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html" title="Psychgus::StyledTreeBuilder (class)">StyledTreeBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Psychgus/StyledTreeBuilder.html#initialize-instance_method" title="Psychgus::StyledTreeBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_stylers'>stylers</span><span class='comma'>,</span><span class='label'>deref_aliases:</span> <span class='id identifier rubyid_deref_aliases'>deref_aliases</span><span class='comma'>,</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -2219,10 +2225,10 @@ Toppings:
 
 </div>
 
-      
-<div id="footer">
-  Generated by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+      <div id="footer">
+  Generated on Thu May  1 13:36:17 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.3.4).
 </div>
 
     </div>

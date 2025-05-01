@@ -6,7 +6,7 @@
 <title>
   Module: Psychgus::Stylers
   
-    &mdash; Psychgus
+    &mdash; Psychgus v1.3.6
   
 </title>
 
@@ -107,21 +107,23 @@
 <span class='kw'>class</span> <span class='const'>EggCarton</span>
   <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
     <span class='ivar'>@eggs</span> <span class='op'>=</span> <span class='lbrace'>{</span>
-      <span class='symbol'>:styles</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fried</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scrambled</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BBQ</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ketchup &amp; mustard</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='comma'>,</span>
-      <span class='symbol'>:colors</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>brown</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>white</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>blue</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>green</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+      <span class='label'>styles:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fried</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scrambled</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BBQ</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ketchup &amp; mustard</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>colors:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>brown</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>white</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>blue</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>green</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='comma'>,</span>
     <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 
 <span class='id identifier rubyid_hierarchy'>hierarchy</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Stylers/HierarchyStyler.html" title="Psychgus::Stylers::HierarchyStyler (class)">HierarchyStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Stylables/HierarchyStylable.html#initialize-instance_method" title="Psychgus::Stylables::HierarchyStylable#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>io:</span> <span class='gvar'>$stdout</span><span class='rparen'>)</span>
 
-<span class='id identifier rubyid_puts'>puts</span> <span class='const'>EggCarton</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_to_yaml'>to_yaml</span><span class='lparen'>(</span><span class='label'>stylers:</span> <span class='lbracket'>[</span>
-  <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Stylers/NoSymStyler.html" title="Psychgus::Stylers::NoSymStyler (class)">NoSymStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Stylables/NoSymStylable.html#initialize-instance_method" title="Psychgus::Stylables::NoSymStylable#initialize (method)">new</a></span></span><span class='comma'>,</span>
-  <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Stylers/NoTagStyler.html" title="Psychgus::Stylers::NoTagStyler (class)">NoTagStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='comma'>,</span>
-  <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Stylers/CapStyler.html" title="Psychgus::Stylers::CapStyler (class)">CapStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Stylables/CapStylable.html#initialize-instance_method" title="Psychgus::Stylables::CapStylable#initialize (method)">new</a></span></span><span class='comma'>,</span>
-  <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Stylers/FlowStyler.html" title="Psychgus::Stylers::FlowStyler (class)">FlowStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Stylables/SeqFlowStylable.html#initialize-instance_method" title="Psychgus::Stylables::SeqFlowStylable#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='int'>4</span><span class='rparen'>)</span><span class='comma'>,</span>
-  <span class='id identifier rubyid_hierarchy'>hierarchy</span>
-<span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='const'>EggCarton</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_to_yaml'>to_yaml</span><span class='lparen'>(</span>
+  <span class='label'>stylers:</span> <span class='lbracket'>[</span>
+    <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Stylers/NoSymStyler.html" title="Psychgus::Stylers::NoSymStyler (class)">NoSymStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Stylables/NoSymStylable.html#initialize-instance_method" title="Psychgus::Stylables::NoSymStylable#initialize (method)">new</a></span></span><span class='comma'>,</span>
+    <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Stylers/NoTagStyler.html" title="Psychgus::Stylers::NoTagStyler (class)">NoTagStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='comma'>,</span>
+    <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Stylers/CapStyler.html" title="Psychgus::Stylers::CapStyler (class)">CapStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Stylables/CapStylable.html#initialize-instance_method" title="Psychgus::Stylables::CapStylable#initialize (method)">new</a></span></span><span class='comma'>,</span>
+    <span class='const'><span class='object_link'><a href="../Psychgus.html" title="Psychgus (module)">Psychgus</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Stylers/FlowStyler.html" title="Psychgus::Stylers::FlowStyler (class)">FlowStyler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Stylables/SeqFlowStylable.html#initialize-instance_method" title="Psychgus::Stylables::SeqFlowStylable#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='int'>4</span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_hierarchy'>hierarchy</span><span class='comma'>,</span>
+  <span class='rbracket'>]</span>
+<span class='rparen'>)</span>
 
 <span class='comment'># Output:
 </span><span class='comment'># ---
@@ -182,10 +184,10 @@
 
 </div>
 
-      
-<div id="footer">
-  Generated by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+      <div id="footer">
+  Generated on Thu May  1 13:36:17 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.3.4).
 </div>
 
     </div>

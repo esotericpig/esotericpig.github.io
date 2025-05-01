@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Psychgus
+    &mdash; Psychgus v1.3.6
   
 </title>
 
@@ -26,7 +26,7 @@
 
 
     <!-- YardGhurt::GFMFixTask CSS - Do NOT remove this comment! -->
-    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+    <link rel="stylesheet" type="text/css" href="/css/prism.css" />
 
   </head>
   <body>
@@ -64,7 +64,7 @@
 
 <p><a href="https://badge.fury.io/rb/psychgus"><img src="https://badge.fury.io/rb/psychgus.svg" alt="Gem Version"></a>
 <a href="https://github.com/esotericpig/psychgus/actions/workflows/ci.yml"><img src="https://github.com/esotericpig/psychgus/actions/workflows/ci.yml/badge.svg" alt="CI Status"></a>
-<a href="https://inch-ci.org/github/esotericpig/psychgus"><img src="http://inch-ci.org/github/esotericpig/psychgus.svg?branch=master" alt="Doc Coverage"></a></p>
+<a href="https://inch-ci.org/github/esotericpig/psychgus"><img src="http://inch-ci.org/github/esotericpig/psychgus.svg?branch=main" alt="Doc Coverage"></a></p>
 
 <p><a href="https://esotericpig.github.io/docs/psychgus/yardoc/index.html"><img src="https://img.shields.io/badge/doc-yard-%23A0522D.svg" alt="Documentation"></a>
 <a href="https://github.com/esotericpig/psychgus"><img src="https://img.shields.io/badge/source-github-%23211F1F.svg" alt="Source Code"></a>
@@ -78,10 +78,7 @@
 <pre class="code YAML"><code class="language-yaml">---
 Psych Gus:
   Aliases:
-  - Longbranch Pennywhistle
   - Squirts Macintosh
-  - Clementine Woolysocks
-  - Lavender Gooms
   - Big Baby Burton
   - Chocolate Einstein
   - MC Clap Yo Handz
@@ -95,8 +92,7 @@ Psych Gus:
 
 <pre class="code YAML"><code class="language-yaml">---
 Psych Gus:
-  Aliases: [Longbranch Pennywhistle, Squirts Macintosh, Clementine Woolysocks, Lavender
-      Gooms, Big Baby Burton, Chocolate Einstein, MC Clap Yo Handz]
+  Aliases: [Squirts Macintosh, Big Baby Burton, Chocolate Einstein, MC Clap Yo Handz]
   Skills: [The Blueberry, The Super Sniffer, Positive Work Attitude]
 </code></pre>
 
@@ -111,22 +107,13 @@ Psych Gus:
 <li><a href="#using">Using</a>
 
 <ul>
+<li><a href="#common-stylers">Common Stylers</a></li>
 <li><a href="#simple-example">Simple Example</a></li>
 <li><a href="#hash-example">Hash Example</a></li>
 <li><a href="#class-example">Class Example</a></li>
 <li><a href="#advanced-usage">Advanced Usage</a></li>
-<li><a href="#common-stylers">Common Stylers</a>
-
-<ul>
-<li><a href="#stylers-example">Stylers Example</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#hacking">Hacking</a>
-
-<ul>
-<li><a href="#testing">Testing</a></li>
-<li><a href="#generating-doc">Generating Doc</a></li>
-</ul></li>
+<li><a href="#hacking">Hacking</a></li>
 <li><a href="#license">License</a></li>
 </ul>
 
@@ -138,24 +125,21 @@ Psych Gus:
 
 <p><code>$ gem install psychgus</code></p>
 
-<p>In your <em>Gemspec</em> (<em>&lt;project&gt;.gemspec</em>):</p>
+<p>In your <em>.gemspec</em> file:</p>
 
-<pre class="code Ruby"><code class="language-ruby"># Pick one...
-spec.add_dependency &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;
-spec.add_development_dependency &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;
+<pre class="code Ruby"><code class="language-ruby">spec.add_dependency &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;
 </code></pre>
 
 <p>In your <em>Gemfile</em>:</p>
 
 <pre class="code Ruby"><code class="language-ruby"># Pick one...
-gem &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;
-gem &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;, :group =&gt; :development
-gem &#39;psychgus&#39;, :git =&gt; &#39;https://github.com/esotericpig/psychgus.git&#39;, :tag =&gt; &#39;vX.X.X&#39;
+gem &#39;psychgus&#39;, &#39;~&gt; X.X.X&#39;, group: :development
+gem &#39;psychgus&#39;, git: &#39;https://github.com/esotericpig/psychgus.git&#39;, tag: &#39;vX.X.X&#39;
 </code></pre>
 
 <p>Manually:</p>
 
-<pre class="code ruby"><code class="ruby">$ git clone &#39;https://github.com/esotericpig/psychgus.git&#39;
+<pre class="code ruby"><code class="ruby">$ git clone --depth 1 &#39;https://github.com/esotericpig/psychgus.git&#39;
 $ cd psychgus
 $ bundle install
 $ bundle exec rake install:local
@@ -171,13 +155,92 @@ $ bundle exec rake install:local
 
 <p>Instead of making your own styler, you can also use one of the <a href="#common-stylers">pre-defined stylers</a>.</p>
 
-<h3 id="contents-using">Contents | Using</h3>
-
-<p><a href="#simple-example">Simple Example</a>
+<p><a href="#common-stylers">Common Stylers</a>
+| <a href="#simple-example">Simple Example</a>
 | <a href="#hash-example">Hash Example</a>
 | <a href="#class-example">Class Example</a>
-| <a href="#advanced-usage">Advanced Usage</a>
-| <a href="#common-stylers">Common Stylers</a></p>
+| <a href="#advanced-usage">Advanced Usage</a></p>
+
+<h3 id="common-stylers">Common Stylers</h3>
+
+<p>A collection of commonly-used <a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers.html">Stylers</a> and <a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylables.html">Stylables</a> are included with Psychgus. They&#39;re the easiest &amp; quickest way to get started.</p>
+
+<table><thead>
+<tr>
+<th>Styler</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/CapStyler.html">CapStyler</a></td>
+<td>Capitalizer for Scalars</td>
+</tr>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/FlowStyler.html">FlowStyler</a></td>
+<td>FLOW style changer for Mappings &amp; Sequences</td>
+</tr>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/MapFlowStyler.html">MapFlowStyler</a></td>
+<td>FLOW style changer for Mappings only</td>
+</tr>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/NoSymStyler.html">NoSymStyler</a></td>
+<td>Symbol remover for Scalars</td>
+</tr>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/NoTagStyler.html">NoTagStyler</a></td>
+<td>Tag remover for classes</td>
+</tr>
+<tr>
+<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/SeqFlowStyler.html">SeqFlowStyler</a></td>
+<td>FLOW style changer for Sequences only</td>
+</tr>
+</tbody></table>
+
+<p>Example usage:</p>
+
+<pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
+
+class EggCarton
+  def initialize
+    @eggs = {
+      styles: [&#39;fried&#39;, &#39;scrambled&#39;, [&#39;BBQ&#39;, &#39;ketchup &amp; mustard&#39;]],
+      colors: [&#39;brown&#39;, &#39;white&#39;, [&#39;blue&#39;, &#39;green&#39;]],
+    }
+  end
+end
+
+puts EggCarton.new.to_yaml(
+  stylers: [
+    Psychgus::NoSymStyler.new,
+    Psychgus::NoTagStyler.new,
+    Psychgus::CapStyler.new,
+    Psychgus::FlowStyler.new(4),
+  ]
+)
+
+# Output:
+# ---
+# Eggs:
+#   Styles: [Fried, Scrambled, [BBQ, Ketchup &amp; Mustard]]
+#   Colors: [Brown, White, [Blue, Green]]
+
+puts EggCarton.new.to_yaml
+
+# Output (without Stylers):
+# --- !ruby/object:EggCarton
+# eggs:
+#   :styles:
+#   - fried
+#   - scrambled
+#   - - BBQ
+#     - ketchup &amp; mustard
+#   :colors:
+#   - brown
+#   - white
+#   - - blue
+#     - green
+</code></pre>
 
 <h3 id="simple-example">Simple Example</h3>
 
@@ -192,8 +255,8 @@ class CoffeeStyler
 end
 
 coffee = {
-  &#39;Roast&#39;=&gt;[&#39;Light&#39;, &#39;Medium&#39;, &#39;Dark&#39;, &#39;Extra Dark&#39;],
-  &#39;Style&#39;=&gt;[&#39;Cappuccino&#39;, &#39;Espresso&#39;, &#39;Latte&#39;, &#39;Mocha&#39;]
+  &#39;Roast&#39; =&gt; [&#39;Light&#39;, &#39;Medium&#39;, &#39;Dark&#39;, &#39;Extra Dark&#39;],
+  &#39;Style&#39; =&gt; [&#39;Cappuccino&#39;, &#39;Espresso&#39;, &#39;Latte&#39;, &#39;Mocha&#39;],
 }
 
 puts coffee.to_yaml(stylers: CoffeeStyler.new)
@@ -231,59 +294,54 @@ puts Coffee.new.to_yaml
 class BurgerStyler
   include Psychgus::Styler # Mix in methods needed for styling
 
-  # Style maps (Psych::Nodes::Mapping)
-  # - Hashes (key/value pairs)
-  # - Example: &quot;Burgers: Classic {}&quot;
+  # Style hash maps (Psych::Nodes::Mapping).
   def style_mapping(sniffer,node)
     node.style = Psychgus::MAPPING_FLOW if sniffer.level &gt;= 4
   end
 
-  # Style scalars (Psych::Nodes::Scalar)
-  # - Any text (non-alias)
+  # Style non-alias text (Psych::Nodes::Scalar).
   def style_scalar(sniffer,node)
-    # Remove colon (change symbols into strings)
+    # Remove colon (change symbols into strings).
     node.value = node.value.sub(&#39;:&#39;,&#39;&#39;)
 
     # Capitalize each word
     node.value = node.value.split(&#39; &#39;).map do |v|
       if v.casecmp(&#39;BBQ&#39;) == 0
-        v.upcase()
+        v.upcase
       else
-        v.capitalize()
+        v.capitalize
       end
     end.join(&#39; &#39;)
 
-    # Change lettuce to spinach
+    # Change lettuce to spinach.
     node.value = &#39;Spinach&#39; if node.value == &#39;Lettuce&#39;
   end
 
-  # Style sequences (Psych::Nodes::Sequence)
-  # - Arrays
-  # - Example: &quot;[Lettuce, Onions, Pickles, Tomatoes]&quot;
+  # Style arrays (Psych::Nodes::Sequence).
   def style_sequence(sniffer,node)
     node.style = Psychgus::SEQUENCE_FLOW if sniffer.level &gt;= 4
   end
 end
 
 burgers = {
-  :burgers =&gt; {
-    :classic =&gt; {:sauce  =&gt; %w(Ketchup Mustard),
-                 :cheese =&gt; &#39;American&#39;,
-                 :bun    =&gt; &#39;Sesame Seed&#39;},
-    :bbq     =&gt; {:sauce  =&gt; &#39;Honey BBQ&#39;,
-                 :cheese =&gt; &#39;Cheddar&#39;,
-                 :bun    =&gt; &#39;Kaiser&#39;},
-    :fancy   =&gt; {:sauce  =&gt; &#39;Spicy Wasabi&#39;,
-                 :cheese =&gt; &#39;Smoked Gouda&#39;,
-                 :bun    =&gt; &#39;Hawaiian&#39;}
+  burgers: {
+    classic: {sauce:  %w[Ketchup Mustard],
+              cheese: &#39;American&#39;,
+              bun:    &#39;Sesame Seed&#39;},
+    bbq:     {sauce:  &#39;Honey BBQ&#39;,
+              cheese: &#39;Cheddar&#39;,
+              bun:    &#39;Kaiser&#39;},
+    fancy:   {sauce:  &#39;Spicy Wasabi&#39;,
+              cheese: &#39;Smoked Gouda&#39;,
+              bun:    &#39;Hawaiian&#39;},
   },
-  :toppings =&gt; [
+  toppings: [
     &#39;Mushrooms&#39;,
-    %w(Lettuce Onions Pickles Tomatoes),
-    [%w(Ketchup Mustard), %w(Salt Pepper)]
+    %w[Lettuce Onions Pickles Tomatoes],
+    [%w[Ketchup Mustard], %w[Salt Pepper]],
   ]
 }
-burgers[:favorite] = burgers[:burgers][:bbq] # Alias
+burgers[:favorite] = burgers[:burgers][:bbq] # Alias.
 
 puts burgers.to_yaml(indent: 3,stylers: BurgerStyler.new)
 
@@ -300,7 +358,7 @@ puts burgers.to_yaml(indent: 3,stylers: BurgerStyler.new)
 # Favorite: *1
 
 # Or pass in a Hash. Can also dereference aliases.
-puts burgers.to_yaml({:indent =&gt; 3,:stylers =&gt; BurgerStyler.new,:deref_aliases =&gt; true})
+puts burgers.to_yaml({indent: 3,stylers: BurgerStyler.new,deref_aliases: true})
 
 # Output:
 # ---
@@ -323,58 +381,53 @@ puts burgers.to_yaml({:indent =&gt; 3,:stylers =&gt; BurgerStyler.new,:deref_ali
 <pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
 
 class BurgerStyler
-  include Psychgus::Styler # Mix in methods needed for styling
+  include Psychgus::Styler # Mix in methods needed for styling.
 
   def initialize(sniffer)
     @class_level    = sniffer.level
     @class_position = sniffer.position
   end
 
-  # Style all nodes (Psych::Nodes::Node)
+  # Style all nodes (Psych::Nodes::Node).
   def style(sniffer,node)
-    # Remove &quot;!ruby/object:...&quot; for Burger classes (not Burgers class)
+    # Remove `!ruby/object:...` for Burger classes (not Burgers class).
     node.tag = nil if node.node_of?(:mapping,:scalar,:sequence)
 
-    # This is another way to do the above
+    # This is another way to do the above.
     #node.tag = nil if node.respond_to?(:tag=)
   end
 
-  # Style maps (Psych::Nodes::Mapping)
-  # - Hashes (key/value pairs)
-  # - Example: &quot;Burgers: Classic {}&quot;
+  # Style hash maps (Psych::Nodes::Mapping).
   def style_mapping(sniffer,node)
     parent = sniffer.parent
 
-    if !parent.nil?()
+    if !parent.nil?
       # BBQ
       node.style = Psychgus::MAPPING_FLOW if parent.node_of?(:scalar) &amp;&amp;
                                              parent.value.casecmp(&#39;BBQ&#39;) == 0
     end
   end
 
-  # Style scalars (Psych::Nodes::Scalar)
-  # - Any text (non-alias)
+  # Style non-alias text (Psych::Nodes::Scalar).
   def style_scalar(sniffer,node)
     parent = sniffer.parent
 
-    # Single quote scalars that are not keys to a map
-    # - &quot;child_key?&quot; is the same as &quot;child_type == :key&quot;
-    node.style = Psychgus::SCALAR_SINGLE_QUOTED unless parent.child_key?()
+    # Single quote scalars that are not keys to a map.
+    # - `child_key?` is the same as `child_type == :key`
+    node.style = Psychgus::SCALAR_SINGLE_QUOTED unless parent.child_key?
   end
 
-  # Style sequences (Psych::Nodes::Sequence)
-  # - Arrays
-  # - Example: &quot;[Lettuce, Onions, Pickles, Tomatoes]&quot;
+  # Style arrays (Psych::Nodes::Sequence).
   def style_sequence(sniffer,node)
     relative_level = (sniffer.level - @class_level) + 1
 
-    # &quot;[Ketchup, Mustard]&quot;
+    # `[Ketchup, Mustard]`
     node.style = Psychgus::SEQUENCE_FLOW if relative_level == 3
   end
 end
 
 class Burger
-  include Psychgus::Blueberry # Mix in methods needed to be stylable
+  include Psychgus::Blueberry # Mix in methods needed to be stylable.
 
   attr_accessor :bun
   attr_accessor :cheese
@@ -386,13 +439,13 @@ class Burger
     @sauce  = sauce
   end
 
-  # Return our styler(s)
+  # Return our styler(s).
   # - Can be an Array: [MyStyler1.new, MyStyler2.new]
   def psychgus_stylers(sniffer)
     return BurgerStyler.new(sniffer)
   end
 
-  # You can still use Psych&#39;s encode_with(), no problem
+  # You can still use Psych&#39;s encode_with(), no problem.
   def encode_with(coder)
     coder[&#39;Bun&#39;]    = @bun
     coder[&#39;Cheese&#39;] = @cheese
@@ -405,23 +458,23 @@ class Burgers
   attr_accessor :toppings
   attr_accessor :favorite
 
-  def initialize()
+  def initialize
     @burgers = {
       &#39;Classic&#39; =&gt; Burger.new([&#39;Ketchup&#39;,&#39;Mustard&#39;],&#39;American&#39;    ,&#39;Sesame Seed&#39;),
       &#39;BBQ&#39;     =&gt; Burger.new(&#39;Honey BBQ&#39;          ,&#39;Cheddar&#39;     ,&#39;Kaiser&#39;),
-      &#39;Fancy&#39;   =&gt; Burger.new(&#39;Spicy Wasabi&#39;       ,&#39;Smoked Gouda&#39;,&#39;Hawaiian&#39;)
+      &#39;Fancy&#39;   =&gt; Burger.new(&#39;Spicy Wasabi&#39;       ,&#39;Smoked Gouda&#39;,&#39;Hawaiian&#39;),
     }
 
     @toppings = [
       &#39;Mushrooms&#39;,
-      %w(Lettuce Onions Pickles Tomatoes),
-      [%w(Ketchup Mustard),%w(Salt Pepper)]
+      %w[Lettuce Onions Pickles Tomatoes],
+      [%w[Ketchup Mustard],%w[Salt Pepper]],
     ]
 
     @favorite = @burgers[&#39;BBQ&#39;] # Alias
   end
 
-  # You can still use Psych&#39;s encode_with(), no problem
+  # You can still use Psych&#39;s encode_with(), no problem.
   def encode_with(coder)
     coder[&#39;Burgers&#39;]  = @burgers
     coder[&#39;Toppings&#39;] = @toppings
@@ -458,7 +511,7 @@ puts burgers.to_yaml(indent: 3)
 # Favorite: *1
 
 # Or pass in a Hash. Can also dereference aliases.
-puts burgers.to_yaml({:indent =&gt; 3,:deref_aliases =&gt; true})
+puts burgers.to_yaml({indent: 3,deref_aliases: true})
 
 # Output:
 # --- !ruby/object:Burgers
@@ -502,65 +555,80 @@ end
 
 coffee = {
   &#39;Coffee&#39; =&gt; {
-    &#39;Roast&#39;=&gt;[&#39;Light&#39;, &#39;Medium&#39;, &#39;Dark&#39;, &#39;Extra Dark&#39;],
-    &#39;Style&#39;=&gt;[&#39;Cappuccino&#39;, &#39;Espresso&#39;, &#39;Latte&#39;, &#39;Mocha&#39;]
+    &#39;Roast&#39; =&gt; [&#39;Light&#39;, &#39;Medium&#39;, &#39;Dark&#39;, &#39;Extra Dark&#39;],
+    &#39;Style&#39; =&gt; [&#39;Cappuccino&#39;, &#39;Espresso&#39;, &#39;Latte&#39;, &#39;Mocha&#39;],
   }
 }
 eggs = {
   &#39;Eggs&#39; =&gt; {
-    &#39;Color&#39;=&gt;[&#39;Brown&#39;, &#39;White&#39;, &#39;Blue&#39;, &#39;Olive&#39;],
-    &#39;Style&#39;=&gt;[&#39;Fried&#39;, &#39;Scrambled&#39;, &#39;Omelette&#39;, &#39;Poached&#39;]
+    &#39;Color&#39; =&gt; [&#39;Brown&#39;, &#39;White&#39;, &#39;Blue&#39;, &#39;Olive&#39;],
+    &#39;Style&#39; =&gt; [&#39;Fried&#39;, &#39;Scrambled&#39;, &#39;Omelette&#39;, &#39;Poached&#39;],
   }
 }
 
 filename = &#39;coffee-and-eggs.yaml&#39;
 styler = MyStyler.new
-options = {:indentation=&gt;3, :stylers=&gt;styler, :deref_aliases=&gt;true}
+options = {indentation: 3, stylers: styler, deref_aliases: true}
 
-coffee_yaml = coffee.to_yaml(options)
-coffee_and_eggs_yaml = Psychgus.dump_stream(coffee,eggs,options)
+coffee_yaml = coffee.to_yaml(**options)
+coffee_and_eggs_yaml = Psychgus.dump_stream(coffee,eggs,**options)
 
+# High-level emitting.
+puts &#39;+=====================+&#39;
+puts &#39;| High-level emitting |&#39;
+puts &#39;+=====================+&#39;
 
-# High-level emitting
-puts Psychgus.dump(coffee,options)
+puts Psychgus.dump(coffee,**options)
 puts
 
-Psychgus.dump_file(filename,coffee,eggs,options)
+Psychgus.dump_file(filename,coffee,eggs,**options)
 puts File.readlines(filename)
 puts
 
-puts Psychgus.dump_stream(coffee,eggs,options)
+puts Psychgus.dump_stream(coffee,eggs,**options)
 puts
 
-puts coffee.to_yaml(options)
+puts coffee.to_yaml(**options)
 puts
 
 # High-level parsing
 # - Because to_ruby() will be called, just use Psych:
 #   - load(), load_file(), load_stream(), safe_load()
 
-# Mid-level emitting
-stream = Psychgus.parse_stream(coffee_and_eggs_yaml,options)
+# Mid-level emitting.
+puts &#39;+====================+&#39;
+puts &#39;| Mid-level emitting |&#39;
+puts &#39;+====================+&#39;
 
-puts stream.to_yaml()
+stream = Psychgus.parse_stream(coffee_and_eggs_yaml,**options)
+
+puts stream.to_yaml
 puts
 
-# Mid-level parsing
-puts Psychgus.parse(coffee_yaml,options).to_ruby
+# Mid-level parsing.
+puts &#39;+===================+&#39;
+puts &#39;| Mid-level parsing |&#39;
+puts &#39;+===================+&#39;
+
+puts Psychgus.parse(coffee_yaml,**options).to_ruby
 puts
 
-puts Psychgus.parse_file(filename,options).to_ruby
+puts Psychgus.parse_file(filename,**options).to_ruby
 puts
 
 i = 0
-Psychgus.parse_stream(coffee_and_eggs_yaml,options) do |doc|
+Psychgus.parse_stream(coffee_and_eggs_yaml,**options) do |doc|
   puts &quot;Doc ##{i += 1}:&quot;
   puts &quot;  #{doc.to_ruby}&quot;
 end
 puts
 
-# Low-level emitting
-tree_builder = Psychgus::StyledTreeBuilder.new(styler,options)
+# Low-level emitting.
+puts &#39;+====================+&#39;
+puts &#39;| Low-level emitting |&#39;
+puts &#39;+====================+&#39;
+
+tree_builder = Psychgus::StyledTreeBuilder.new(styler,**options)
 visitor = Psych::Visitors::YAMLTree.create(options,tree_builder)
 
 visitor &lt;&lt; coffee
@@ -569,92 +637,17 @@ visitor &lt;&lt; eggs
 puts visitor.tree.to_yaml
 puts
 
-# Low-level parsing
-parser = Psychgus.parser(options)
+# Low-level parsing.
+puts &#39;+===================+&#39;
+puts &#39;| Low-level parsing |&#39;
+puts &#39;+===================+&#39;
+
+parser = Psychgus.parser(**options)
 
 parser.parse(coffee_yaml)
 
 puts parser.handler.root.to_ruby
 puts
-</code></pre>
-
-<h3 id="common-stylers">Common Stylers</h3>
-
-<p>A collection of commonly-used <a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers.html">Stylers</a> and <a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylables.html">Stylables</a> are included with Psychgus.</p>
-
-<table><thead>
-<tr>
-<th>Styler</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/CapStyler.html">CapStyler</a></td>
-<td>Capitalizer for Scalars</td>
-</tr>
-<tr>
-<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/FlowStyler.html">FlowStyler</a></td>
-<td>FLOW style changer for Mappings &amp; Sequences</td>
-</tr>
-<tr>
-<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/MapFlowStyler.html">MapFlowStyler</a></td>
-<td>FLOW style changer for Mappings only</td>
-</tr>
-<tr>
-<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/NoSymStyler.html">NoSymStyler</a></td>
-<td>Symbol remover for Scalars</td>
-</tr>
-<tr>
-<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/NoTagStyler.html">NoTagStyler</a></td>
-<td>Tag remover for classes</td>
-</tr>
-<tr>
-<td><a href="https://esotericpig.github.io/docs/psychgus/yardoc/Psychgus/Stylers/SeqFlowStyler.html">SeqFlowStyler</a></td>
-<td>FLOW style changer for Sequences only</td>
-</tr>
-</tbody></table>
-
-<h4 id="stylers-example">Stylers Example</h4>
-
-<pre class="code Ruby"><code class="language-ruby">require &#39;psychgus&#39;
-
-class EggCarton
-  def initialize
-    @eggs = {
-      :styles =&gt; [&#39;fried&#39;, &#39;scrambled&#39;, [&#39;BBQ&#39;, &#39;ketchup &amp; mustard&#39;]],
-      :colors =&gt; [&#39;brown&#39;, &#39;white&#39;, [&#39;blue&#39;, &#39;green&#39;]]
-    }
-  end
-end
-
-puts EggCarton.new.to_yaml(stylers: [
-  Psychgus::NoSymStyler.new,
-  Psychgus::NoTagStyler.new,
-  Psychgus::CapStyler.new,
-  Psychgus::FlowStyler.new(4)
-])
-
-# Output:
-# ---
-# Eggs:
-#   Styles: [Fried, Scrambled, [BBQ, Ketchup &amp; Mustard]]
-#   Colors: [Brown, White, [Blue, Green]]
-
-puts EggCarton.new.to_yaml
-
-# Output (without Stylers):
-# --- !ruby/object:EggCarton
-# eggs:
-#   :styles:
-#   - fried
-#   - scrambled
-#   - - BBQ
-#     - ketchup &amp; mustard
-#   :colors:
-#   - brown
-#   - white
-#   - - blue
-#     - green
 </code></pre>
 
 <h2 id="hacking">Hacking</h2>
@@ -665,19 +658,11 @@ $ bundle install
 $ bundle exec rake -T
 </code></pre>
 
-<h3 id="testing">Testing</h3>
-
 <p>Run tests:</p>
 
 <p><code>$ bundle exec rake test</code></p>
 
-<h3 id="generating-doc">Generating Doc</h3>
-
 <p>Generate doc:</p>
-
-<p><code>$ bundle exec rake doc</code></p>
-
-<p>Clean &amp; generate pristine doc:</p>
 
 <p><code>$ bundle exec rake clobber doc</code></p>
 
@@ -687,7 +672,7 @@ $ bundle exec rake -T
 
 <blockquote>
 <p>Psychgus (<a href="https://github.com/esotericpig/psychgus">https://github.com/esotericpig/psychgus</a>)<br>
-Copyright (c) 2017-2024 Bradley Whited  </p>
+Copyright (c) 2017-2025 Bradley Whited  </p>
 
 <p>Psychgus is free software: you can redistribute it and/or modify<br>
 it under the terms of the GNU Lesser General Public License as published by<br>
@@ -704,16 +689,16 @@ along with Psychgus.  If not, see <a href="http://www.gnu.org/licenses/">http://
 </blockquote>
 </div></div>
 
-      
-<div id="footer">
-  Generated by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+      <div id="footer">
+  Generated on Thu May  1 13:36:17 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.3.4).
 </div>
 
     </div>
 
     <!-- YardGhurt::GFMFixTask JS - Do NOT remove this comment! -->
-    <script src="../../../js/prism.js"></script>
+    <script src="/js/prism.js"></script>
 
   </body>
 </html>

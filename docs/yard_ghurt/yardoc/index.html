@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; YardGhurt v1.2.1 Doc
+    &mdash; YardGhurt v1.2.2
   
 </title>
 
@@ -62,11 +62,9 @@
 
       <div id="content"><div id='filecontents'><h1 id="yardghurt">YardGhurt</h1>
 
-<p><a href="https://badge.fury.io/rb/yard_ghurt"><img src="https://badge.fury.io/rb/yard_ghurt.svg" alt="Gem Version"></a></p>
-
-<p><a href="https://esotericpig.github.io/docs/yard_ghurt/yardoc/index.html"><img src="https://img.shields.io/badge/doc-yard-%23A0522D.svg" alt="Documentation"></a>
+<p><a href="https://badge.fury.io/rb/yard_ghurt"><img src="https://badge.fury.io/rb/yard_ghurt.svg" alt="Gem Version"></a>
+<a href="https://esotericpig.github.io/docs/yard_ghurt/yardoc/index.html"><img src="https://img.shields.io/badge/doc-yard-%23A0522D.svg" alt="Documentation"></a>
 <a href="https://github.com/esotericpig/yard_ghurt"><img src="https://img.shields.io/badge/source-github-%23211F1F.svg" alt="Source Code"></a>
-<a href="file.CHANGELOG.html"><img src="https://img.shields.io/badge/changelog-md-%23A0522D.svg" alt="Changelog"></a>
 <a href="file.LICENSE.html"><img src="https://img.shields.io/github/license/esotericpig/yard_ghurt.svg" alt="License"></a></p>
 
 <p><u>YARD</u>oc <u>G</u>it<u>Hu</u>b <u>R</u>ake <u>T</u>asks</p>
@@ -76,7 +74,7 @@
 <li>Sync YARDoc to a local GitHub Pages repo.</li>
 </ul>
 
-<h2 id="contents">Contents</h2>
+<h2 id="contents">// Contents</h2>
 
 <ul>
 <li><a href="#setup">Setup</a></li>
@@ -98,36 +96,37 @@
 <li><a href="#license">License</a></li>
 </ul>
 
-<h2 id="setup"><a href="#contents">Setup</a></h2>
+<h2 id="setup"><a href="#contents">//</a> Setup</h2>
 
 <p>Pick your poison...</p>
 
 <p>With the RubyGems CLI package manager:</p>
 
-<p><code>$ gem install yard_ghurt</code></p>
+<pre class="code bash"><code class="language-bash">gem install yard_ghurt
+</code></pre>
 
-<p>In your <em>Gemspec</em> (<em>&lt;project&gt;.gemspec</em>):</p>
+<p>In your <em>Gemspec</em>:</p>
 
-<pre class="code Ruby"><code class="language-ruby">spec.add_development_dependency &#39;yard_ghurt&#39;, &#39;~&gt; X.X.X&#39;
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_add_development_dependency'>add_development_dependency</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yard_ghurt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>~&gt; X.X.X</span><span class='tstring_end'>&#39;</span></span>
 </code></pre>
 
 <p>In your <em>Gemfile</em>:</p>
 
-<pre class="code Ruby"><code class="language-ruby">gem &#39;yard_ghurt&#39;, &#39;~&gt; X.X.X&#39;, :group =&gt; [:development, :test]
-# or...
-gem &#39;yard_ghurt&#39;, :git =&gt; &#39;https://github.com/esotericpig/yard_ghurt.git&#39;,
-                  :tag =&gt; &#39;vX.X.X&#39;, :group =&gt; [:development, :test]
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yard_ghurt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>~&gt; X.X.X</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>group:</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>development</span><span class='words_sep'> </span><span class='tstring_content'>test</span><span class='tstring_end'>]</span></span>
+<span class='comment'># or...
+</span><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yard_ghurt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>git:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/esotericpig/yard_ghurt.git</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                  <span class='label'>branch:</span> <span class='id identifier rubyid_main'>main</span><span class='comma'>,</span> <span class='label'>group:</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>development</span><span class='words_sep'> </span><span class='tstring_content'>test</span><span class='tstring_end'>]</span></span>
 </code></pre>
 
-<p>Manually:</p>
+<p>From source:</p>
 
-<pre class="code ruby"><code class="ruby">$ git clone &#39;https://github.com/esotericpig/yard_ghurt.git&#39;
-$ cd yard_ghurt
-$ bundle install
-$ bundle exec rake install:local
+<pre class="code bash"><code class="language-bash">git clone --depth 1 &#39;https://github.com/esotericpig/yard_ghurt.git&#39;
+cd yard_ghurt
+bundle install
+bundle exec rake install:local
 </code></pre>
 
-<h2 id="using"><a href="#contents">Using</a></h2>
+<h2 id="using"><a href="#contents">//</a> Using</h2>
 
 <p>Currently, you can&#39;t use this project as a YARDoc Plugin, but planning on it for v2.0. Read the <a href="file.TODO.html">TODO</a> for more info.</p>
 
@@ -141,7 +140,7 @@ $ bundle exec rake install:local
 </thead><tbody>
 <tr>
 <td><a href="#gfmfixtask">GFMFixTask</a></td>
-<td>Fix GitHub Flavored Markdown files</td>
+<td>Fix GitHub Flavored Markdown files.</td>
 </tr>
 <tr>
 <td><a href="#ghpsynctask">GHPSyncTask</a></td>
@@ -159,128 +158,127 @@ $ bundle exec rake install:local
 </thead><tbody>
 <tr>
 <td><a href="#util-yardghurt">Util / YardGhurt</a></td>
-<td>Utility methods for tasks</td>
+<td>Utility methods for tasks.</td>
 </tr>
 <tr>
 <td><a href="#anchorlinks">AnchorLinks</a></td>
-<td>A “database” of anchor links</td>
+<td>A “database” of anchor links.</td>
 </tr>
 </tbody></table>
 
-<h3 id="gfmfixtask"><a href="#using">GFMFixTask</a></h3>
+<h3 id="gfmfixtask"><a href="#contents">//</a> GFMFixTask</h3>
 
 <p>Fix (find &amp; replace) text in the GitHub Flavored Markdown (GFM) files in the YARDoc directory, for differences between the two formats.</p>
 
 <p><strong>Very Important!</strong></p>
 
-<p>In order for this to work, you must also add <code>redcarpet</code> as a dependency, per YARDoc&#39;s documentation:</p>
+<p>In order for this to work, you must also add <code>redcarpet</code> as a dependency (per YARDoc&#39;s documentation), else, you&#39;ll get a bunch of <code>label-*</code> relative links.</p>
 
-<pre class="code Ruby"><code class="language-ruby">spec.add_development_dependency &#39;redcarpet&#39;,&#39;~&gt; X.X&#39; # For YARDoc Markdown (*.md)
-</code></pre>
-
-<p>Else, you&#39;ll get a bunch of <code>label-*</code> relative links.</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>redcarpet</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>~&gt; X.X</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># For YARDoc Markdown (*.md).
+</span></code></pre>
 
 <p>You can set <em>dry_run</em> on the command line:</p>
 
-<p><code>$ rake yard_gfm_fix dryrun=true</code></p>
+<pre class="code bash"><code class="language-bash">rake yard_gfm_fix dryrun=true
+</code></pre>
 
 <p><strong>What I typically use:</strong></p>
 
-<pre class="code Ruby"><code class="language-ruby">YardGhurt::GFMFixTask.new() do |task|
-  task.arg_names = [:dev]
-  task.dry_run = false
-  task.fix_code_langs = true
-  task.md_files = [&#39;index.html&#39;]
+<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/GFMFixTask.html" title="YardGhurt::GFMFixTask (class)">GFMFixTask</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="YardGhurt/GFMFixTask.html#initialize-instance_method" title="YardGhurt::GFMFixTask#initialize (method)">new</a></span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='op'>|</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_arg_names'>arg_names</span> <span class='op'>=</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>dev</span><span class='tstring_end'>]</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_dry_run'>dry_run</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_fix_code_langs'>fix_code_langs</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_md_files'>md_files</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>index.html</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
 
-  task.before = Proc.new() do |t2,args|
-    # Delete this file as it&#39;s never used (index.html is an exact copy)
-    YardGhurt.rm_exist(File.join(t2.doc_dir,&#39;file.README.html&#39;))
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_before'>before</span> <span class='op'>=</span> <span class='id identifier rubyid_proc'>proc</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task2'>task2</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span>
+    <span class='comment'># Delete this file as it&#39;s never used (`index.html` is an exact copy).
+</span>    <span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rm_exist'><span class='object_link'><a href="YardGhurt/Util/ClassMethods.html#rm_exist-instance_method" title="YardGhurt::Util::ClassMethods#rm_exist (method)">rm_exist</a></span></span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_task2'>task2</span><span class='period'>.</span><span class='id identifier rubyid_doc_dir'>doc_dir</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>file.README.html</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
 
-    # Root dir of my GitHub Page for CSS/JS
-    ghp_root_dir = YardGhurt.to_bool(args.dev) ? &#39;../../esotericpig.github.io&#39; : &#39;../../..&#39;
+    <span class='comment'># Root dir of my GitHub Page for CSS/JS.
+</span>    <span class='id identifier rubyid_ghp_root_dir'>ghp_root_dir</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bool'><span class='object_link'><a href="YardGhurt/Util/ClassMethods.html#to_bool-instance_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">to_bool</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_dev'>dev</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>../../esotericpig.github.io</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>../../..</span><span class='tstring_end'>&#39;</span></span>
 
-    t2.css_styles &lt;&lt; %Q(&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;#{ghp_root_dir}/css/prism.css&quot; /&gt;)
-    t2.js_scripts &lt;&lt; %Q(&lt;script src=&quot;#{ghp_root_dir}/js/prism.js&quot;&gt;&lt;/script&gt;)
-  end
-end
+    <span class='id identifier rubyid_task2'>task2</span><span class='period'>.</span><span class='id identifier rubyid_css_styles'>css_styles</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ghp_root_dir'>ghp_root_dir</span><span class='embexpr_end'>}</span><span class='tstring_content'>/css/prism.css&quot; /&gt;</span><span class='tstring_end'>)</span></span>
+    <span class='id identifier rubyid_task2'>task2</span><span class='period'>.</span><span class='id identifier rubyid_js_scripts'>js_scripts</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;script src=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ghp_root_dir'>ghp_root_dir</span><span class='embexpr_end'>}</span><span class='tstring_content'>/js/prism.js&quot;&gt;&lt;/script&gt;</span><span class='tstring_end'>)</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
 </code></pre>
 
-<p><strong>Using all options:</strong></p>
+<p><strong>All options:</strong></p>
 
-<pre class="code Ruby"><code class="language-ruby">YardGhurt::GFMFixTask.new(:yard_fix) do |task|
-  task.anchor_db           = {&#39;tests&#39; =&gt; &#39;Testing&#39;} # #tests =&gt; #Testing
-  task.arg_names          &lt;&lt; :name # Custom args
-  task.css_styles         &lt;&lt; &#39;&lt;link rel=&quot;stylesheet&quot; href=&quot;css/my_css.css&quot; /&gt;&#39; # Inserted at &lt;/head&gt;
-  task.css_styles         &lt;&lt; &#39;&lt;style&gt;body{ background-color: linen; }&lt;/style&gt;&#39;
-  task.custom_gsub         = Proc.new() {|line| !line.gsub!(&#39;YardGhurt&#39;,&#39;YARD GHURT!&#39;).nil?()}
-  task.custom_gsubs       &lt;&lt; [/newline/i,&#39;Do you smell what The Rock is cooking?&#39;]
-  task.deps               &lt;&lt; :yard # Custom dependencies
-  task.description         = &#39;Fix it&#39;
-  task.doc_dir             = &#39;doc&#39;
-  task.dry_run             = false
-  task.exclude_code_langs  = Set[&#39;ruby&#39;]
-  task.fix_anchor_links    = true
-  task.fix_code_langs      = true
-  task.fix_file_links      = true
-  task.js_scripts         &lt;&lt; &#39;&lt;script src=&quot;js/my_js.js&quot;&gt;&lt;/script&gt;&#39; # Inserted at &lt;/body&gt;
-  task.js_scripts         &lt;&lt; &#39;&lt;script&gt;document.write(&quot;Hello World!&quot;);&lt;/script&gt;&#39;
-  task.md_files            = [&#39;index.html&#39;]
-  task.verbose             = false
+<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/GFMFixTask.html" title="YardGhurt::GFMFixTask (class)">GFMFixTask</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="YardGhurt/GFMFixTask.html#initialize-instance_method" title="YardGhurt::GFMFixTask#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:yard_fix</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='op'>|</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_anchor_db'>anchor_db</span>           <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tests</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Testing</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span> <span class='comment'># Anchor links `#tests` become `#Testing`.
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_arg_names'>arg_names</span>          <span class='op'>&lt;&lt;</span> <span class='symbol'>:name</span> <span class='comment'># Custom args.
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_css_styles'>css_styles</span>         <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/my_css.css&quot; /&gt;</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># Inserted at `&lt;/head&gt;`.
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_css_styles'>css_styles</span>         <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;style&gt;body { background-color: linen; }&lt;/style&gt;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_custom_gsub'>custom_gsub</span>         <span class='op'>=</span> <span class='id identifier rubyid_proc'>proc</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span> <span class='op'>!</span><span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>YardGhurt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>YARD GHURT!</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_custom_gsubs'>custom_gsubs</span>       <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>newline</span><span class='regexp_end'>/i</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Do you smell what The Rock is cooking?</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_deps'>deps</span>               <span class='op'>&lt;&lt;</span> <span class='symbol'>:yard</span> <span class='comment'># Custom dependencies.
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span>         <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fix it</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_doc_dir'>doc_dir</span>             <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>doc</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_dry_run'>dry_run</span>             <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_exclude_code_langs'>exclude_code_langs</span>  <span class='op'>=</span> <span class='const'>Set</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ruby</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_fix_anchor_links'>fix_anchor_links</span>    <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_fix_code_langs'>fix_code_langs</span>      <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_fix_file_links'>fix_file_links</span>      <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_js_scripts'>js_scripts</span>         <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;script src=&quot;js/my_js.js&quot;&gt;&lt;/script&gt;</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># Inserted at `&lt;/body&gt;`.
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_js_scripts'>js_scripts</span>         <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;script&gt;document.write(&quot;Hello World!&quot;);&lt;/script&gt;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_md_files'>md_files</span>            <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>index.html</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_verbose'>verbose</span>             <span class='op'>=</span> <span class='kw'>false</span>
 
-  task.before = Proc.new() {|task,args| puts &quot;Hi, #{args.name}!&quot;}
-  task.during = Proc.new() {|task,args,file| puts &quot;#{args.name} can haz #{file}?&quot;}
-  task.after  = Proc.new() {|task,args| puts &quot;Goodbye, #{args.name}!&quot;}
-end
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_before'>before</span> <span class='op'>=</span> <span class='id identifier rubyid_proc'>proc</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__task2'>_task2</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hi, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_during'>during</span> <span class='op'>=</span> <span class='id identifier rubyid_proc'>proc</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__task2'>_task2</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> can haz </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file'>file</span><span class='embexpr_end'>}</span><span class='tstring_content'>?</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_after'>after</span>  <span class='op'>=</span> <span class='id identifier rubyid_proc'>proc</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__task2'>_task2</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Goodbye, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+<span class='kw'>end</span>
 </code></pre>
 
-<h3 id="ghpsynctask"><a href="#using">GHPSyncTask</a></h3>
+<h3 id="ghpsynctask"><a href="#contents">//</a> GHPSyncTask</h3>
 
 <p>Sync YARDoc to a local GitHub Pages repo (uses <code>rsync</code> by default).</p>
 
 <p><strong>What I typically use:</strong></p>
 
-<pre class="code Ruby"><code class="language-ruby">YardGhurt::GHPSyncTask.new() do |task|
-  task.ghp_dir = &#39;../esotericpig.github.io/docs/yard_ghurt/yardoc&#39;
-  task.sync_args &lt;&lt; &#39;--delete-after&#39;
-end
+<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/GHPSyncTask.html" title="YardGhurt::GHPSyncTask (class)">GHPSyncTask</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="YardGhurt/GHPSyncTask.html#initialize-instance_method" title="YardGhurt::GHPSyncTask#initialize (method)">new</a></span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='op'>|</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_ghp_dir'>ghp_dir</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>../esotericpig.github.io/docs/yard_ghurt/yardoc</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_sync_args'>sync_args</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--delete-after</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span>
 </code></pre>
 
-<p><strong>Using all options:</strong></p>
+<p><strong>All options:</strong></p>
 
-<pre class="code Ruby"><code class="language-ruby"># Execute: rake ghp_doc[false,&#39;Ruby&#39;]
-YardGhurt::GHPSyncTask.new(:ghp_doc) do |task|
-  task.arg_names   &lt;&lt; :name                      # Custom args
-  task.deps        &lt;&lt; :yard                      # Custom dependencies
-  task.description  = &#39;Rsync my_doc/ to my page&#39;
-  task.doc_dir      = &#39;my_doc&#39;                   # YARDoc directory of generated files
-  task.ghp_dir      = &#39;../dest_dir/my_page&#39;
-  task.strict       = true                       # Fail if doc_dir doesn&#39;t exist
-  task.sync_args   &lt;&lt; &#39;--delete-after&#39;
-  task.sync_cmd     = &#39;/usr/bin/rsync&#39;
+<pre class="code ruby"><code class="ruby"><span class='comment'># Execute: rake ghp_doc[false,&#39;Custom&#39;]
+</span><span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/GHPSyncTask.html" title="YardGhurt::GHPSyncTask (class)">GHPSyncTask</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="YardGhurt/GHPSyncTask.html#initialize-instance_method" title="YardGhurt::GHPSyncTask#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:ghp_doc</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='op'>|</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_arg_names'>arg_names</span>   <span class='op'>&lt;&lt;</span> <span class='symbol'>:name</span>                      <span class='comment'># Custom args (&#39;Custom&#39;).
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_deps'>deps</span>        <span class='op'>&lt;&lt;</span> <span class='symbol'>:yard</span>                      <span class='comment'># Custom dependencies.
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span>  <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Rsync my_doc/ to my page</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_doc_dir'>doc_dir</span>      <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my_doc</span><span class='tstring_end'>&#39;</span></span>                   <span class='comment'># YARDoc directory of generated files.
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_ghp_dir'>ghp_dir</span>      <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>../dest_dir/my_page</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_strict'>strict</span>       <span class='op'>=</span> <span class='kw'>true</span>                       <span class='comment'># Fail if doc_dir doesn&#39;t exist.
+</span>  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_sync_args'>sync_args</span>   <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--delete-after</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_sync_cmd'>sync_cmd</span>     <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/usr/bin/rsync</span><span class='tstring_end'>&#39;</span></span>
 
-  task.before = Proc.new() {|task,args| puts &quot;Hi, #{args.name}!&quot;}
-  task.after  = Proc.new() {|task,args| puts &quot;Goodbye, #{args.name}!&quot;}
-end
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_before'>before</span> <span class='op'>=</span> <span class='id identifier rubyid_proc'>proc</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__task2'>_task2</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hi, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_after'>after</span>  <span class='op'>=</span> <span class='id identifier rubyid_proc'>proc</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__task2'>_task2</span><span class='comma'>,</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Goodbye, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+<span class='kw'>end</span>
 </code></pre>
 
-<h3 id="util-yardghurt"><a href="#using">Util / YardGhurt</a></h3>
+<h3 id="util-yardghurt"><a href="#contents">//</a> Util / YardGhurt</h3>
 
 <p>Utility methods for tasks.</p>
 
-<pre class="code Ruby"><code class="language-ruby">require &#39;yard_ghurt/util&#39;
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yard_ghurt/util</span><span class='tstring_end'>&#39;</span></span>
 
-# If the file exists, delete it, and if +output+ is true, log it to stdout
-YardGhurt::Util.rm_exist(&#39;doc/file.README.html&#39;)
-YardGhurt::Util.rm_exist(&#39;doc/file.README.html&#39;,false)
+<span class='comment'># If the file exists, delete it, and if `output` is true, log it to stdout.
+</span><span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/Util.html" title="YardGhurt::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rm_exist'><span class='object_link'><a href="YardGhurt/Util/ClassMethods.html#rm_exist-instance_method" title="YardGhurt::Util::ClassMethods#rm_exist (method)">rm_exist</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>doc/file.README.html</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/Util.html" title="YardGhurt::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rm_exist'><span class='object_link'><a href="YardGhurt/Util/ClassMethods.html#rm_exist-instance_method" title="YardGhurt::Util::ClassMethods#rm_exist (method)">rm_exist</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>doc/file.README.html</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='kw'>false</span><span class='rparen'>)</span>
 
-# Convert an Object to true or false
-puts YardGhurt::Util.to_bool(&#39;true&#39;) # true
-puts YardGhurt::Util.to_bool(&#39;on&#39;)   # true
-puts YardGhurt::Util.to_bool(&#39;yes&#39;)  # true
-puts YardGhurt::Util.to_bool(nil)    # false
-</code></pre>
+<span class='comment'># Convert an Object to true or false.
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/Util.html" title="YardGhurt::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bool'><span class='object_link'><a href="YardGhurt/Util/ClassMethods.html#to_bool-instance_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">to_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>true</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; true
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/Util.html" title="YardGhurt::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bool'><span class='object_link'><a href="YardGhurt/Util/ClassMethods.html#to_bool-instance_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">to_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>on</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>   <span class='comment'>#=&gt; true
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/Util.html" title="YardGhurt::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bool'><span class='object_link'><a href="YardGhurt/Util/ClassMethods.html#to_bool-instance_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">to_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yes</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>  <span class='comment'>#=&gt; true
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/Util.html" title="YardGhurt::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bool'><span class='object_link'><a href="YardGhurt/Util/ClassMethods.html#to_bool-instance_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">to_bool</a></span></span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>    <span class='comment'>#=&gt; false
+</span></code></pre>
 
-<p>For convenience, <em>Util</em>&#39;s methods are also included in the top module <em>YardGhurt</em>. However, this will also include all of the Tasks and Helpers, so <em>Util</em> is preferred, unless you&#39;re already requiring <em>yard_ghurt</em>.</p>
+<p>For convenience, <em>Util</em>&#39;s methods are also included in the top module <em>YardGhurt</em>. However, this will also include all the Tasks and Helpers, so <em>Util</em> is preferred, unless you&#39;re already requiring <em>yard_ghurt</em>.</p>
 
 <pre class="code Ruby"><code class="language-ruby">require &#39;yard_ghurt&#39;
 
@@ -288,65 +286,60 @@ YardGhurt.rm_exist(&#39;doc/file.README.html&#39;)
 puts YardGhurt.to_bool(&#39;true&#39;)
 </code></pre>
 
-<h3 id="anchorlinks"><a href="#using">AnchorLinks</a></h3>
+<h3 id="anchorlinks"><a href="#contents">//</a> AnchorLinks</h3>
 
 <p>A “database” of anchor links specific to GitHub Flavored Markdown (GFM) and YARDoc.</p>
 
 <p>You can use this by itself to view what anchor IDs would be generated:</p>
 
-<pre class="code Ruby"><code class="language-ruby">require &#39;yard_ghurt/anchor_links&#39;
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yard_ghurt/anchor_links</span><span class='tstring_end'>&#39;</span></span>
 
-al = YardGhurt::AnchorLinks.new()
+<span class='id identifier rubyid_al'>al</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/AnchorLinks.html" title="YardGhurt::AnchorLinks (class)">AnchorLinks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="YardGhurt/AnchorLinks.html#initialize-instance_method" title="YardGhurt::AnchorLinks#initialize (method)">new</a></span></span>
 
-puts al.to_github_anchor_id(&#39;This is a test!&#39;)
-puts al.to_yard_anchor_id(&#39;This is a test!&#39;)
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_github_anchor_id'>to_github_anchor_id</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This is a test!</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; this-is-a-test
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_yard_anchor_id'>to_yard_anchor_id</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This is a test!</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>   <span class='comment'>#=&gt; This_is_a_test_
+</span></code></pre>
 
-# Output:
-# ---
-# this-is-a-test
-# This_is_a_test_
-</code></pre>
+<p>Be aware that YARDoc depends on a common number that will be incremented for all duplicates, while GFM&#39;s number is only local to each duplicate:</p>
 
-<p>Be aware that YARDoc depends on a common number that will be incremented for all duplicates, while GFM&#39;s number is only local to each specific duplicate:</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_al'>al</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YardGhurt.html" title="YardGhurt (module)">YardGhurt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YardGhurt/AnchorLinks.html" title="YardGhurt::AnchorLinks (class)">AnchorLinks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="YardGhurt/AnchorLinks.html#initialize-instance_method" title="YardGhurt::AnchorLinks#initialize (method)">new</a></span></span>
+<span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This is a test!</span><span class='tstring_end'>&#39;</span></span>
 
-<pre class="code Ruby"><code class="language-ruby">al = YardGhurt::AnchorLinks.new()
-name = &#39;This is a test!&#39;
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_yard_anchor_id'>to_yard_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>   <span class='comment'>#=&gt; This_is_a_test_
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_yard_anchor_id'>to_yard_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>   <span class='comment'>#=&gt; This_is_a_test_
+</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_github_anchor_id'>to_github_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='comment'>#=&gt; this-is-a-test
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_github_anchor_id'>to_github_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='comment'>#=&gt; this-is-a-test
+</span>
+<span class='id identifier rubyid_al'>al</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_name'>name</span> <span class='comment'># Officially add it to the database.
+</span>
+<span class='comment'># Instead of being 0 &amp; 0, it will be 0 &amp; 1 (incremented),
+</span><span class='comment'>#   even without being added to the database.
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_yard_anchor_id'>to_yard_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>   <span class='comment'>#=&gt; This_is_a_test_0
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_yard_anchor_id'>to_yard_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>   <span class='comment'>#=&gt; This_is_a_test_1
+</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_github_anchor_id'>to_github_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='comment'>#=&gt; this-is-a-test-1
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_github_anchor_id'>to_github_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='comment'>#=&gt; this-is-a-test-1
+</span>
+<span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This is another test!</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_al'>al</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_name'>name</span> <span class='comment'># Officially add it to the database.
+</span>
+<span class='comment'># Instead of being 0 &amp; 1, it will be 2 &amp; 3 (global increment),
+</span><span class='comment'>#   even without being added to the database.
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_yard_anchor_id'>to_yard_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>   <span class='comment'>#=&gt; This_is_another_test_2
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_yard_anchor_id'>to_yard_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>   <span class='comment'>#=&gt; This_is_another_test_3
+</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_github_anchor_id'>to_github_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='comment'>#=&gt; this-is-another-test-1
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_al'>al</span><span class='period'>.</span><span class='id identifier rubyid_to_github_anchor_id'>to_github_anchor_id</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='comment'>#=&gt; this-is-another-test-1
+</span></code></pre>
 
-puts al.to_yard_anchor_id(name)   # This_is_a_test_
-puts al.to_yard_anchor_id(name)   # This_is_a_test_
-
-puts al.to_github_anchor_id(name) # this-is-a-test
-puts al.to_github_anchor_id(name) # this-is-a-test
-
-al &lt;&lt; name # Officially add it to the database
-
-# Instead of being 0 &amp; 0, will be 0 &amp; 1 (incremented),
-#   even without being added to the database
-puts al.to_yard_anchor_id(name)   # This_is_a_test_0
-puts al.to_yard_anchor_id(name)   # This_is_a_test_1
-
-puts al.to_github_anchor_id(name) # this-is-a-test-1
-puts al.to_github_anchor_id(name) # this-is-a-test-1
-
-name = &#39;This is another test!&#39;
-al &lt;&lt; name # Officially add it to the database
-
-# Instead of being 0 &amp; 1, will be 2 &amp; 3 (global increment),
-#   even without being added to the database
-puts al.to_yard_anchor_id(name)   # This_is_another_test_2
-puts al.to_yard_anchor_id(name)   # This_is_another_test_3
-
-puts al.to_github_anchor_id(name) # this-is-another-test-1
-puts al.to_github_anchor_id(name) # this-is-another-test-1
-</code></pre>
-
-<h2 id="cli-app"><a href="#contents">CLI App</a></h2>
+<h2 id="cli-app"><a href="#contents">//</a> CLI App</h2>
 
 <p>A CLI app has been added for convenience for when writing your own README.</p>
 
 <p>On the command line:</p>
 
-<pre class="code ruby"><code class="ruby">$ yard_ghurt -g &quot;What&#39;s this ID?&quot;
+<pre class="code bash"><code class="language-bash">$ yard_ghurt -g &quot;What&#39;s this ID?&quot;
 # =&gt; whats-this-id
 
 $ yard_ghurt -y &quot;What&#39;s this ID?&quot;
@@ -368,23 +361,25 @@ $ yard_ghurt -a &quot;What&#39;s this ID?&quot;
     -v, --version                    Print the version
 </code></pre>
 
-<h2 id="hacking"><a href="#contents">Hacking</a></h2>
+<h2 id="hacking"><a href="#contents">//</a> Hacking</h2>
 
-<pre class="code ruby"><code class="ruby">$ git clone &#39;https://github.com/esotericpig/yard_ghurt.git&#39;
-$ cd yard_ghurt
-$ bundle install
-$ bundle exec rake -T
+<pre class="code bash"><code class="language-bash">git clone &#39;https://github.com/esotericpig/yard_ghurt.git&#39;
+cd yard_ghurt
+bundle install
+bundle exec rake -T
 </code></pre>
 
-<h3 id="testing"><a href="#hacking">Testing</a></h3>
+<h3 id="testing"><a href="#contents">//</a> Testing</h3>
 
 <p>First, execute this:</p>
 
-<p><code>$ bundle exec rake clobber yard yard_gfm_fix[true]</code></p>
+<pre class="code bash"><code class="language-bash">bundle exec rake clobber yard yard_gfm_fix[true]
+</code></pre>
 
 <p>Then execute this and make sure there are no warnings and no changes:</p>
 
-<p><code>$ bundle exec rake yard_gfm_fix[true]</code></p>
+<pre class="code bash"><code class="language-bash">bundle exec rake yard_gfm_fix[true]
+</code></pre>
 
 <p>It should output this:</p>
 
@@ -394,13 +389,14 @@ $ bundle exec rake -T
 = Nothing written (up-to-date)
 </code></pre>
 
-<p>Then open up <strong>doc/index.html</strong> and check all of  the <a href="#tests">anchor links</a>, <a href="#license">local file links</a>, etc.</p>
+<p>Then open up <a href="file.index.html">doc/index.html</a> and check all the <a href="#tests">anchor links</a>, <a href="#license">local file links</a>, etc.</p>
 
 <p>Lastly, the 2 files should be almost identical, except for 1 line:</p>
 
-<p><code>$ diff doc/index.html doc/file.README.html</code></p>
+<pre class="code bash"><code class="language-bash">diff doc/index.html doc/file.README.html
+</code></pre>
 
-<h2 id="tests"><a href="#contents">Tests</a></h2>
+<h2 id="tests"><a href="#contents">//</a> Tests</h2>
 
 <p>These are actual tests for this gem.</p>
 
@@ -412,10 +408,10 @@ $ bundle exec rake -T
 <li><a href="#this-is-test-4">&quot;This is Test #4&quot;</a></li>
 <li><a href="#this-is-test-5">this is test #5</a></li>
 <li><a href="#this-is-test-6">THIS IS TEST #6</a></li>
-<li><a href="#part-ed5128ebae5b7a90">日本語？</a></li>
-<li><a href="#part-edb592b4596ebf28">テスト？</a></li>
-<li><a href="#part-b5c2f1bd3df9ec9c">中文？</a></li>
-<li><a href="#part-de61a7da3f08b994">汉语？</a></li>
+<li><a href="#part-ef732414f5da13d">日本語？</a></li>
+<li><a href="#part-f5b9c09fa70e5d5">テスト？</a></li>
+<li><a href="#part-a22889cad09cca69">中文？</a></li>
+<li><a href="#part-cac73fe7d1ab9761">汉语？</a></li>
 </ul>
 
 <h3 id="this-is-test-1"><a href="#tests">This is Test #1</a></h3>
@@ -432,13 +428,13 @@ $ bundle exec rake -T
 
 <h3 id="this-is-test-6"><a href="#tests">THIS IS TEST #6</a></h3>
 
-<h3 id="part-ed5128ebae5b7a90"><a href="#tests">日本語？</a></h3>
+<h3 id="part-ef732414f5da13d"><a href="#tests">日本語？</a></h3>
 
-<h3 id="part-edb592b4596ebf28"><a href="#tests">テスト？</a></h3>
+<h3 id="part-f5b9c09fa70e5d5"><a href="#tests">テスト？</a></h3>
 
-<h3 id="part-b5c2f1bd3df9ec9c"><a href="#tests">中文？</a></h3>
+<h3 id="part-a22889cad09cca69"><a href="#tests">中文？</a></h3>
 
-<h3 id="part-de61a7da3f08b994"><a href="#tests">汉语？</a></h3>
+<h3 id="part-cac73fe7d1ab9761"><a href="#tests">汉语？</a></h3>
 
 <pre class="code ruby"><code class="ruby"><span class='const'>Newline</span>
 <span class='const'>Newline</span>
@@ -453,13 +449,13 @@ $ bundle exec rake -T
 <span class='const'>Newline</span>
 </code></pre>
 
-<h2 id="license"><a href="#contents">License</a></h2>
+<h2 id="license"><a href="#contents">//</a> License</h2>
 
 <p><a href="file.LICENSE.html">GNU LGPL v3+</a></p>
 
 <blockquote>
 <p>YardGhurt (<a href="https://github.com/esotericpig/yard_ghurt">https://github.com/esotericpig/yard_ghurt</a>)<br>
-Copyright (c) 2019-2021 Jonathan Bradley Whited  </p>
+Copyright (c) 2019-2025 Bradley Whited  </p>
 
 <p>YardGhurt is free software: you can redistribute it and/or modify<br>
 it under the terms of the GNU Lesser General Public License as published by<br>
@@ -476,10 +472,10 @@ along with YardGhurt.  If not, see <a href="https://www.gnu.org/licenses/">https
 </blockquote>
 </div></div>
 
-      
-<div id="footer">
-  Generated by
-  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+      <div id="footer">
+  Generated on Fri Jun  6 17:08:08 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.3.4).
 </div>
 
     </div>

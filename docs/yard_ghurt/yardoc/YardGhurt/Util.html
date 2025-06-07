@@ -6,7 +6,7 @@
 <title>
   Module: YardGhurt::Util
   
-    &mdash; YardGhurt v1.2.1 Doc
+    &mdash; YardGhurt v1.2.2
   
 </title>
 
@@ -115,22 +115,6 @@
 </div>
 <div class="tags">
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Jonathan Bradley Whited</p>
-</div>
-      
-    </li>
-  
-</ul>
 <p class="tag_title">Since:</p>
 <ul class="since">
   
@@ -215,7 +199,7 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='qwords_beg'>%w[</span><span class='words_sep'> </span><span class='tstring_content'>1</span><span class='words_sep'> </span><span class='tstring_content'>on</span><span class='words_sep'> </span><span class='tstring_content'>t</span><span class='words_sep'> </span><span class='tstring_content'>true</span><span class='words_sep'> </span><span class='tstring_content'>y</span><span class='words_sep'> </span><span class='tstring_content'>yes</span><span class='words_sep'> </span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='qwords_beg'>%w[</span><span class='tstring_content'>1</span><span class='words_sep'> </span><span class='tstring_content'>on</span><span class='words_sep'> </span><span class='tstring_content'>t</span><span class='words_sep'> </span><span class='tstring_content'>true</span><span class='words_sep'> </span><span class='tstring_content'>y</span><span class='words_sep'> </span><span class='tstring_content'>yes</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="SEM_VER_REGEX-constant" class="">SEM_VER_REGEX =
           <div class="docstring">
@@ -308,21 +292,128 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_sem_ver-class_method" title="#parse_sem_ver (class method)">.<strong>parse_sem_ver</strong>(str)  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      extended
+      from <span class='object_link'><a href="Util/ClassMethods.html#parse_sem_ver-class_method" title="YardGhurt::Util::ClassMethods#parse_sem_ver (method)">ClassMethods</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parse <code>str</code> as a non-strict Semantic Version:   d+.d+.d+.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rm_exist-class_method" title="#rm_exist (class method)">.<strong>rm_exist</strong>(filename, output = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      extended
+      from <span class='object_link'><a href="Util/ClassMethods.html#rm_exist-class_method" title="YardGhurt::Util::ClassMethods#rm_exist (method)">ClassMethods</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>If <code>filename</code> exists, delete it, and if <code>output</code> is <code>true</code>, log it to stdout.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_bool-class_method" title="#to_bool (class method)">.<strong>to_bool</strong>(str)  &#x21d2; true, false </a>
+    
+
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      extended
+      from <span class='object_link'><a href="Util/ClassMethods.html#to_bool-class_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">ClassMethods</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Convert <code>str</code> to <code>true</code> or <code>false</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#yard_sem_ver-class_method" title="#yard_sem_ver (class method)">.<strong>yard_sem_ver</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      extended
+      from <span class='object_link'><a href="Util/ClassMethods.html#yard_sem_ver-class_method" title="YardGhurt::Util::ClassMethods#yard_sem_ver (method)">ClassMethods</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns YARD’s version as a <code>Hash</code> of parts:   { major: 0, minor: 0, patch: 0 }.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
 
   
   
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="Util/ClassMethods.html" title="YardGhurt::Util::ClassMethods (module)">ClassMethods</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Util/ClassMethods.html#parse_sem_ver-instance_method" title="YardGhurt::Util::ClassMethods#parse_sem_ver (method)">parse_sem_ver</a></span>, <span class='object_link'><a href="Util/ClassMethods.html#rm_exist-instance_method" title="YardGhurt::Util::ClassMethods#rm_exist (method)">rm_exist</a></span>, <span class='object_link'><a href="Util/ClassMethods.html#to_bool-instance_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">to_bool</a></span>, <span class='object_link'><a href="Util/ClassMethods.html#yard_sem_ver-instance_method" title="YardGhurt::Util::ClassMethods#yard_sem_ver (method)">yard_sem_ver</a></span></p>
-
 
   <div id="class_method_details" class="method_details_list">
     <h2>Class Method Details</h2>
@@ -390,12 +481,12 @@
       <pre class="lines">
 
 
-40
-41
-42</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/util.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/yard_ghurt/util.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_included'>included</span><span class='lparen'>(</span><span class='id identifier rubyid_mod'>mod</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_mod'>mod</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="Util/ClassMethods.html" title="YardGhurt::Util::ClassMethods (module)">ClassMethods</a></span></span>
@@ -405,14 +496,361 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="parse_sem_ver-class_method">
+  
+    .<strong>parse_sem_ver</strong>(str)  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="Util/ClassMethods.html#parse_sem_ver-class_method" title="YardGhurt::Util::ClassMethods#parse_sem_ver (method)">ClassMethods</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parse <code>str</code> as a non-strict Semantic Version:</p>
+
+<pre class="code ruby"><code class="ruby">\d+.\d+.\d+
+</code></pre>
+
+<p>Unlike the specification, minor and patch are optional. Also, pre-release and build metadata are ignored. This is used for checking the YARD version internally, so needs to be very flexible.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>str</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the object to parse; <tt>to_s()</tt> will be called on it</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Semantic Version parts: <tt>{:major, :minor, :patch}</tt> defaults all values to <code>0</code> if the version cannot be parsed</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#SEM_VER_REGEX-constant" title="YardGhurt::Util::SEM_VER_REGEX (constant)">SEM_VER_REGEX</a></span></li>
+    
+      <li><span class='object_link'><a href="Util/ClassMethods.html#yard_sem_ver-instance_method" title="YardGhurt::Util::ClassMethods#yard_sem_ver (method)">#yard_sem_ver</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.2.1</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rm_exist-class_method">
+  
+    .<strong>rm_exist</strong>(filename, output = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="Util/ClassMethods.html#rm_exist-class_method" title="YardGhurt::Util::ClassMethods#rm_exist (method)">ClassMethods</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>If <code>filename</code> exists, delete it, and if <code>output</code> is <code>true</code>, log it to stdout.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the file to remove</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>output</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>whether to log it to stdout</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_bool-class_method">
+  
+    .<strong>to_bool</strong>(str)  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="Util/ClassMethods.html#to_bool-class_method" title="YardGhurt::Util::ClassMethods#to_bool (method)">ClassMethods</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Convert <code>str</code> to <code>true</code> or <code>false</code>.</p>
+
+<p>Even if <code>str</code> is not a String, <tt>to_s()</tt> will be called, so should be safe.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>str</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the String (or Object) to convert</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the boolean value of <code>str</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#TRUE_BOOLS-constant" title="YardGhurt::Util::TRUE_BOOLS (constant)">TRUE_BOOLS</a></span></li>
+    
+      <li><span class='object_link'><a href="GHPSyncTask.html#arg_names-instance_method" title="YardGhurt::GHPSyncTask#arg_names (method)">GHPSyncTask#arg_names</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="yard_sem_ver-class_method">
+  
+    .<strong>yard_sem_ver</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="Util/ClassMethods.html#yard_sem_ver-class_method" title="YardGhurt::Util::ClassMethods#yard_sem_ver (method)">ClassMethods</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns YARD’s version as a <code>Hash</code> of parts:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='lbrace'>{</span> <span class='label'>major:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>minor:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>patch:</span> <span class='int'>0</span> <span class='rbrace'>}</span>
+</code></pre>
+
+<p>If the version can not be parsed, it will return the exact same <code>Hash</code> as above with all values to <code>0</code>.</p>
+
+<p>On initial call, it will parse it and store it. On subsequent calls, it will return the stored value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>YARD’s version parts</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Util/ClassMethods.html#parse_sem_ver-instance_method" title="YardGhurt::Util::ClassMethods#parse_sem_ver (method)">#parse_sem_ver</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.2.1</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
   </div>
 
 </div>
 
-      
-<div id="footer">
-  Generated by
-  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+      <div id="footer">
+  Generated on Fri Jun  6 17:08:08 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.3.4).
 </div>
 
     </div>
